@@ -1,0 +1,50 @@
+{% set version = "3.4.1" %}
+
+package:
+  name: openscenegraph
+  version: {{ version }}
+
+source:
+  - url: https://github.com/openscenegraph/OpenSceneGraph/archive/OpenSceneGraph-{{ version }}.tar.gz
+    fn: openscenegraph-{{ version }}.tar.gz
+    sha256: 930eb46f05781a76883ec16c5f49cfb29a059421db131005d75bec4d78401fd5
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  
+  host:
+    - freetype
+    - giflib
+    - libgdal 
+    - libjpeg-turbo
+    - libpng
+    - libtiff
+    - openexr 2.3.0
+    - zlib
+  
+  run:
+    - freetype
+    - giflib
+    - libgdal 
+    - libjpeg-turbo
+    - libpng
+    - libtiff
+    - openexr 2.3.0
+    - zlib
+
+about:
+  home: http://www.openscenegraph.org
+  license: OpenSceneGraph Public License
+  license_file: LICENSE.TXT
+  summary: The OpenSceneGraph is an open source high performance 3D graphics toolkit。
+
+extra:
+  recipe-maintainers:
+    - saedrna
