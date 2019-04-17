@@ -1,0 +1,445 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 654bebd..5d2a5aa 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -39,6 +39,10 @@ option(OpenMVG_USE_OPENCV "Build or not opencv+openMVG samples programs" OFF)
+ # ==============================================================================
+ option(OpenMVG_USE_OCVSIFT "Add or not OpenCV SIFT in available features" OFF)
+ 
++if(OpenMVG_BUILD_SHARED AND MSVC)
++  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
++endif(OpenMVG_BUILD_SHARED AND MSVC)
++
+ # ==============================================================================
+ # OpenMVG version
+ # ==============================================================================
+@@ -58,8 +62,9 @@ if (NOT CMAKE_BUILD_TYPE AND NOT MSVC)
+ endif (NOT CMAKE_BUILD_TYPE AND NOT MSVC)
+ 
+ # Set build path
+-set(EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}/${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_BUILD_TYPE}")
+-set(LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_BUILD_TYPE}")
++set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
++set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
++set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
+ 
+ # ==============================================================================
+ # Macro used to forward compiler preprocessors to OpenMVGConfig.cmake targets
+@@ -88,11 +93,11 @@ endif()
+ # ==============================================================================
+ # Check that submodule have been initialized and updated
+ # ==============================================================================
+-if (NOT EXISTS ${PROJECT_SOURCE_DIR}/dependencies/cereal/include)
+-  message(FATAL_ERROR
+-    "\n submodule(s) are missing, please update your repository:\n"
+-    "  > git submodule update -i\n")
+-endif()
++# if (NOT EXISTS ${PROJECT_SOURCE_DIR}/dependencies/cereal/include)
++#   message(FATAL_ERROR
++#     "\n submodule(s) are missing, please update your repository:\n"
++#     "  > git submodule update -i\n")
++# endif()
+ 
+ # ==============================================================================
+ # Additional cmake find modules
+@@ -184,12 +189,12 @@ if (OpenMVG_BUILD_OPENGL_EXAMPLES)
+ endif (OpenMVG_BUILD_OPENGL_EXAMPLES)
+ 
+ # Dependencies install rules
+-install(
+-  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/
+-  DESTINATION include/openMVG_dependencies
+-  COMPONENT headers
+-  FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
+-)
++# install(
++#   DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/
++#   DESTINATION include/openMVG_dependencies
++#   COMPONENT headers
++#   FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
++# )
+ 
+ # ==============================================================================
+ # --END-- SUBMODULE CONFIGURATION
+@@ -382,7 +387,7 @@ endif()
+ # Third-party libraries:
+ # ==============================================================================
+ add_subdirectory(third_party)
+-add_subdirectory(testing)
++# add_subdirectory(testing)
+ 
+ # ==============================================================================
+ # openMVG modules
+diff --git a/src/cmakeFindModules/FindClp.cmake b/src/cmakeFindModules/FindClp.cmake
+index c997b87..74c3aae 100644
+--- a/src/cmakeFindModules/FindClp.cmake
++++ b/src/cmakeFindModules/FindClp.cmake
+@@ -51,8 +51,8 @@ IF(EXISTS "${CLP_DIR}" AND NOT "${CLP_DIR}" STREQUAL "")
+         SET(CLP_INCLUDE_DIR ${CLP_DIR})
+ 
+         FIND_LIBRARY(CLP_LIBRARY NAMES Clp)
+-        FIND_LIBRARY(CLPSOLVER_LIBRARY NAMES ClpSolver)
+-        FIND_LIBRARY(OSICLP_LIBRARY NAMES OsiClp)
++        FIND_LIBRARY(CLPSOLVER_LIBRARY NAMES ClpSolver Clp)
++        FIND_LIBRARY(OSICLP_LIBRARY NAMES OsiClp Clp)
+ 
+         # locate Clp libraries
+         IF(DEFINED CLP_LIBRARY AND DEFINED CLPSOLVER_LIBRARY AND DEFINED OSICLP_LIBRARY)
+diff --git a/src/cmakeFindModules/OpenMVGConfig.cmake.in b/src/cmakeFindModules/OpenMVGConfig.cmake.in
+index e7dfbfd..357a25c 100644
+--- a/src/cmakeFindModules/OpenMVGConfig.cmake.in
++++ b/src/cmakeFindModules/OpenMVGConfig.cmake.in
+@@ -61,7 +61,7 @@ set(CMAKE_MODULE_PATH ${CURRENT_CONFIG_INSTALL_DIR})
+ 
+ # Build the absolute root install directory as a relative path
+ get_filename_component(CURRENT_ROOT_INSTALL_DIR
+-  ${CMAKE_MODULE_PATH}/../../../ ABSOLUTE)
++  ${CMAKE_MODULE_PATH}/../../ ABSOLUTE)
+ if (NOT EXISTS ${CURRENT_ROOT_INSTALL_DIR})
+   OPENMVG_REPORT_NOT_FOUND(
+     "OpenMVG install root: ${CURRENT_ROOT_INSTALL_DIR}, "
+diff --git a/src/openMVG/cameras/CMakeLists.txt b/src/openMVG/cameras/CMakeLists.txt
+index 072346e..504e3c4 100644
+--- a/src/openMVG/cameras/CMakeLists.txt
++++ b/src/openMVG/cameras/CMakeLists.txt
+@@ -5,7 +5,10 @@ set_property(TARGET openMVG_camera APPEND PROPERTY
+ 
+ target_compile_features(openMVG_camera INTERFACE ${CXX11_FEATURES})
+ target_link_libraries(openMVG_camera INTERFACE openMVG_numeric ${OPENMVG_LIBRARY_DEPENDENCIES})
+-install(TARGETS openMVG_camera DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_camera EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG Camera_Pinhole openMVG_camera)
+ 
+diff --git a/src/openMVG/exif/CMakeLists.txt b/src/openMVG/exif/CMakeLists.txt
+index 0348964..885234d 100644
+--- a/src/openMVG/exif/CMakeLists.txt
++++ b/src/openMVG/exif/CMakeLists.txt
+@@ -4,7 +4,10 @@ target_compile_features(openMVG_exif INTERFACE ${CXX11_FEATURES})
+ target_link_libraries(openMVG_exif LINK_PRIVATE openMVG_easyexif)
+ target_include_directories(openMVG_exif PRIVATE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/third_party/include/easyexif)
+ set_property(TARGET openMVG_exif PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_exif DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_exif EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ 
+ UNIT_TEST(openMVG exif_IO "openMVG_testing;${STLPLUS_LIBRARY};openMVG_exif")
+diff --git a/src/openMVG/features/CMakeLists.txt b/src/openMVG/features/CMakeLists.txt
+index 8d47d94..2702e0e 100644
+--- a/src/openMVG/features/CMakeLists.txt
++++ b/src/openMVG/features/CMakeLists.txt
+@@ -38,7 +38,10 @@ if (MSVC)
+   target_compile_options(openMVG_features PUBLIC "-D_USE_MATH_DEFINES")
+ endif (MSVC)
+ set_target_properties(openMVG_features PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+-install(TARGETS openMVG_features DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_features EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ set_property(TARGET openMVG_features PROPERTY FOLDER OpenMVG/OpenMVG)
+ 
+ UNIT_TEST(openMVG features "openMVG_features")
+diff --git a/src/openMVG/geodesy/CMakeLists.txt b/src/openMVG/geodesy/CMakeLists.txt
+index 9991ada..804bfb9 100644
+--- a/src/openMVG/geodesy/CMakeLists.txt
++++ b/src/openMVG/geodesy/CMakeLists.txt
+@@ -7,6 +7,9 @@ target_link_libraries(openMVG_geodesy
+   INTERFACE
+     openMVG_numeric
+ )
+-install(TARGETS openMVG_geodesy DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_geodesy EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG_geodesy geodesy "openMVG_geodesy")
+diff --git a/src/openMVG/geometry/CMakeLists.txt b/src/openMVG/geometry/CMakeLists.txt
+index 57e58a5..057d247 100644
+--- a/src/openMVG/geometry/CMakeLists.txt
++++ b/src/openMVG/geometry/CMakeLists.txt
+@@ -29,7 +29,10 @@ target_include_directories(openMVG_geometry
+     $<INSTALL_INTERFACE:include>
+ )
+ 
+-install(TARGETS openMVG_geometry DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_geometry EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG convex_hull "openMVG_geometry")
+ UNIT_TEST(openMVG rigid_transformation3D_srt "openMVG_geometry")
+diff --git a/src/openMVG/graph/CMakeLists.txt b/src/openMVG/graph/CMakeLists.txt
+index 3cb31ad..bd3c2e2 100644
+--- a/src/openMVG/graph/CMakeLists.txt
++++ b/src/openMVG/graph/CMakeLists.txt
+@@ -2,7 +2,10 @@
+ add_library(openMVG_graph INTERFACE)
+ target_compile_features(openMVG_graph INTERFACE ${CXX11_FEATURES})
+ target_link_libraries(openMVG_graph INTERFACE ${LEMON_LIBRARY})
+-install(TARGETS openMVG_graph DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_graph EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG_graph connectedComponent "openMVG_testing;openMVG_graph")
+ UNIT_TEST(openMVG_graph triplet_finder "openMVG_testing;openMVG_graph")
+diff --git a/src/openMVG/image/CMakeLists.txt b/src/openMVG/image/CMakeLists.txt
+index 6913d19..3762e1a 100644
+--- a/src/openMVG/image/CMakeLists.txt
++++ b/src/openMVG/image/CMakeLists.txt
+@@ -38,7 +38,10 @@ if (MSVC)
+ endif (MSVC)
+ set_target_properties(openMVG_image PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ set_property(TARGET openMVG_image PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_image DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_image EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG image "openMVG_image")
+ UNIT_TEST(openMVG image_drawing "openMVG_image")
+diff --git a/src/openMVG/linearProgramming/CMakeLists.txt b/src/openMVG/linearProgramming/CMakeLists.txt
+index cc5212f..5c520b9 100644
+--- a/src/openMVG/linearProgramming/CMakeLists.txt
++++ b/src/openMVG/linearProgramming/CMakeLists.txt
+@@ -8,7 +8,10 @@ add_library(openMVG_linearProgramming
+ target_compile_features(openMVG_linearProgramming INTERFACE ${CXX11_FEATURES})
+ 
+ set_property(TARGET openMVG_linearProgramming PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_linearProgramming DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_linearProgramming EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ set_target_properties(openMVG_linearProgramming PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ 
+ target_link_libraries(openMVG_linearProgramming
+diff --git a/src/openMVG/linearProgramming/lInfinityCV/CMakeLists.txt b/src/openMVG/linearProgramming/lInfinityCV/CMakeLists.txt
+index e10c945..68077db 100644
+--- a/src/openMVG/linearProgramming/lInfinityCV/CMakeLists.txt
++++ b/src/openMVG/linearProgramming/lInfinityCV/CMakeLists.txt
+@@ -21,7 +21,10 @@ target_compile_features(openMVG_lInftyComputerVision INTERFACE ${CXX11_FEATURES}
+ target_link_libraries(openMVG_lInftyComputerVision PUBLIC openMVG_linearProgramming openMVG_multiview)
+ set_target_properties(openMVG_lInftyComputerVision PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ set_property(TARGET openMVG_lInftyComputerVision PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_lInftyComputerVision DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_lInftyComputerVision EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ set(LOCAL_LIBS
+   openMVG_lInftyComputerVision
+diff --git a/src/openMVG/matching/CMakeLists.txt b/src/openMVG/matching/CMakeLists.txt
+index 80b1fe6..f41d41d 100644
+--- a/src/openMVG/matching/CMakeLists.txt
++++ b/src/openMVG/matching/CMakeLists.txt
+@@ -38,7 +38,7 @@ target_link_libraries(openMVG_matching
+     openMVG_features
+     Threads::Threads
+ )
+-if (NOT DEFINED OpenMVG_USE_INTERNAL_FLANN)
++if (NOT OpenMVG_USE_INTERNAL_FLANN)
+ target_link_libraries(openMVG_matching
+   PUBLIC
+     ${FLANN_LIBRARIES}
+@@ -54,7 +54,10 @@ if (USE_AVX2)
+   endif (UNIX)
+ endif (USE_AVX2)
+ 
+-install(TARGETS openMVG_matching DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_matching EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG matching "openMVG_matching")
+ UNIT_TEST(openMVG matching_filters "openMVG_matching")
+diff --git a/src/openMVG/matching/kvld/CMakeLists.txt b/src/openMVG/matching/kvld/CMakeLists.txt
+index 0c9cb99..5f2d1e6 100644
+--- a/src/openMVG/matching/kvld/CMakeLists.txt
++++ b/src/openMVG/matching/kvld/CMakeLists.txt
+@@ -5,4 +5,7 @@ target_link_libraries(openMVG_kvld
+   PUBLIC openMVG_features openMVG_image)
+ set_target_properties(openMVG_kvld PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ set_property(TARGET openMVG_kvld PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_kvld DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_kvld EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+diff --git a/src/openMVG/matching_image_collection/CMakeLists.txt b/src/openMVG/matching_image_collection/CMakeLists.txt
+index 1afd2bc..b0e9efe 100644
+--- a/src/openMVG/matching_image_collection/CMakeLists.txt
++++ b/src/openMVG/matching_image_collection/CMakeLists.txt
+@@ -31,6 +31,9 @@ target_include_directories(openMVG_matching_image_collection
+ )
+ set_target_properties(openMVG_matching_image_collection PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ set_property(TARGET openMVG_matching_image_collection PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_matching_image_collection DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_matching_image_collection EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG Pair_Builder "openMVG_matching_image_collection")
+diff --git a/src/openMVG/multiview/CMakeLists.txt b/src/openMVG/multiview/CMakeLists.txt
+index fb13ca1..072a39f 100644
+--- a/src/openMVG/multiview/CMakeLists.txt
++++ b/src/openMVG/multiview/CMakeLists.txt
+@@ -23,7 +23,10 @@ add_library(openMVG_multiview
+   ${multiview_files_cpp})
+ target_compile_features(openMVG_multiview INTERFACE ${CXX11_FEATURES})
+ set_property(TARGET openMVG_multiview PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_multiview DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_multiview EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ target_link_libraries(openMVG_multiview
+   PUBLIC
+     openMVG_numeric
+diff --git a/src/openMVG/numeric/CMakeLists.txt b/src/openMVG/numeric/CMakeLists.txt
+index 06baee7..2d7367a 100644
+--- a/src/openMVG/numeric/CMakeLists.txt
++++ b/src/openMVG/numeric/CMakeLists.txt
+@@ -24,7 +24,7 @@ target_include_directories(openMVG_numeric
+     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
+     $<INSTALL_INTERFACE:include>
+ )
+-if (DEFINED OpenMVG_USE_INTERNAL_EIGEN)
++if (OpenMVG_USE_INTERNAL_EIGEN)
+   target_include_directories(openMVG_numeric PUBLIC
+     $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include/openMVG/third_party/eigen/>)
+ else()
+@@ -37,7 +37,10 @@ if (MSVC)
+ endif (MSVC)
+ set_target_properties(openMVG_numeric PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ set_property(TARGET openMVG_numeric PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_numeric DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_numeric EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG extract_columns openMVG_numeric)
+ UNIT_TEST(openMVG numeric openMVG_numeric)
+diff --git a/src/openMVG/robust_estimation/CMakeLists.txt b/src/openMVG/robust_estimation/CMakeLists.txt
+index e573214..2be269d 100644
+--- a/src/openMVG/robust_estimation/CMakeLists.txt
++++ b/src/openMVG/robust_estimation/CMakeLists.txt
+@@ -20,7 +20,10 @@ target_link_libraries(openMVG_robust_estimation
+     openMVG_numeric
+ )
+ set_property(TARGET openMVG_robust_estimation PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_robust_estimation DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_robust_estimation EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ set_target_properties(
+   openMVG_robust_estimation
+   PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR}
+diff --git a/src/openMVG/sfm/CMakeLists.txt b/src/openMVG/sfm/CMakeLists.txt
+index 49025f4..ee79413 100644
+--- a/src/openMVG/sfm/CMakeLists.txt
++++ b/src/openMVG/sfm/CMakeLists.txt
+@@ -49,7 +49,10 @@ if (MSVC)
+ endif (MSVC)
+ set_target_properties(openMVG_sfm PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ set_property(TARGET openMVG_sfm PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_sfm DESTINATION lib EXPORT openMVG-targets)
++install(TARGETS openMVG_sfm EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ UNIT_TEST(openMVG sfm_data_io "openMVG_sfm;${STLPLUS_LIBRARY}")
+ UNIT_TEST(openMVG sfm_data_BA "openMVG_multiview_test_data;openMVG_sfm;${STLPLUS_LIBRARY}")
+diff --git a/src/openMVG/system/CMakeLists.txt b/src/openMVG/system/CMakeLists.txt
+index c5f2844..19c8f0f 100644
+--- a/src/openMVG/system/CMakeLists.txt
++++ b/src/openMVG/system/CMakeLists.txt
+@@ -6,7 +6,10 @@ target_include_directories(openMVG_system PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURC
+ target_compile_features(openMVG_system INTERFACE ${CXX11_FEATURES})
+ set_target_properties(openMVG_system PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
+ set_property(TARGET openMVG_system PROPERTY FOLDER OpenMVG/OpenMVG)
+-install(TARGETS openMVG_system DESTINATION lib/ EXPORT openMVG-targets)
++install(TARGETS openMVG_system EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ add_library(openMVG_progress_test INTERFACE)
+ target_link_libraries(openMVG_progress_test INTERFACE ${OPENMVG_LIBRARY_DEPENDENCIES})
+diff --git a/src/third_party/CMakeLists.txt b/src/third_party/CMakeLists.txt
+index 816a941..f0b7145 100644
+--- a/src/third_party/CMakeLists.txt
++++ b/src/third_party/CMakeLists.txt
+@@ -18,7 +18,7 @@ add_subdirectory(stlplus3)
+ set(STLPLUS_LIBRARY openMVG_stlplus PARENT_SCOPE)
+ 
+ # Add graph library
+-if(DEFINED OpenMVG_USE_INTERNAL_LEMON)
++if(OpenMVG_USE_INTERNAL_LEMON)
+   add_subdirectory(lemon)
+   set_property(TARGET openMVG_lemon PROPERTY FOLDER OpenMVG/3rdParty/lemon)
+   set_property(TARGET check PROPERTY FOLDER OpenMVG/3rdParty/lemon)
+@@ -68,7 +68,7 @@ endif (NOT TIFF_FOUND)
+ add_subdirectory(vectorGraphics)
+ 
+ # Add ceres-solver (A Nonlinear Least Squares Minimizer)
+-if (DEFINED OpenMVG_USE_INTERNAL_CERES)
++if (OpenMVG_USE_INTERNAL_CERES)
+   add_subdirectory(cxsparse)
+   add_subdirectory(ceres-solver)
+   set_property(TARGET openMVG_cxsparse PROPERTY FOLDER OpenMVG/3rdParty/ceres)
+@@ -76,7 +76,7 @@ if (DEFINED OpenMVG_USE_INTERNAL_CERES)
+ endif()
+ 
+ # Add an Approximate Nearest Neighbor library
+-if (DEFINED OpenMVG_USE_INTERNAL_FLANN)
++if (OpenMVG_USE_INTERNAL_FLANN)
+   set(FLANN_INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include/openMVG/third_party/flann/src/cpp)
+   add_subdirectory(flann)
+ endif()
+@@ -90,7 +90,7 @@ add_subdirectory(fast)
+ ##
+ # Install Header only libraries if necessary
+ ##
+-if (DEFINED OpenMVG_USE_INTERNAL_EIGEN)
++if (OpenMVG_USE_INTERNAL_EIGEN)
+   #Configure Eigen install
+   set(EIGEN_INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include/openMVG/third_party/eigen)
+   add_subdirectory(eigen)
+diff --git a/src/third_party/stlplus3/CMakeLists.txt b/src/third_party/stlplus3/CMakeLists.txt
+index 334c595..7b353dc 100644
+--- a/src/third_party/stlplus3/CMakeLists.txt
++++ b/src/third_party/stlplus3/CMakeLists.txt
+@@ -19,11 +19,10 @@ else()
+ endif()
+ set_property(TARGET openMVG_stlplus PROPERTY FOLDER OpenMVG/3rdParty)
+ 
+-install(
+-  TARGETS openMVG_stlplus
+-  DESTINATION lib
+-  EXPORT openMVG-targets
+-)
++install(TARGETS openMVG_stlplus EXPORT openMVG-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ if(STLPLUS_INCLUDE_INSTALL_DIR)
+   set(INCLUDE_INSTALL_DIR ${STLPLUS_INCLUDE_INSTALL_DIR})

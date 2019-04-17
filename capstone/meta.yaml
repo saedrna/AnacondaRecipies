@@ -1,0 +1,31 @@
+{% set version = "4.0.1" %}
+
+package:
+  name: capstone
+  version: {{ version }}
+
+source:
+  - url: https://github.com/aquynh/capstone/archive/{{ version }}.tar.gz
+    fn: capstone-{{ version }}.tar.gz
+    sha256: 79bbea8dbe466bd7d051e037db5961fdb34f67c9fac5c3471dd105cfb1e05dc7
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+
+about:
+  home: http://www.capstone-engine.org
+  license: BSD license
+  license_file: LICENSE.TXT
+  summary: Capstone disassembly/disassembler framework, Core (Arm, Arm64, BPF, EVM, M68K, M680X, MOS65xx, Mips, PPC, RISCV, Sparc, SystemZ, TMS320C64x, Web Assembly, X86, X86_64, XCore) + bindings. 
+
+extra:
+  recipe-maintainers:
+    - saedrna

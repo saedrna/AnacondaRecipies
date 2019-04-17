@@ -1,0 +1,60 @@
+{% set version = "1.4" %}
+
+package:
+  name: openmvg
+  version: {{ version }}
+
+source:
+  - url: https://github.com/openMVG/openMVG/archive/v{{ version }}.tar.gz
+    fn: openmvg-{{ version }}.tar.gz
+    sha256: edecf390acdac224f82050ee09d931049dcf61118c96cf4780808427eabbb0f2
+    patches:
+      - fixcmake.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - ninja
+  
+  host:
+    - cereal
+    - ceres-solver
+    - clp
+    - coinutils
+    - eigen
+    - flann
+    - lemon
+    - libjpeg-turbo
+    - libpng
+    - libtiff
+    - osi
+    - zlib
+
+  run:
+    - cereal
+    - ceres-solver
+    - clp
+    - coinutils
+    - eigen
+    - flann
+    - lemon
+    - libjpeg-turbo
+    - libpng
+    - libtiff
+    - osi
+    - zlib
+
+about:
+  home: https://github.com/openMVG/openMVG
+  license: MPL2
+  license_file: LICENSE
+  summary: open Multiple View Geometry library. Basis for 3D computer vision and Structure from Motion.
+
+extra:
+  recipe-maintainers:
+    - saedrna

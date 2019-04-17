@@ -1,0 +1,36 @@
+{% set version = "1.17.1" %}
+
+package:
+  name: clp
+  version: {{ version }}
+
+source:
+  - url: https://github.com/coin-or/Clp/archive/releases/{{ version }}.tar.gz
+    fn: {{ version }}.tar.gz
+    sha256: ade23b225f81850680056712e03b550ddc60be1b04097a5192338ad5dd4115d7
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - coinutils
+    - osi
+  run:
+    - coinutils
+    - osi
+
+about:
+  home: hhttps://github.com/coin-or/Clp
+  license: Eclipse Public License (EPL)
+  license_file: LICENSE
+  summary: COIN-OR Linear Programming Solver.
+
+extra:
+  recipe-maintainers:
+    - saedrna

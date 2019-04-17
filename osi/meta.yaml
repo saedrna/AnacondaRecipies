@@ -1,0 +1,34 @@
+{% set version = "0.108.3" %}
+
+package:
+  name: osi
+  version: {{ version }}
+
+source:
+  - url: https://github.com/coin-or/Osi/archive/releases/0.108.3.tar.gz
+    fn: {{ version }}.tar.gz
+    sha256: db6384e89d301ad62ff1acc46777a8fb89668d4266d4b2ddfb9f454edcdc8c77
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - coinutils
+  run:
+    - coinutils
+
+about:
+  home: https://github.com/coin-or/Osi
+  license: Eclipse Public License (EPL)
+  license_file: LICENSE
+  summary: Open Solver Interface.
+
+extra:
+  recipe-maintainers:
+    - saedrna

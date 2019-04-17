@@ -1,0 +1,45 @@
+{% set version = "1.14.0" %}
+
+package:
+  name: ceres-solver
+  version: {{ version }}
+
+source:
+  - url: http://ceres-solver.org/ceres-solver-{{ version }}.tar.gz
+    fn: ceres-solver-{{ version }}.tar.gz
+    sha256: 4744005fc3b902fed886ea418df70690caa8e2ff6b5a90f3dd88a3d291ef8e8e
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - blas 1.1 openblas
+    - suitesparse
+    - tbb
+    - glog
+    - gflags
+    - eigen 3.3.7
+  run: 
+    - blas 1.1 openblas
+    - suitesparse
+    - tbb
+    - glog
+    - gflags
+    - eigen 3.3.7
+
+
+about:
+  home: http://ceres-solver.org/index.html
+  license: New BSD license
+  license_file: LICENSE
+  summary: Ceres Solver is an open source C++ library for modeling and solving large, complicated optimization problems.
+
+extra:
+  recipe-maintainers:
+    - saedrna
