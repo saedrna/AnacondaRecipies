@@ -1,0 +1,31 @@
+{% set version = "1.49" %}
+
+package:
+  name: geographiclib
+  version: {{ version }}
+
+source:
+  - url: https://nchc.dl.sourceforge.net/project/geographiclib/distrib/GeographicLib-{{ version }}.tar.gz
+    fn: geographiclib-{{ version }}.tar.gz
+    sha256: aec0ab52b6b9c9445d9d0a77e3af52257e21d6e74e94d8c2cb8fa6f11815ee2b
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+
+about:
+  home: https://geographiclib.sourceforge.io/
+  license: MIT
+  license_file: LICENSE.txt
+  summary: GeographicLib is a small set of C++ classes for performing conversions between geographic, UTM, UPS, MGRS, geocentric, and local cartesian coordinates, for gravity (e.g., EGM2008), geoid height, and geomagnetic field (e.g., WMM2010) calculations, and for solving geodesic problems. 
+
+extra:
+  recipe-maintainers:
+    - saedrna
