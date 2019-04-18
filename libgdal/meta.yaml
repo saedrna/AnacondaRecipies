@@ -1,0 +1,29 @@
+{% set version = "2.4.1" %}
+
+package:
+  name: libgdal
+  version: {{ version }}
+
+source:
+  - url: http://download.osgeo.org/gdal/2.4.1/gdal241.zip
+    fn: libgdal-{{ version }}.zip
+    sha256: 1cb5a17b4933e3e4a9d03b99d5a0bb824f1db11ce4b97e38b3367296bca50b0d
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+
+about:
+  home: https://www.gdal.org/
+  license: X/MIT
+  license_file: LICENSE.TXT
+  summary: GDAL is a translator library for raster and vector geospatial data formats
+
+extra:
+  recipe-maintainers:
+    - saedrna
