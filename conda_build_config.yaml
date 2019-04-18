@@ -1,20 +1,31 @@
+# This differs from target_platform in that it determines what subdir the compiler
+#    will target, not what subdir the compiler package will be itself.
+#    For example, we need a win-64 vs2008_win-32 package, so that we compile win-32
+#    code on win-64 miniconda.
 cross_compiler_target_platform:  # [win]
   - win-64                     # [win]
 c_compiler:
+  # legacy compilers for things that refuse to move
+  # modern compilers
+  - gcc                        # [linux64]
   - vs2017                     # [win]
+c_compiler_version:            # [unix]
+  - 7                          # [linux64]
 cxx_compiler:
+  # modern compilers
+  - gxx                        # [linux64]
   - vs2017                     # [win]
-
+cxx_compiler_version:          # [unix]
+  - 7                          # [linux64]
 fortran_compiler:              # [unix or win64]
+  - gfortran                   # [(linux64)]
   - flang                      # [win64]
 fortran_compiler_version:      # [unix or win64]
+  - 7                          # [linux64]
   - 5                          # [win64]
-
 # dual build configuration
 channel_sources:
   - conda-forge,defaults                        # [not aarch64]
-  - conda-forge,c4aarch64,defaults              # [aarch64]
-  - conda-forge/label/cf201901,defaults         # [(linux64 or osx)     and (environ.get('CF_COMPILER_STACK') == 'comp4')]
 
 channel_targets:
   - conda-forge main
@@ -213,14 +224,6 @@ pin_run_as_build:
 # Pinning packages
 
 # blas
-libblas:
-  - 3.8 *netlib
-libcblas:
-  - 3.8 *netlib
-liblapack:
-  - 3.8.0 *netlib
-liblapacke:
-  - 3.8.0 *netlib
 blas_impl:
   - openblas
   - mkl          # [x86 or x86_64]
@@ -229,9 +232,9 @@ blas_impl:
 arpack:
   - 3.6.3
 boost:
-  - 1.68.0
+  - 1.69.0
 boost_cpp:
-  - 1.68.0
+  - 1.69.0
 bzip2:
   - 1
 cairo:
