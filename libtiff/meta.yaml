@@ -1,0 +1,59 @@
+{% set version = "4.0.10" %}
+
+package:
+  name: libtiff
+  version: {{ version }}
+
+source:
+  url: https://download.osgeo.org/libtiff/tiff-{{ version }}.tar.gz
+  sha256: 2c52d11ccaf767457db0c46795d9c7d1a8d8f76f68b0b800a3dfe45786b996e4
+
+
+build:
+  number: 1000
+  # Does a very good job of maintaining compatibility.
+  #    https://abi-laboratory.pro/tracker/timeline/libtiff/
+  run_exports:
+    - {{ pin_subpackage('libtiff', max_pin='x') }}
+  missing_dso_whitelist:
+    # Only used by libtiff,bin/tiffgt (a viewer), which is ok.
+    - /opt/X11/lib/libGL.1.dylib
+    - /opt/X11/lib/libglut.3.dylib
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake   # [win]
+    - ninja
+    - make    # [not win]
+  host:
+    - zlib
+    - libjpeg-turbo
+    - xz
+    - zstd
+  run:
+    - zlib
+    - xz
+    - zstd
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libtiff.a                            # [unix]
+    - test -f ${PREFIX}/lib/libtiffxx.a                          # [unix]
+    - test -f ${PREFIX}/lib/libtiff${SHLIB_EXT}                  # [unix]
+    - test -f ${PREFIX}/lib/libtiffxx${SHLIB_EXT}                # [unix]
+
+about:
+  home: http://www.libtiff.org/
+  license: HPND
+  license_file: COPYRIGHT
+  summary: 'Support for the Tag Image File Format (TIFF).'
+  description: |
+    This software provides support for the Tag Image File Format (TIFF), a
+    widely used format for storing image data.
+  doc_url: http://www.libtiff.org/document.html
+
+extra:
+   recipe-maintainers:
+    - saedrna
