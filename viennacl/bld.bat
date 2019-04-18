@@ -1,5 +1,5 @@
-mkdir build
-cd build
+mkdir build_vs
+cd build_vs
 
 :: CMake/OpenCV like Unix-style paths for some reason.
 set UNIX_PREFIX=%PREFIX:\=/%
