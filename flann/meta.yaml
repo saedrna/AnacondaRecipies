@@ -1,0 +1,34 @@
+{% set version = "1.9.1" %}
+
+package:
+    name: flann
+    version: {{ version }}
+
+source:
+    fn: flann-{{ version }}.tar.gz
+    url: https://github.com/mariusmuja/flann/archive/{{ version }}.tar.gz
+    sha256: b23b5f4e71139faa3bcb39e6bbcc76967fbaf308c4ee9d4f5bfbeceaa76cc5d3
+
+build:
+    number: 1006
+
+requirements:
+    build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - cmake
+        - m2-patch
+        - ninja
+
+about:
+    home: http://www.cs.ubc.ca/research/flann/
+    license: BSD 3-Clause
+    license_file: COPYING
+    summary: "The Fast Library for Approximate Nearest Neighbors"
+
+extra:
+  recipe-maintainers:
+    - jakevdp
+    - jakirkham
+    - dougalsutherland
+    - saedrna
