@@ -1,0 +1,27 @@
+From 98157c5ac01c45a10a8be3af71414d8bb0341544 Mon Sep 17 00:00:00 2001
+From: xoviat <xoviat@users.noreply.github.com>
+Date: Fri, 19 Jan 2018 17:10:23 -0600
+Subject: [PATCH] Remove custom library names
+
+---
+ CMakeLists.txt | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2bc34c4..79654be 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -43,13 +43,6 @@ endif()
+ set(LIB_POSTFIX "${SUITESPARSE_LIB_POSTFIX}" CACHE STRING "suffix for 32/64 inst dir placement")
+ mark_as_advanced(LIB_POSTFIX)
+ 
+-# We want libraries to be named "libXXX" and "libXXXd" in all compilers:
+-# ------------------------------------------------------------------------
+-set(CMAKE_DEBUG_POSTFIX  "d")
+-IF(MSVC)
+-	set(SP_LIB_PREFIX "lib")  # Libs are: "libXXX"
+-ENDIF(MSVC)
+-
+ ## check if we can build metis
+ SET(BUILD_METIS_DEFAULT ON)
+ IF(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/metis/CMakeLists.txt")

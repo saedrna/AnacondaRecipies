@@ -1,0 +1,76 @@
+{% set version = "5.1.2" %}
+{% set commit = "9fff863f2a60fc18869c330dcdf5945e2f8930df" %}
+
+{% set variant = "openblas" %}
+
+package:
+  name: suitesparse
+  version: {{ version }}
+
+source:
+  fn: SuiteSparse-{{ version }}.tar.gz
+  url: https://github.com/jlblancoc/suitesparse-metis-for-windows/archive/{{ commit }}.tar.gz  # [win]
+  sha256: ff150a85b26e9c6a87a56770d5e26b08fd1208b35da8c28d37a436142a65e2b7  # [win]
+  patches:
+    - gh_56.patch  # [win]
+
+build:
+  skip: true  # [win32 or unix]
+  number: 202
+  features:
+    - blas_{{ variant }}
+  skip: True  # [win and vc<14]
+
+requirements:
+  build:
+    - cmake
+    - ninja  # [win]
+    - m2-patch # [win]
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - blas 2.5 {{ variant }}
+    - tbb
+    - metis
+    - openblas
+
+  run:
+    - blas 2.5 {{ variant }}
+    - tbb
+    - metis
+    - openblas
+
+test:
+  commands:
+    {% set suitesparse_libs = [
+        "amd",
+        "btf",
+        "camd",
+        "ccolamd",
+        "cholmod",
+        "colamd",
+        "cxsparse",
+        "klu",
+        "ldl",
+        "spqr",
+        "umfpack"
+    ] %}
+    {% for each_lib in suitesparse_libs %}
+    - if not exist %LIBRARY_PREFIX%\\bin\\{{ each_lib }}.dll exit 1                        # [win]
+    - if not exist %LIBRARY_PREFIX%\\lib\\{{ each_lib }}.lib exit 1                        # [win]
+    {% endfor %}
+
+    - conda inspect linkages -p ${PREFIX} suitesparse  # [not win]
+    - conda inspect objects -p ${PREFIX} suitesparse  # [osx]
+
+about:
+  home: http://faculty.cse.tamu.edu/davis/suitesparse.html
+  license: LGPL v2 (AMD, BTF, etc), BSD 3-clause (UFget), GPL v2 (UMFPACK, RBIO, SPQR, GPUQRENGINE), Apache 2.0 (Metis)
+  summary: A suite of sparse matrix algorithms
+
+extra:
+  recipe-maintainers:
+    - grlee77
+    - jakirkham
+    - basnijholt
