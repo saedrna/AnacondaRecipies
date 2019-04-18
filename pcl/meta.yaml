@@ -1,0 +1,61 @@
+{% set name = "pcl" %}
+{% set version = "1.9.1" %}
+{% set sha256 = "0add34d53cd27f8c468a59b8e931a636ad3174b60581c0387abb98a9fc9cddb6" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://github.com/pointcloudlibrary/{{ name }}/archive/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - except.patch
+
+build:
+  number: 1000
+  skip: true  # [win and vc<14]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - m2-patch # [win]
+    - ninja  # [win]
+  host:
+    - boost-cpp 1.69.0
+    - eigen 3.3.7
+    - flann 1.9.1 ha925a31_1006 # [win]
+    - qhull 2015.2 h74a9793_1000 # [win]
+  run:
+    - boost-cpp 1.69.0
+    - eigen 3.3.7
+    - flann
+    - qhull
+
+
+test:
+  commands:
+    - test -d $PREFIX/include/{{ name }}-1.9/{{ name }}              # [not win]
+    - if not exist %LIBRARY_INC%\\{{ name }}-1.9\\{{ name }} exit 1  # [win]
+    - conda inspect linkages -p $PREFIX {{ name|lower }}             # [not win]
+    - conda inspect objects -p $PREFIX {{ name|lower }}              # [osx]
+
+about:
+  home: http://www.pointclouds.org
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: LICENSE.txt
+  summary: 'Point Cloud Library (PCL)'
+  description: |
+    The Point Cloud Library (PCL) is a standalone, large scale, open project for 2D/3D image and point cloud processing.
+  doc_url: http://www.pointclouds.org
+  dev_url: https://github.com/pointcloudlibrary/pcl
+
+extra:
+  recipe-maintainers:
+    - chambbj
+    - hobu
+    - saedrna
