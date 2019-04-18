@@ -19,18 +19,16 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - blas 1.1 openblas
-    - suitesparse
+    - blas 2.5 openblas
+    - suitesparse 5.1.2
     - tbb
     - glog
-    - gflags
     - eigen 3.3.7
   run: 
-    - blas 1.1 openblas
-    - suitesparse
+    - blas 2.5 openblas
+    - suitesparse 5.1.2
     - tbb
     - glog
-    - gflags
     - eigen 3.3.7
 
 
