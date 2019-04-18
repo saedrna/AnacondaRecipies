@@ -1,0 +1,66 @@
+{% set version = "4.1.0" %}
+{% set blas_variant = "openblas" %}
+
+package:
+  name: opencv
+  version: {{ version }}
+
+source:
+  - url: https://github.com/opencv/opencv/archive/{{ version }}.tar.gz
+    fn: opencv-{{ version }}.tar.gz
+    sha256: 8f6e4ab393d81d72caae6e78bd0fd6956117ec9f006fba55fcdb88caf62989b7
+  - url: https://github.com/opencv/opencv_contrib/archive/{{ version }}.tar.gz
+    fn: opencv_contrib-{{ version }}.tar.gz
+    sha256: e7d775cc0b87b04308823ca518b11b34cc12907a59af4ccdaf64419c1ba5e682
+    folder: opencv_contrib
+
+build:
+  number: 0
+  # Python2.7 support dropped: https://github.com/opencv/opencv/issues/8481
+  # skip: true  # [win and py27]
+
+requirements:
+  build:
+    # Required to find ffpmeg
+    - pkg-config                     # [not win]
+    # - m2-patch                       # [win]
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}        # [linux]
+    - {{ cdt('libxdamage') }}        # [linux]
+    - {{ cdt('libxfixes') }}         # [linux]
+    - {{ cdt('libxxf86vm') }}        # [linux]
+  host:
+    - hdf5                           # [unix]
+    - eigen 3.3.*
+    - jasper                         # [unix]
+    - zlib
+    - libjpeg-turbo
+    - libtiff
+    - libwebp
+    - harfbuzz                       # [unix]
+    - libpng
+    - ffmpeg 4.1.*                   # [not win]
+  run:
+    - hdf5                           # [unix]
+    - jasper                         # [unix]
+    - zlib
+    - libwebp
+    - harfbuzz                       # [unix]
+    - libtiff
+    - libpng
+    - ffmpeg 4.1.*                   # [not win]
+
+about:
+  home: http://opencv.org/
+  license: BSD 3-clause
+  summary: Computer vision and machine learning software library.
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - saedrna
