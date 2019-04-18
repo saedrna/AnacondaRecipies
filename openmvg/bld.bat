@@ -46,6 +46,7 @@ cmake -G "Ninja" ^
         -DOpenMVG_USE_INTERNAL_CERES=OFF ^
         -DOpenMVG_USE_INTERNAL_FLANN=OFF ^
         -DFLANN_LIBRARY=%UNIX_LIBRARY_PREFIX%/lib/flann_cpp_s.lib ^
+        -DJPEG_LIBRARY_RELEASE=%UNIX_LIBRARY_PREFIX%/lib/jpeg-static.lib ^
         -DTARGET_ARCHITECTURE=core ^
         ../src 
 

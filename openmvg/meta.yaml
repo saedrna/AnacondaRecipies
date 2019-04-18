@@ -20,6 +20,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - ninja
+    - m2-patch # [win]
   
   host:
     - cereal
@@ -31,7 +32,7 @@ requirements:
     - lemon
     - libjpeg-turbo
     - libpng
-    - libtiff
+    - libtiff 4.0.10
     - osi
     - zlib
 
@@ -43,9 +44,8 @@ requirements:
     - eigen
     - flann
     - lemon
-    - libjpeg-turbo
     - libpng
-    - libtiff
+    - libtiff 4.0.10
     - osi
     - zlib
 
