@@ -1,0 +1,45 @@
+﻿diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6109773..828444d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -101,7 +101,7 @@ if (WIN32)
+     set(BUILD_UNIT_TESTS OFF)
+     add_definitions(-DWINDOWS)
+     add_definitions(-D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS)		# suppress C4996 warning
+-    add_definitions(-DGLEW_STATIC)		# enable GLEW for windows
++    # add_definitions(-DGLEW_STATIC)		# enable GLEW for windows
+     SET(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+     message(STATUS "Compiling on Windows")
+     if (MSVC)
+@@ -199,11 +199,30 @@ macro(ADD_SOURCE_GROUP MODULE_NAME)
+ endmacro(ADD_SOURCE_GROUP)
+ 
+ # Handling dependencies
+-add_subdirectory(3rdparty)
++# add_subdirectory(3rdparty)
+ link_directories(${3RDPARTY_LIBRARY_DIRS})
+ 
++add_library(open3d_3rdparty STATIC tinyfiledialogs/tinyfiledialogs.c rply/rply.c liblzf/lzf_c.c liblzf/lzf_d.c)
++
++set(3RDPARTY_LIBRARIES 
++    ${GLEW_LIBRARIES}
++    ${GLFW_LIBRARIES} 
++    ${JPEG_LIBRARIES} 
++    ${JSONCPP_LIBRARIES} 
++    ${PNG_LIBRARIES} 
++    ${ZLIB_LIBRARIES} 
++    open3d_3rdparty
++    ${flann_LIBRARIES})
++message(STATUS ${3RDPARTY_LIBRARIES})
++
++set(3RDPARTY_INCLUDE_DIRS
++    ${EIGEN3_INCLUDE_DIRS}
++    ${JSONCPP_INCLUDE_DIRS}
++    ${OTHER_INCLUDE_DIRS})
++
+ # set include directories
+ include_directories(
++    ${PROJECT_SOURCE_DIR}/
+     ${PROJECT_SOURCE_DIR}/src
+     ${PROJECT_SOURCE_DIR}/3rdparty
+     ${3RDPARTY_INCLUDE_DIRS}
