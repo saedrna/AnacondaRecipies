@@ -1,0 +1,36 @@
+{% set version = "1.7.1" %}
+
+package:
+  name: viennacl
+  version: {{ version }}
+
+source:
+  - url: https://jaist.dl.sourceforge.net/project/viennacl/1.7.x/ViennaCL-{{ version }}.zip
+    fn: viennacl-{{ version }}.zip
+    sha256: 1e9ffaa9d1dd22202cbd10ec8a8450184bceb41bbd90ebe2effd50be2015a7f6
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+  host:
+    - khronos-opencl-icd-loader
+  
+  run:
+    - khronos-opencl-icd-loader
+
+about:
+  home: http://viennacl.sourceforge.net/
+  license: BSD
+  license_file: LICENSE
+  summary: Free open-source GPU-accelerated linear algebra and solver library.
+
+extra:
+  recipe-maintainers:
+    - saedrna
