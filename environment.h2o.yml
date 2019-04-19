@@ -1,0 +1,37 @@
+channels:
+  - saedrna
+  - conda-forge
+  - anaconda
+  - intel
+  - defaults
+
+dependencies:
+  - blas 2.5 openblas
+  - boost-cpp 1.69.0 
+  - capstone 4.0.1 ha925a31_0
+  - cereal 1.2.2 ha925a31_0
+  - ceres-solver 1.14.0 ha925a31_0
+  - cgal-cpp 4.14 h43d00d9_0
+  - eigen 3.3.7 *
+  - geographiclib 1.49 ha925a31_0
+  - glog 0.4.0 ha925a31_1000
+  - ipp-include
+  - ipp-static
+  - khronos-opencl-icd-loader 2019.02.20 h62dcd97_1001
+  - libgdal 2.4.1 ha925a31_0
+  - libtiff 4.0.10 h28ac2ca_1000
+  - open3d 0.6.0 h0d30aab_0
+  - opencv 4.1.0 h685dcd9_0
+  - openmvg 1.4 hb78120c_0
+  - openscenegraph 3.4.1 he1a9056_0
+  - pcl 1.9.1 hd8e9fdd_1000
+  - qt3d 5.12.3
+  - qt5-base 5.12.3
+  - qt5-charts 5.12.3
+  - qt5-imageformats 5.12.3
+  - qt5-quickcontrols2 5.12.3
+  - qt5-svg 5.12.3
+  - qt5-tools 5.12.3
+  - qt5-winextras 5.12.3
+  - suitesparse 5.1.2 blas_openblash7a7245f_202
+  - viennacl 1.7.1 ha925a31_0
