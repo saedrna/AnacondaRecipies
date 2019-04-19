@@ -1,0 +1,38 @@
+{% set version = "5.12.3" %}
+
+package:
+  name: qt5-charts
+  version: {{ version }}
+
+source:
+  - url: http://download.qt.io/official_releases/qt/5.12/5.12.3/submodules/qtcharts-everywhere-src-5.12.3.zip
+    md5: 89ffa72deb0dc75bae28ce6997b7b80e
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}              
+    - {{ compiler('c') }}                
+    - jom                                # [win]
+  
+  host:
+    - qt5-base 5.12.3
+  
+  run:
+    - qt5-base 5.12.3
+
+about:
+  home: http://qt-project.org
+  license: LGPL-3.0
+  summary: 'Qt is a cross-platform application and UI framework.'
+  description: |
+    Qt helps you create connected devices, UIs & applications that run
+    anywhere on any device, on any operating system at any time.
+  doc_url: http://doc.qt.io/
+  dev_url: https://github.com/qtproject
+
+extra:
+  recipe-maintainers:
+    - saedrna

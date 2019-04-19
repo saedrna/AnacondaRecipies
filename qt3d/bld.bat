@@ -6,3 +6,5 @@ if errorlevel 1 exit 1
 
 jom install
 if errorlevel 1 exit 1
+
+exit 0
