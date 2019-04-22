@@ -20,12 +20,14 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - blas 2.5 openblas
-    - suitesparse 5.1.2
+    - suitesparse 5.1.2 blas_openblashcba731a_202 # [linux]
+    - suitesparse 5.1.2 blas_openblash7a7245f_202 # [win]
     - glog
     - eigen 3.3.7
   run: 
     - blas 2.5 openblas
-    - suitesparse 5.1.2
+    - suitesparse 5.1.2 blas_openblashcba731a_202 # [linux]
+    - suitesparse 5.1.2 blas_openblash7a7245f_202 # [win]
     - glog
     - eigen 3.3.7
 
