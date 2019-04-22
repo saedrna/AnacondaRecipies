@@ -12,8 +12,8 @@ source:
   - url: https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/{{ version }}.zip
     sha256: {{ sha256 }}
     patches:
-    # Khronos doesn't have an install target in their CMake. Add one.
-    - add-cmake-install.patch
+      # Khronos doesn't have an install target in their CMake. Add one.
+      - add-cmake-install.patch
 
   - url: https://github.com/KhronosGroup/OpenCL-Headers/archive/{{ headers_version }}.zip
     sha256: {{ headers_sha256 }}
@@ -21,11 +21,7 @@ source:
 
 build:
   number: 1001
-
-  # We've got ocl-icd on Linux. No need to use
-  # this ... fantastic piece of software ... anywhere else.
-  # new versions don't support older MSVC
-  skip: true  # [linux or (win and vc<14)]
+  skip: true  # [win and vc<14]
 
 requirements:
   build:
