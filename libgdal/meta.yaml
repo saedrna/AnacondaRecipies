@@ -16,6 +16,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - make # [unix]
+
+  host:
 
 
 about:
