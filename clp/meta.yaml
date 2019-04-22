@@ -19,11 +19,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - coinutils
-    - osi
+    - coinutils 2.11.1
+    - osi 0.108.3
   run:
     - coinutils
-    - osi
+    - osi 0.108.3
 
 about:
   home: hhttps://github.com/coin-or/Clp

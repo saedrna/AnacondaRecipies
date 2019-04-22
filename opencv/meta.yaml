@@ -35,22 +35,15 @@ requirements:
     - {{ cdt('libxfixes') }}         # [linux]
     - {{ cdt('libxxf86vm') }}        # [linux]
   host:
-    - hdf5                           # [unix]
-    - eigen 3.3.*
-    - jasper                         # [unix]
+    - eigen 3.3.7
     - zlib
     - libjpeg-turbo
     - libtiff
-    - libwebp
-    - harfbuzz                       # [unix]
     - libpng
     - ffmpeg 4.1.*                   # [not win]
   run:
-    - hdf5                           # [unix]
-    - jasper                         # [unix]
+    - eigen 3.3.7
     - zlib
-    - libwebp
-    - harfbuzz                       # [unix]
     - libtiff
     - libpng
     - ffmpeg 4.1.*                   # [not win]

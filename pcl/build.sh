@@ -2,8 +2,12 @@
 
 set -ex
 
-cmake \
+mkdir build_gcc
+cd build_gcc
+
+cmake -GNinja\
   -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DCMAKE_PREFIX_PATH=$PREFIX \
   -DCMAKE_BUILD_TYPE=Release \
   -DWITH_CUDA=OFF \
   -DWITH_DAVIDSDK=OFF \
@@ -21,8 +25,8 @@ cmake \
   -DWITH_VTK=OFF \
   -DBUILD_global_tests=OFF \
   -DBUILD_examples=OFF \
-  -DBUILD_tools=ON \
-  -DBUILD_apps=OFF
+  -DBUILD_tools=OFF \
+  -DBUILD_apps=OFF \
+  ../
 
-make
-make install
+cmake --build . --target install --config Release
