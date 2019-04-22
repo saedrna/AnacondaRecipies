@@ -88,8 +88,7 @@ cmake -LAH -G "Ninja"                                                     \
     -DOPENCV_GENERATE_PKGCONFIG=ON                                        \
     $CPU_DISPATCH_FLAGS                                                   \
     $OPENMP                                                               \
-    -DLAPACK_LIBRARIES="-llapacke -llapack -lcblas -lblas"                \
-    -DWITH_LAPACK=1                                                       \
+    -DWITH_LAPACK=0                                                       \
     -DWITH_EIGEN=1                                                        \
     -DBUILD_TESTS=0                                                       \
     -DBUILD_DOCS=0                                                        \
