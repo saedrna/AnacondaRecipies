@@ -23,7 +23,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - m2-patch # [win]
-    - ninja  # [win]
+    - ninja
   host:
     - boost-cpp 1.69.0
     - eigen 3.3.7
