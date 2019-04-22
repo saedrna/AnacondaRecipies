@@ -24,9 +24,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - cmake   # [win]
+    - cmake  
     - ninja
-    - make    # [not win]
   host:
     - zlib
     - libjpeg-turbo
@@ -36,13 +35,6 @@ requirements:
     - zlib
     - xz
     - zstd
-
-test:
-  commands:
-    - test -f ${PREFIX}/lib/libtiff.a                            # [unix]
-    - test -f ${PREFIX}/lib/libtiffxx.a                          # [unix]
-    - test -f ${PREFIX}/lib/libtiff${SHLIB_EXT}                  # [unix]
-    - test -f ${PREFIX}/lib/libtiffxx${SHLIB_EXT}                # [unix]
 
 about:
   home: http://www.libtiff.org/

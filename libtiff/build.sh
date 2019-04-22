@@ -6,27 +6,16 @@ elif [[ $(uname) == Linux ]]; then
   export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
 fi
 
-# Pass explicit paths to the prefix for each dependency.
-./configure --prefix="${PREFIX}" \
-            --host=$HOST \
-            --build=$BUILD \
-            --with-zlib-include-dir="${PREFIX}/include" \
-            --with-zlib-lib-dir="${PREFIX}/lib" \
-            --with-jpeg-include-dir="${PREFIX}/include" \
-            --with-jpeg-lib-dir="${PREFIX}/lib" \
-            --with-lzma-include-dir="${PREFIX}/include" \
-            --with-lzma-lib-dir="${PREFIX}/lib" \
-            --with-zstd-include-dir="${PREFIX}/include" \
-            --with-zstd-lib-dir="${PREFIX}/lib"
+mkdir build_gcc
+cd build_gcc
 
-make -j${CPU_COUNT} ${VERBOSE_AT}
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make check
-make install
+cmake -G "Ninja" \
+      -DCMAKE_INSTALL_PREFIX=$PREFIX \
+      -DCMAKE_PREFIX_PATH=$PREFIX \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DBUILD_SHARED_LIBS=ON \
+      -DJPEG_LIBRARY_RELEASE=$PREFIX/lib/libjpeg.a \
+      -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
+      ../
 
-rm -rf "${TIFF_BIN}" "${TIFF_SHARE}" "${TIFF_DOC}"
-
-# For some reason --docdir is not respected above.
-rm -rf "${PREFIX}/share"
-
-# We can remove this when we start using the new conda-build.
-find $PREFIX -name '*.la' -delete
+cmake --build . --target install --config Release
