@@ -14,3 +14,6 @@ cmake -LAH -GNinja \
   ..
 
 cmake --build . --target install --config Release
+
+rm -f $PREFIX/lib/cmake/CGAL/FindBLAS.cmake
+rm -f $PREFIX/lib/cmake/CGAL/FindLAPACK.cmake

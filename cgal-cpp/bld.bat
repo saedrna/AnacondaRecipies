@@ -23,3 +23,8 @@ if errorlevel 1 exit /b 1
 
 cmake --build . --target install --config Release
 if errorlevel 1 exit /b 1
+
+del %LIBRARY_PREFIX%\lib\cmake\FindBLAS.cmake
+del %LIBRARY_PREFIX%\lib\cmake\FindLAPACK.cmake
+
+exit 0
