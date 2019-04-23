@@ -21,22 +21,22 @@ requirements:
   
   host:
     - freetype
-    - libgdal 2.4.1 [unix]
-    - libgdal 2.4.1 ha925a31_0 [win]
+    - libgdal 2.4.1 he1b5a44_0 # [linux]
+    - libgdal 2.4.1 ha925a31_0 # [win]
     - libjpeg-turbo
     - libpng
-    - libtiff 4.0.10 [unix]
-    - libtiff 4.0.10 h28ac2ca_1000 [win]
+    - libtiff 4.0.10 hf7d1a46_1000 # [linux]
+    - libtiff 4.0.10 h28ac2ca_1000 # [win]
     - openexr 2.3.0
     - zlib
   
   run:
     - freetype
-    - libgdal 2.4.1 [unix]
-    - libgdal 2.4.1 ha925a31_0 [win]
+    - libgdal 2.4.1 he1b5a44_0 # [linux]
+    - libgdal 2.4.1 ha925a31_0 # [win]
     - libpng
-    - libtiff 4.0.10 [unix]
-    - libtiff 4.0.10 h28ac2ca_1000 [win]
+    - libtiff 4.0.10 hf7d1a46_1000 # [linux]
+    - libtiff 4.0.10 h28ac2ca_1000 # [win]
     - openexr 2.3.0
     - zlib
 
