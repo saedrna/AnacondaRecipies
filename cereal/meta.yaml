@@ -19,6 +19,9 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
 
+  host:
+    
+
 
 about:
   home: https://github.com/USCiLab/cereal
