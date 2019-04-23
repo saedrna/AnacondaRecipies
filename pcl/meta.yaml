@@ -25,12 +25,14 @@ requirements:
     - m2-patch # [win]
     - ninja  # [win]
   host:
-    - boost-cpp 1.69.0
+    - boost-cpp 1.69.0 # [win]
+    - boost-cpp 1.69.0 # [not win]
     - eigen 3.3.7
     - flann 1.9.1 ha925a31_1006 # [win]
     - qhull 2015.2 h74a9793_1000 # [win]
   run:
-    - boost-cpp 1.69.0
+    - boost-cpp 1.69.0 # [win]
+    - boost-cpp 1.69.0 # [not win]
     - eigen 3.3.7
     - flann
     - qhull

@@ -1,0 +1,39 @@
+{% set version = "1.69.0" %}
+{% set filename = "boost_%s.tar.bz2" % version.replace(".", "_") %}
+
+package:
+  name: boost-cpp
+  version: {{ version }}
+
+source:
+  fn: boost-cpp-{{ version }}.zip
+  url: https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.zip
+  sha256: d074bcbcc0501c4917b965fc890e303ee70d8b01ff5712bae4a6c54f2b6b4e52
+
+build:
+  number: 1000
+  # only build msvc version
+  skip: true # [not win]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+
+  host:
+
+about:
+  home: http://www.boost.org/
+  license: Boost-1.0
+  license_file: LICENSE_1_0.txt
+  summary: Free peer-reviewed portable C++ source libraries.
+
+extra:
+  recipe-maintainers:
+    - ccordoba12
+    - jakirkham
+    - msarahan
+    - ocefpaf
+    - jschueller
+    - isuruf
+    - saedrna

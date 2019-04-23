@@ -20,11 +20,13 @@ requirements:
     - cmake
     - ninja
   host:
-    - boost-cpp
+    - boost-cpp 1.69.0 # [win]
+    - boost-cpp 1.69.0 # [not win]
     - mpfr
     - eigen 
   run:
-    - boost-cpp
+    - boost-cpp 1.69.0 # [win]
+    - boost-cpp 1.69.0 # [not win]
     - mpfr
     - eigen
 
