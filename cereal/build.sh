@@ -15,6 +15,7 @@ cmake -G "Ninja" \
       -DCMAKE_BUILD_TYPE=Release \
       -DBUILD_SHARED_LIBS=ON \
       -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
+      -DJUST_INSTALL_CEREAL=ON \
       ../
 
 cmake --build . --target install --config Release
