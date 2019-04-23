@@ -17,9 +17,7 @@ source:
 build:
   skip: true  # [win32]
   skip: True  # [win and vc<14]
-  number: 202
-  features:
-    - blas_{{ variant }}
+  number: 1000
 
 requirements:
   build:
@@ -29,12 +27,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - blas 2.5 {{ variant }}
-    - openblas
+    - blas 2.5 openblas
 
   run:
-    - blas 2.5 {{ variant }}
-    - openblas
+    - blas 2.5 openblas
 
 about:
   home: http://faculty.cse.tamu.edu/davis/suitesparse.html
