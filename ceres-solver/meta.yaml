@@ -11,8 +11,6 @@ source:
 
 build:
   number: 0
-  features:
-    - blas_openblas
 
 requirements:
   build:
