@@ -5,8 +5,10 @@ package:
   version: {{ version }}
 
 source:
-  - url: http://download.qt.io/official_releases/qt/5.12/5.12.3/submodules/qtbase-everywhere-src-5.12.3.zip
-    md5: fbc3168ec614d0d55f9bf431ad83b395
+  - url: http://download.qt.io/official_releases/qt/5.12/5.12.3/submodules/qtbase-everywhere-src-5.12.3.zip # [win]
+    md5: fbc3168ec614d0d55f9bf431ad83b395 # [win]
+  - url: http://download.qt.io/official_releases/qt/5.12/5.12.3/submodules/qtbase-everywhere-src-5.12.3.tar.xz # [unix]
+    md5: fe47852113fc27581dbc0cf71644d6f1 # [unix]
 
 build:
   number: 0

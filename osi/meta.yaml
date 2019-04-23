@@ -19,9 +19,9 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - coinutils
+    - coinutils 2.11.1
   run:
-    - coinutils
+    - coinutils 2.11.1
 
 about:
   home: https://github.com/coin-or/Osi

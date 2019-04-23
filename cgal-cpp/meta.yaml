@@ -23,12 +23,12 @@ requirements:
     - boost-cpp 1.69.0 # [win]
     - boost-cpp 1.69.0 # [not win]
     - mpfr
-    - eigen 
+    - eigen 3.3.7 *
   run:
     - boost-cpp 1.69.0 # [win]
     - boost-cpp 1.69.0 # [not win]
     - mpfr
-    - eigen
+    - eigen 3.3.7 *
 
 about:
   home: http://www.cgal.org/

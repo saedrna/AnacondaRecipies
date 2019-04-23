@@ -20,10 +20,10 @@ requirements:
     - {{ compiler('cxx') }}
 
   host:
-    - khronos-opencl-icd-loader
+    - khronos-opencl-icd-loader 2019.02.20 h516909a_1001
   
   run:
-    - khronos-opencl-icd-loader
+    - khronos-opencl-icd-loader 2019.02.20 h516909a_1001
 
 about:
   home: http://viennacl.sourceforge.net/
