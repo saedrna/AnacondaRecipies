@@ -17,9 +17,7 @@ source:
 build:
   skip: true  # [win32]
   skip: True  # [win and vc<14]
-  number: 202
-  features:
-    - blas_{{ variant }}
+  number: 1000
 
 requirements:
   build:
