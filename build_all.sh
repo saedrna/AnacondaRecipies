@@ -33,16 +33,16 @@ conda-build open3d
 
 conda-build ceres-solver
 
-conda-build qt3d
 conda-build qt5-base
-conda-build qt5-charts
 conda-build qt5-declarative
+conda-build qt5-charts
 conda-build qt5-graphicaleffects
 conda-build qt5-imageformats
 conda-build qt5-quickcontrols2
 conda-build qt5-svg
 conda-build qt5-tools
 conda-build qt5-winextras
+conda-build qt3d
 
 conda-build opencv
 
