@@ -1,15 +1,6 @@
 sudo apt install libgl1-mesa-dev \
     libglu1-mesa-dev \
-    libfontconfig1-dev \
-    libfreetype6-dev \
-    libx11-dev \
-    libxext-dev \
-    libxfixes-dev \
-    libxi-dev \
-    libxrender-dev \
-    libxcb1-dev \
-    libx11-xcb-dev \
-    libxcb-glx0-dev 
+    build-essential
 
 conda config --add channels conda-forge
 conda config --add channels saedrna

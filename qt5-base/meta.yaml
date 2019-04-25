@@ -12,11 +12,13 @@ source:
 
 build:
   number: 0
+  merge_build_host: true  # [linux]
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:
-    - {{ compiler('cxx') }}              
-    - {{ compiler('c') }}             
+    - {{ compiler('cxx') }}           
+    - {{ compiler('c') }}
 
     # Probably only needed for WebEngine
     - m2-gperf                           # [win]
@@ -60,15 +62,7 @@ requirements:
     - pthread-stubs                      # [linux]
 
   host:
-    - libxcb                             # [linux]
-    - libglu                             # [linux]
-    - xorg-libx11                        # [linux]
-    - xorg-libxext                       # [linux]
-  run:
-    - libxcb                             # [linux]
-    - libglu                             # [linux]
-    - xorg-libx11                        # [linux]
-    - xorg-libxext                       # [linux]
+
 
 about:
   home: http://qt-project.org
