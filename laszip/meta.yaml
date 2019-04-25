@@ -1,0 +1,32 @@
+{% set version = "3.4.1" %}
+
+package:
+  name: laszip
+  version: {{ version }}
+
+source:
+  fn: laszip-{{ version }}.tar.gz
+  url: https://github.com/LASzip/LASzip/releases/download/{{ version }}/laszip-src-{{ version }}.tar.gz
+  sha256: 5d9b0ffaf8b7319c2fa216da3f3f878bb8f4e5b4b14d2c154d441a351da2be37
+
+
+build:
+  number: 1000
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+
+about:
+  home: https://laszip.org/
+  license: LGPL
+  license_file: COPYING
+  summary: LASzip - a free open source product of rapidlasso GmbH - quickly turns bulky LAS files into compact LAZ files without information loss
+
+extra:
+  recipe-maintainers:
+    - saedrna
