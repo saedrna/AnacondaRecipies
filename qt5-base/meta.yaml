@@ -25,7 +25,8 @@ requirements:
     - m2-patch                           # [win]
     - jom                                # [win]
     - perl 5.*
-  
+    - make # [linux]
+    
   host:
     
 

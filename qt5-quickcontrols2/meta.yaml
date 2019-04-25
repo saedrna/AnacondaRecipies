@@ -16,6 +16,7 @@ requirements:
     - {{ compiler('cxx') }}              
     - {{ compiler('c') }}                
     - jom                                # [win]
+    - make # [linux]
   
   host:
     - qt5-base 5.12.3
