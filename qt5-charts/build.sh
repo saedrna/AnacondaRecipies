@@ -11,6 +11,13 @@ export CXX=$(basename ${CXX})
 
 ln -s ${GXX} g++ || true
 ln -s ${GCC} gcc || true
+# Needed for -ltcg, it we split build and host again, change to ${BUILD_PREFIX}
+ln -s ${BUILD_PREFIX}/bin/${HOST}-gcc-ar gcc-ar || true
+chmod +x g++ gcc gcc-ar
+export PATH=${PWD}:${PATH}
+export LD=${GXX}
+export CC=${GCC}
+export CXX=${GXX}
 
 qmake CONFIG+=release
 make all -j$CPU_COUNT
