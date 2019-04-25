@@ -1,3 +1,5 @@
+sudo apt install libgl1-mesa-dev libglu1-mesa-dev
+
 conda activate base
 
 conda-build assimp
