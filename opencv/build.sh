@@ -80,6 +80,7 @@ PYTHON_UNSET_INSTALL="-DOPENCV_PYTHON${PY_UNSET_MAJOR}_INSTALL_PATH=${SP_DIR}"
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig
 
 cmake -LAH -G "Ninja"                                                     \
+    -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
     -DCMAKE_BUILD_TYPE="Release"                                          \
     -DCMAKE_PREFIX_PATH=${PREFIX}                                         \
     -DCMAKE_INSTALL_PREFIX=${PREFIX}                                      \
