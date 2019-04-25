@@ -19,8 +19,8 @@ conda-build suitesparse
 conda-build viennacl
 
 conda-build coinutils
-conda-build clp
 conda-build osi
+conda-build clp
 conda-build openmvg
 
 conda-build pcl
