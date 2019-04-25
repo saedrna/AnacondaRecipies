@@ -27,6 +27,7 @@ requirements:
   build:
     - cmake
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - python
     - ninja
     - m2-patch # [win]
