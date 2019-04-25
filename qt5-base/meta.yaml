@@ -61,8 +61,14 @@ requirements:
 
   host:
     - libxcb                             # [linux]
+    - libglu                             # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxext                       # [linux]
   run:
     - libxcb                             # [linux]
+    - libglu                             # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxext                       # [linux]
 
 about:
   home: http://qt-project.org
