@@ -22,6 +22,7 @@ requirements:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
+    host:
 
 about:
     home: http://www.cs.ubc.ca/research/flann/

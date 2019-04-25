@@ -1,6 +1,3 @@
-@echo ON
-setlocal enabledelayedexpansion
-
 set CL=/MP
 
 nmake /f makefile.vc WIN64=YES MSVC_VER=1910 ^
@@ -26,4 +23,5 @@ nmake /f makefile.vc devinstall WIN64=YES MSVC_VER=1910  ^
 if errorlevel 1 exit 1
 
 copy *.lib %LIBRARY_LIB%\ || exit 1
-if errorlevel 1 exit 1
+
+exit 0

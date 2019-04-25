@@ -11,7 +11,9 @@ source:
 
 build:
   number: 0
-
+  # only build msvc version
+  skip: true # [not win]
+  
 requirements:
   build:
     - cmake

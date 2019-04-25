@@ -21,3 +21,5 @@ if errorlevel 1 exit /b 1
 
 cmake --build . --target install --config Release
 if errorlevel 1 exit /b 1
+
+exit 0

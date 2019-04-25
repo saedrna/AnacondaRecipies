@@ -12,7 +12,8 @@ source:
       - fixcmake.patch
 
 build:
-  number: 0
+  number: 1000
+  skip: true # [not win]
 
 requirements:
   build:
@@ -24,10 +25,10 @@ requirements:
   
   host:
     - cereal
-    - ceres-solver
+    - ceres-solver 1.14.0
     - clp
     - coinutils
-    - eigen
+    - eigen 3.3.7 *
     - flann
     - lemon
     - libjpeg-turbo
@@ -38,10 +39,10 @@ requirements:
 
   run:
     - cereal
-    - ceres-solver
+    - ceres-solver 1.14.0
     - clp
     - coinutils
-    - eigen
+    - eigen 3.3.7 *
     - flann
     - lemon
     - libpng

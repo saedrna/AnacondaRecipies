@@ -18,6 +18,8 @@ requirements:
     - ninja
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+  
+  host:
 
 
 about:

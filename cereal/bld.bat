@@ -14,13 +14,15 @@ set UNIX_SP_DIR=%SP_DIR:\=/%
 set UNIX_SRC_DIR=%SRC_DIR:\=/%
 
 cmake -G "Ninja" ^
-    -DJUST_INSTALL_CEREAL=ON ^
+    -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
+    -DCMAKE_PREFIX_PATH=%UNIX_LIBRARY_PREFIX% ^
     -DBUILD_SHARED_LIBS=ON ^
     -DCMAKE_BUILD_TYPE=Release ^
-    -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
+    -DJUST_INSTALL_CEREAL=ON ^
     ../
 
 if errorlevel 1 exit 1
 cmake --build . --target install --config Release
+if errorlevel 1 exit 1
 
 exit 0

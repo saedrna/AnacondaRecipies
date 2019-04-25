@@ -1,12 +1,12 @@
 @echo off
 
-set CMAKE_GENERATOR="Ninja"
-
-cmake -G %CMAKE_GENERATOR% ^
-   -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
-   -DCMAKE_BUILD_TYPE:STRING=Release
+cmake -G "Ninja" ^
+   -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
+   -DCMAKE_BUILD_TYPE=Release
 
 if errorlevel 1 exit 1
 
-ninja install
+cmake --build . --target install --config Release
 if errorlevel 1 exit 1
+
+exit 0

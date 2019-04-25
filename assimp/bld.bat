@@ -1,8 +1,8 @@
 @echo ON
 setlocal enabledelayedexpansion
 
-mkdir build
-cd build
+mkdir build-vs
+cd build-vs
 
 :: CMake/OpenCV like Unix-style paths for some reason.
 set UNIX_PREFIX=%PREFIX:\=/%
@@ -14,11 +14,15 @@ set UNIX_SP_DIR=%SP_DIR:\=/%
 set UNIX_SRC_DIR=%SRC_DIR:\=/%
 
 cmake -G "Ninja" ^
-    -DOSG_USE_UTF8_FILENAME=ON ^
     -DBUILD_SHARED_LIBS=ON ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
-    -DJPEG_LIBRARY_RELEASE=%UNIX_LIBRARY_PREFIX%/lib/jpeg-static.lib ^
+    -DASSIMP_BUILD_TESTS=OFF ^
+    -DASSIMP_INSTALL_PDB=OFF ^
+    -DASSIMP_BUILD_ASSIMP_VIEW=OFF ^
+    -DASSIMP_BUILD_ZLIB=OFF ^
+    -DASSIMP_BUILD_SHARED_LIBS=ON ^
+    -DASSIMP_BUILD_ASSIMP_TOOLS=OFF ^
     ../
 
 if errorlevel 1 exit 1

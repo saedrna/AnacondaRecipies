@@ -10,7 +10,7 @@ source:
     sha256: 4744005fc3b902fed886ea418df70690caa8e2ff6b5a90f3dd88a3d291ef8e8e
 
 build:
-  number: 0
+  number: 1000
 
 requirements:
   build:
@@ -21,14 +21,13 @@ requirements:
   host:
     - blas 2.5 openblas
     - suitesparse 5.1.2
-    - glog
+    - glog 0.4.0
     - eigen 3.3.7
   run: 
     - blas 2.5 openblas
     - suitesparse 5.1.2
-    - glog
+    - glog 0.4.0
     - eigen 3.3.7
-
 
 about:
   home: http://ceres-solver.org/index.html
