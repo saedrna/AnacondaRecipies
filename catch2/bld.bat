@@ -21,5 +21,6 @@ cmake -G "Ninja" ^
 
 if errorlevel 1 exit 1
 cmake --build . --target install --config Release
+if errorlevel 1 exit 1
 
 exit 0
