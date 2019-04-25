@@ -11,6 +11,9 @@ export OBJDUMP=$(basename ${OBJDUMP})
 export CC=$(basename ${CC})
 export CXX=$(basename ${CXX})
 
+ln -s ${GXX} g++ || true
+ln -s ${GCC} gcc || true
+
 ./configure \
      -shared \
      -release \
@@ -20,6 +23,7 @@ export CXX=$(basename ${CXX})
      -L $PREFIX/lib \
      -I $PREFIX/include \
      -confirm-license \
+     -qt-xcb \
      -no-fontconfig \
      -no-separate-debug-info \
      -no-warnings-are-errors \
@@ -28,7 +32,7 @@ export CXX=$(basename ${CXX})
      -no-warnings-are-errors \
      -opengl desktop \
      -opensource \
-     -verbose
+     -verbose 
 
 make -j$CPU_COUNT
 make install

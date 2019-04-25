@@ -10,6 +10,9 @@ export OBJDUMP=$(basename ${OBJDUMP})
 export CC=$(basename ${CC})
 export CXX=$(basename ${CXX})
 
+ln -s ${GXX} g++ || true
+ln -s ${GCC} gcc || true
+
 qmake CONFIG+=release
 make all -j$CPU_COUNT
 make install
