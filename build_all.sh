@@ -1,4 +1,6 @@
 sudo apt install libgl1-mesa-dev libglu1-mesa-dev
+conda config --add channels conda-forge
+conda config --add channels saedrna
 
 conda activate base
 
