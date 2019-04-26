@@ -1,0 +1,43 @@
+{% set name = "embree3" %}
+{% set version = "3.5.2" %}
+{% set sha256 = "245af8820a820af94679fa1d43a05a9c825451be0d603b6165229556adf49517" %}
+
+package:
+  name: {{ name }}
+  version: "{{ version }}"
+
+source:
+  fn: {{ version }}.tar.gz
+  url: https://github.com/embree/embree/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  # upstream supports visual studio 13+
+  skip: true  # [win and vc<13]]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - cmake
+    - ninja
+  host:
+    - tbb
+
+  run:
+    - tbb
+
+test:
+  commands:
+    - test -f "${PREFIX}/lib/libembree3${SHLIB_EXT}"  # [not win]
+
+about:
+  home: https://embree.github.io/
+  license: Apache 2.0
+  license_file: LICENSE.txt
+  summary: High Performance Ray Tracing Kernels
+
+extra:
+  recipe-maintainers:
+    - joaander
+    - saedrna
