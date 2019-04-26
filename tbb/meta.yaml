@@ -1,0 +1,31 @@
+{% set version = "2019_U5" %}
+
+package:
+  name: tbb
+  version: {{ version }}
+
+source:
+  - url: https://github.com/01org/tbb/archive/{{ version }}.tar.gz
+    fn: tbb-{{ version }}.tar.gz
+    sha256: 2ea82d74dec50e18075b4982b8d360f8bd2bf2950f38e2db483aef82e0047444
+
+build:
+  number: 0
+  skip: true # [not win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+  host:
+
+about:
+  home: https://github.com/01org/tbb
+  license: Apache License 2.0
+  license_file: LICENSE
+  summary: Threading Building Blocks (TBB) lets you easily write parallel C++ programs that take full advantage of multicore performance, that are portable, composable and have future-proof scalability.
+
+extra:
+  recipe-maintainers:
+    - saedrna
