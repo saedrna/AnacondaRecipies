@@ -16,6 +16,11 @@ cmake -G "Ninja" \
       -DCMAKE_BUILD_TYPE=Release \
       -DBUILD_SHARED_LIBS=ON \
       -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
+      -DVORPALINE_PLATFORM=Linux64-gcc-dynamic \
+      -DGEOGRAM_LIB_ONLY=ON \
+      -DGEOGRAM_WITH_LEGACY_NUMERICS=OFF \
+      -DGEOGRAM_WITH_GRAPHICS=OFF \
+      -DGEOGRAM_WITH_LUA=OFF \
       ../
 
 cmake --build . --target install --config Release

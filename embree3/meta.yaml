@@ -15,6 +15,7 @@ build:
   number: 0
   # upstream supports visual studio 13+
   skip: true  # [win and vc<13]]
+  skip: true # [not win]
 
 requirements:
   build:
