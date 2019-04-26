@@ -1,0 +1,38 @@
+{% set version = "1.6.11" %}
+
+package:
+  name: geogram
+  version: {{ version }}
+
+source:
+  - url: https://github.com/alicevision/geogram/archive/v{{ version }}.tar.gz # [unix]
+    fn: geogram-{{ version }}.tar.gz # [unix]
+    sha256: 0deda1933a30921b11a3c29160a5b317d6462a301828c2da8abbf8cce3fccaac # [unix]
+  - url: https://github.com/alicevision/geogram/archive/v{{ version }}.zip # [win]
+    fn: geogram-{{ version }}.zip # [win]
+    sha256: d69fcf92d2671e1881f2bdec3f9595ce818c554e7375c1397d699a93069e1991 # [win]
+build:
+  number: 1000
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  
+  host:
+    - blas 2.5 openblas
+  
+  run:
+    - blas 2.5 openblas
+
+
+about:
+  home: http://alice.loria.fr/index.php/software/4-library/75-geogram.html
+  license: 3-clauses BSD License
+  summary: Geogram is a programming library of geometric algorithms. 
+
+extra:
+  recipe-maintainers:
+    - saedrna
