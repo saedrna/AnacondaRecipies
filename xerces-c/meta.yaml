@@ -1,0 +1,34 @@
+{% set version = "3.2.2" %}
+
+package:
+  name: xerces-c
+  version: {{ version }}
+
+source:
+  url: https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-{{ version }}.tar.gz
+  sha256: dd6191f8aa256d3b4686b64b0544eea2b450d98b4254996ffdfe630e0c610413
+
+build:
+  number: 1001
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake  
+    - ninja
+  host:
+
+about:
+  home: http://xerces.apache.org/xerces-c/
+  license: Apache 2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: 'Xerces-C++ is a validating XML parser written in a portable subset of C++'
+
+extra:
+  recipe-maintainers:
+    - gillins
+    - groutr
+    - ocefpaf
+    - saedrna
