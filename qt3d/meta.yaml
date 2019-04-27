@@ -21,10 +21,12 @@ requirements:
   host:
     - qt5-base 5.12.3
     - qt5-declarative 5.12.3
+    - zlib # [linux]
   
   run:
     - qt5-base 5.12.3
     - qt5-declarative 5.12.3
+    - zlib # [linux]
 
 about:
   home: http://qt-project.org
