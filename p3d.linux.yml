@@ -1,0 +1,39 @@
+channels:
+  - saedrna
+  - conda-forge
+  - intel
+  - defaults
+dependencies:
+  - assimp
+  - boost-cpp
+  - blas 2.5 openblas
+  - catch2
+  - cereal
+  - ceres-solver
+  - cgal-cpp
+  - embree3
+  - flann
+  - geogram
+  - geographiclib
+  - glog
+  - khronos-opencl-icd-loader
+  - laszip
+  - libgdal
+  - libtiff
+  - opencv
+  - pcl
+  - qhull
+  - qt3d
+  - qt5-base
+  - qt5-charts
+  - qt5-declarative
+  - qt5-graphicaleffects
+  - qt5-imageformats
+  - qt5-quickcontrols2
+  - qt5-svg
+  - qt5-tools
+  - suitesparse
+  - tbb
+  - viennacl
+  - xerces-c
+
