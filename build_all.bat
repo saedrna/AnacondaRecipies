@@ -13,6 +13,7 @@ conda-build libgdal
 conda-build libtiff
 conda-build qhull
 conda-build suitesparse
+conda-build xerces-c
 
 conda-build viennacl
 

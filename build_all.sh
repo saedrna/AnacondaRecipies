@@ -15,6 +15,7 @@ conda-build catch2
 conda-build cereal
 conda-build cgal-cpp
 conda-build flann
+conda-build geogram
 conda-build geographiclib
 conda-build glog
 conda-build khronos-opencl-icd-loader
@@ -23,6 +24,7 @@ conda-build libgdal
 conda-build libtiff
 conda-build qhull
 conda-build suitesparse
+conda-build xerces-c
 
 conda-build viennacl
 
