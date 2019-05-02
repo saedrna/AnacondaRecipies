@@ -1,0 +1,32 @@
+{% set version = "master" %}
+
+package:
+  name: opengv
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/laurentkneip/opengv.git
+  git_tag: master
+
+build:
+  number: 1000
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - eigen 3.3.7 *
+  run: 
+
+about:
+  home: https://github.com/laurentkneip/opengv
+  license: BSD
+  license_file: LICENSE.txt
+  summary: OpenGV is a collection of computer vision methods for solving geometric vision problems.
+
+extra:
+  recipe-maintainers:
+    - saedrna
