@@ -1,3 +1,4 @@
+conda-build alembic
 conda-build assimp
 conda-build boost-cpp
 conda-build capstone
@@ -42,3 +43,5 @@ conda-build qt3d
 conda-build opencv
 
 conda-build openscenegraph
+
+conda-build openimageio

@@ -1,0 +1,34 @@
+{% set version = "1.7.10" %}
+
+package:
+  name: alembic
+  version: {{ version }}
+
+source:
+  - url: https://github.com/alembic/alembic/archive/{{ version }}.tar.gz
+    fn: alembic-{{ version }}.tar.gz
+    sha256: ce77e048dabd2e11e1c69088bd8f4d949f752dfabe81b297aab652c82c6a4ada
+
+build:
+  number: 1000
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - openexr 2.3.0
+  run: 
+    - openexr 2.3.0
+
+about:
+  home: http://www.alembic.io/
+  license: MIT
+  license_file: LICENSE.txt
+  summary: Alembic is an open computer graphics interchange framework.
+
+extra:
+  recipe-maintainers:
+    - saedrna
