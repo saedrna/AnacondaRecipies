@@ -12,6 +12,7 @@ conda-build khronos-opencl-icd-loader
 conda-build laszip
 conda-build libgdal
 conda-build libtiff
+conda-build opengv
 conda-build qhull
 conda-build suitesparse
 conda-build xerces-c

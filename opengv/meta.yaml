@@ -6,7 +6,9 @@ package:
 
 source:
   git_url: https://github.com/laurentkneip/opengv.git
-  git_tag: master
+  git_tag: 306a54e6c6b94e2048f820cdf77ef5281d4b48ad
+  patches: 
+    - windows-shared.patch
 
 build:
   number: 1000
@@ -17,9 +19,11 @@ requirements:
     - ninja
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - m2-patch # [win]
   host:
     - eigen 3.3.7 *
   run: 
+    - eigen 3.3.7 *
 
 about:
   home: https://github.com/laurentkneip/opengv

@@ -11,9 +11,7 @@ endif()
 set(TOOLCHAIN_LOADED ON)
 
 set(CMAKE_PREFIX_PATH ${CMAKE_CURRENT_LIST_DIR}/Library)
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/Library)
 mark_as_advanced(CMAKE_PREFIX_PATH)
-mark_as_advanced(CMAKE_INSTALL_PREFIX)
 
 function(add_executable name)
   _add_executable(${ARGV})

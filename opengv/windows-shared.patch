@@ -1,0 +1,17 @@
+﻿diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9660f55..2dc8674 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -19,8 +19,11 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+ OPTION(BUILD_TESTS "Build tests" ON)
+ OPTION(BUILD_PYTHON "Build Python extension" OFF)
+ 
++if(BUILD_SHARED_LIBS)
++    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
++  endif(BUILD_SHARED_LIBS)
+ IF(MSVC)
+-  set(BUILD_SHARED_LIBS OFF)
++  # set(BUILD_SHARED_LIBS OFF)
+ ELSE()
+   OPTION(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+   OPTION(BUILD_POSITION_INDEPENDENT_CODE "Build position independent code (-fPIC)" ON)
