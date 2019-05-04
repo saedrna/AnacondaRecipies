@@ -1,17 +1,46 @@
 #!/bin/bash
+SHORT_OS_STR=$(uname -s)
 
-export CXXFLAGS="-O2 -Wno-deprecated"
+if [ "${SHORT_OS_STR:0:5}" == "Linux" ]; then
+    export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
+fi
 
-# mkdir -vp ${PREFIX}/bin;
-mkdir build; cd build;
-cmake $SRC_DIR \
-	  -DUSE_FFMPEG=ON \
-	  -DOIIO_BUILD_TOOLS=OFF \
+
+mkdir build_gcc
+cd build_gcc
+
+cmake -G "Ninja" \
+      -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
+      -DCMAKE_INSTALL_PREFIX=$PREFIX \
+      -DCMAKE_PREFIX_PATH=$PREFIX \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DBUILD_SHARED_LIBS=ON \
+      -DCMAKE_SKIP_RPATH=ON \
+      -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
+  	  -DOIIO_BUILD_TOOLS=OFF \ 
 	  -DOIIO_BUILD_TESTS=OFF \
-	  -DUSE_PYTHON=OFF \
-	  -DUSE_OPENCV=OFF \
-	  -DCMAKE_INSTALL_PREFIX=$PREFIX \
-	  -DCMAKE_SYSTEM_IGNORE_PATH=/usr/lib \
-	  -DCMAKE_INSTALL_LIBDIR=lib
+	  -DJPEG_LIBRARY=$PREFIX/lib/libjpeg.a \
+	  -DHIDE_SYMBOLS=ON \
+      -DUSE_DICOM=OFF \
+      -DUSE_FFMPEG=OFF \
+      -DUSE_FIELD3D=OFF \
+      -DUSE_FREETYPE=OFF \
+      -DUSE_GIF=OFF \
+      -DUSE_NUKE=OFF \
+      -DUSE_OCIO=OFF \
+      -DUSE_OPENCV=OFF \
+      -DUSE_OPENJPEG=OFF \
+      -DUSE_OPENSSL=OFF \
+      -DUSE_PTEX=OFF \
+      -DUSE_PYTHON=OFF \
+      -DUSE_QT=OFF \
+      -DUSE_WEBP=OFF \
+      -DBUILDSTATIC=OFF \
+      -DBUILD_MISSING_PYBIND11=OFF \
+      -DBUILD_MISSING_DEPS=OFF \
+      -DCMAKE_DISABLE_FIND_PACKAGE_Git=OFF \
+      -DVERBOSE=ON \
+      -DBUILD_PYBIND11_FORCE=OFF \
+      ../
 
-make install -j4
+cmake --build . --target install --config Release
