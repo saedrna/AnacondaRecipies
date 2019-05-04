@@ -8,6 +8,7 @@ conda config --set anaconda_upload yes
 
 conda activate base
 
+conda-build alembic
 conda-build assimp
 conda-build boost-cpp
 conda-build capstone
@@ -22,10 +23,12 @@ conda-build khronos-opencl-icd-loader
 conda-build laszip
 conda-build libgdal
 conda-build libtiff
+conda-build opengv
 conda-build qhull
 conda-build suitesparse
-conda-build opengv
 conda-build xerces-c
+
+conda-build openimageio
 
 conda-build viennacl
 

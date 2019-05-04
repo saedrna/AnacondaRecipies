@@ -30,7 +30,6 @@ requirements:
     - boost-cpp
     - libpng
     - libtiff
-    - libwebp
     - openexr
 
 about:
