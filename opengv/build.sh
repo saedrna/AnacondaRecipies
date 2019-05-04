@@ -1,12 +1,5 @@
 #!/bin/bash
 
-SHORT_OS_STR=$(uname -s)
-
-if [ "${SHORT_OS_STR:0:5}" == "Linux" ]; then
-    export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
-fi
-
-
 mkdir build_gcc
 cd build_gcc
 
