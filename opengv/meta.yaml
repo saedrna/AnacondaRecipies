@@ -28,7 +28,7 @@ requirements:
 about:
   home: https://github.com/laurentkneip/opengv
   license: BSD
-  license_file: LICENSE.txt
+  license_file: License.txt
   summary: OpenGV is a collection of computer vision methods for solving geometric vision problems.
 
 extra:
