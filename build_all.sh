@@ -26,6 +26,7 @@ conda-build libtiff
 conda-build opengv
 conda-build qhull
 conda-build suitesparse
+conda-build tbb
 conda-build xerces-c
 
 conda-build openimageio
