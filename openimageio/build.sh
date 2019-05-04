@@ -17,7 +17,7 @@ cmake -G "Ninja" \
       -DBUILD_SHARED_LIBS=ON \
       -DCMAKE_SKIP_RPATH=ON \
       -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
-  	  -DOIIO_BUILD_TOOLS=OFF \ 
+  	  -DOIIO_BUILD_TOOLS=OFF \
 	  -DOIIO_BUILD_TESTS=OFF \
 	  -DJPEG_LIBRARY=$PREFIX/lib/libjpeg.a \
 	  -DHIDE_SYMBOLS=ON \
