@@ -18,8 +18,9 @@ cmake -G "Ninja" \
       -DBUILD_SHARED_LIBS=ON \
       -DCMAKE_SKIP_RPATH=ON \
       -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
-      -DASSIMP_BUILD_TESTS=OFF \
-      -DASSIMP_INSTALL_PDB=OFF \
+      -DUSE_TESTS=OFF \
+      -DALEMBIC_SHARED_LIBS=ON \
+      -DILMBASE_VERSION=2.3.0 \
       ../
 
 cmake --build . --target install --config Release
