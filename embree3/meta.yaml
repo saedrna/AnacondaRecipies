@@ -15,7 +15,6 @@ build:
   number: 0
   # upstream supports visual studio 13+
   skip: true  # [win and vc<13]]
-  skip: true # [not win]
 
 requirements:
   build:
@@ -23,10 +22,10 @@ requirements:
     - cmake
     - ninja
   host:
-    - tbb
+    - tbb # [not win]
 
   run:
-    - tbb
+    - tbb # [not win]
 
 test:
   commands:

@@ -9,6 +9,16 @@ fi
 mkdir build_gcc
 cd build_gcc
 
+if [[ $(uname) == Darwin ]]; then
+cmake -GNinja \
+      -DCMAKE_INSTALL_PREFIX=$PREFIX \
+      -DCMAKE_PREFIX_PATH=$PREFIX \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DBUILD_SHARED_LIBS=ON \
+      -DBUILD_EXAMPLES=OFF \
+      -DENABLE_OPENCL=OFF \
+      ../
+else
 cmake -GNinja \
       -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -17,5 +27,6 @@ cmake -GNinja \
       -DBUILD_SHARED_LIBS=ON \
       -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
       ../
+fi
 
 cmake --build . --target install --config Release

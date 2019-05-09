@@ -9,14 +9,24 @@ fi
 mkdir build_gcc
 cd build_gcc
 
-cmake -G "Ninja" \
-      -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
-      -DCMAKE_INSTALL_PREFIX=$PREFIX \
-      -DCMAKE_PREFIX_PATH=$PREFIX \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DBUILD_SHARED_LIBS=ON \
-      -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
-      -DJUST_INSTALL_CEREAL=ON \
-      ../
+if [[ $(uname) == Darwin ]]; then
+    cmake -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_PREFIX_PATH=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_SHARED_LIBS=ON \
+        -DJUST_INSTALL_CEREAL=ON \
+        ../
+else
+  cmake -G "Ninja" \
+        -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_PREFIX_PATH=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_SHARED_LIBS=ON \
+        -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
+        -DJUST_INSTALL_CEREAL=ON \
+        ../
+fi
 
 cmake --build . --target install --config Release
