@@ -2,20 +2,23 @@
 
 set -ex
 
+mkdir build
+cd build
+
 export CXXFLAGS="${CXXFLAGS} -std=c++11"
 if [ "$(uname)" == "Linux" ]; then
    export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
 fi
 
-cmake -G "Unix Makefiles" \
+cmake -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX=$PREFIX \
   -DCMAKE_LIBRARY_PATH=$PREFIX/lib \
   -DCMAKE_INCLUDE_PATH=$PREFIX/include \
   -DBUILD_PLUGIN_GREYHOUND=ON \
   -DBUILD_PLUGIN_I3S=ON \
-  -DBUILD_PLUGIN_PCL=ON \
-  -DBUILD_PLUGIN_PYTHON=ON \
+  -DBUILD_PLUGIN_PCL=OFF \
+  -DBUILD_PLUGIN_PYTHON=OFF \
   -DPDAL_PYTHON_LIBRARY="libPython${SHLIB_EXT}" \
   -DBUILD_PLUGIN_PGPOINTCLOUD=ON \
   -DBUILD_PLUGIN_SQLITE=ON \
@@ -26,19 +29,8 @@ cmake -G "Unix Makefiles" \
   -DWITH_TESTS=OFF \
   -DWITH_ZLIB=ON \
   -DWITH_LAZPERF=ON \
-  -DWITH_LASZIP=ON
+  -DWITH_LASZIP=ON \
+  ../
 
 # CircleCI offers two cores.
-make -j $CPU_COUNT
-make install
-
-# This will not be needed once we fix upstream.
-chmod 755 $PREFIX/bin/pdal-config
-
-ACTIVATE_DIR=$PREFIX/etc/conda/activate.d
-DEACTIVATE_DIR=$PREFIX/etc/conda/deactivate.d
-mkdir -p $ACTIVATE_DIR
-mkdir -p $DEACTIVATE_DIR
-
-cp $RECIPE_DIR/scripts/activate.sh $ACTIVATE_DIR/pdal-activate.sh
-cp $RECIPE_DIR/scripts/deactivate.sh $DEACTIVATE_DIR/pdal-deactivate.sh
+cmake --build . --target install --config Release
