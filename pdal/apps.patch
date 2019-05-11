@@ -1,0 +1,13 @@
+diff --git a/apps/CMakeLists.txt b/apps/CMakeLists.txt
+index 950972c72..98bd01302 100644
+--- a/apps/CMakeLists.txt
++++ b/apps/CMakeLists.txt
+@@ -18,7 +18,7 @@ else (APPLE AND PDAL_BUNDLE)
+ endif(APPLE AND PDAL_BUNDLE)
+ pdal_target_compile_settings(${PDAL_APP})
+ target_link_libraries(${PDAL_APP}
+-    PRIVATE
++    PUBLIC
+         ${PDAL_BASE_LIB_NAME}
+         ${PDAL_UTIL_LIB_NAME}
+         ${PDAL_JSONCPP_LIB_NAME}

@@ -1,0 +1,36 @@
+mkdir build_vs
+cd build_vs
+
+set UNIX_PREFIX=%PREFIX:\=/%
+set UNIX_LIBRARY_PREFIX=%LIBRARY_PREFIX:\=/%
+set UNIX_LIBRARY_BIN=%LIBRARY_BIN:\=/%
+set UNIX_LIBRARY_INC=%LIBRARY_INC:\=/%
+set UNIX_LIBRARY_LIB=%LIBRARY_LIB:\=/%
+set UNIX_SP_DIR=%SP_DIR:\=/%
+set UNIX_SRC_DIR=%SRC_DIR:\=/%
+
+cmake -GNinja ^
+      -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
+      -DCMAKE_PREFIX_PATH=%UNIX_LIBRARY_PREFIX% ^
+      -DCMAKE_BUILD_TYPE=Release ^
+      -DBUILD_PLUGIN_GREYHOUND=ON ^
+      -DBUILD_PLUGIN_PCL=OFF ^
+      -DBUILD_PLUGIN_PYTHON=OFF ^
+      -DBUILD_PLUGIN_PGPOINTCLOUD=ON ^
+      -DBUILD_PLUGIN_SQLITE=ON ^
+      -DBUILD_PLUGIN_I3S=ON ^
+      -DBUILD_PLUGIN_ICEBRIDGE=ON ^
+      -DBUILD_PLUGIN_HEXBIN=ON ^
+      -DBUILD_PLUGIN_NITF=ON ^
+      -DENABLE_CTEST=OFF ^
+      -DWITH_TESTS=OFF ^
+      -DWITH_ZLIB=ON ^
+      -DWITH_LAZPERF=ON ^
+      -DWITH_LASZIP=ON ^
+      %SRC_DIR%
+if errorlevel 1 exit 1
+
+cmake --build . --target install --config Release
+if errorlevel 1 exit 1
+
+exit 0

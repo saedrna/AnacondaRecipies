@@ -1,0 +1,75 @@
+{% set version = "1.9.1" %}
+
+package:
+  name: pdal
+  version: {{ version }}
+
+source:
+  url: https://github.com/PDAL/PDAL/releases/download/{{version}}/PDAL-{{version}}-src.tar.bz2
+  sha256: 31a026279106aabb48aa3cffd94a889325d9247744a53d4ceeda91d12f38430d
+  patches:
+    - pcl.patch
+    - apps.patch
+
+build:
+  number: 1000
+  skip: True  # [win and vc<14]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+    - cmake
+    - ninja
+    - m2-patch # [win]
+  host:
+    - blas 2.5 openblas
+    - boost-cpp 1.69 
+    - curl
+    - eigen 3.3.7
+    - geos
+    - geotiff
+    - hdf5
+    - jsoncpp
+    - laszip
+    - laz-perf
+    - libgdal
+    - libkml
+    - libxml2
+    - nitro
+    - postgresql
+    - sqlite
+    - zlib
+  run:
+    - blas 2.5 openblas
+    - boost-cpp 1.69 
+    - curl
+    - eigen 3.3.7
+    - geos
+    - geotiff
+    - hdf5
+    - jsoncpp
+    - laszip
+    - laz-perf
+    - libgdal
+    - libkml
+    - libxml2
+    - nitro
+    - postgresql
+    - sqlite
+    - zlib
+
+about:
+  home: https://www.pdal.io
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  summary: 'Point Data Abstraction Library (PDAL)'
+  description: Point cloud data processing.
+  doc_url: https://pdal.io
+  dev_url: https://github.com/pdal/pdal
+
+extra:
+  recipe-maintainers:
+    - chambbj
+    - hobu
+    - saedrna
