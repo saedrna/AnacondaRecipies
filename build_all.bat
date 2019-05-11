@@ -46,3 +46,5 @@ conda-build opencv
 conda-build openscenegraph
 
 conda-build openimageio
+
+conda-build pdal

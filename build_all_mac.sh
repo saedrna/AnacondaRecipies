@@ -54,3 +54,5 @@ conda-build qt3d
 conda-build opencv
 
 conda-build openscenegraph
+
+conda-build pdal
