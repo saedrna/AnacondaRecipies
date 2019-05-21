@@ -5,6 +5,7 @@ conda config --set anaconda_upload yes
 conda activate base
 
 conda-build alembic
+conda-build armadillo
 conda-build assimp
 conda-build boost-cpp
 conda-build capstone
@@ -15,6 +16,9 @@ conda-build flann
 conda-build geogram
 conda-build geographiclib
 conda-build glog
+conda-build gmm
+conda-build gsl
+conda-build jama
 conda-build khronos-opencl-icd-loader
 conda-build laszip
 conda-build libgdal
@@ -22,7 +26,9 @@ conda-build libtiff
 conda-build opengv
 conda-build qhull
 conda-build suitesparse
+conda-build superlu
 conda-build tbb
+conda-build tnt
 conda-build xerces-c
 
 conda-build openimageio
@@ -45,11 +51,16 @@ conda-build qt5-declarative
 conda-build qt5-charts
 conda-build qt5-graphicaleffects
 conda-build qt5-imageformats
+conda-build qt5-quickcontrols
 conda-build qt5-quickcontrols2
 conda-build qt5-svg
 conda-build qt5-tools
+conda-build qt5-webchannel
 conda-build qt5-winextras
+conda-build qt5-xmlpatterns
+
 conda-build qt3d
+conda-build qwt
 
 conda-build opencv
 
