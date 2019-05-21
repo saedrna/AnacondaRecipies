@@ -1,0 +1,20 @@
+
+package:
+  name: jama
+  version: 125
+
+source:
+  fn: jama125.zip
+  url: http://math.nist.gov/tnt/jama125.zip
+
+
+about:
+  home: http://math.nist.gov/tnt/
+  license: public domain
+  summary: The Template Numerical Toolkit (TNT) is a collection of
+    interfaces and reference implementations of numerical objects useful for scientific computing in C++
+
+extra:
+  recipe-maintainers:
+    - rbogle
+    - saedrna

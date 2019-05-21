@@ -1,0 +1,138 @@
+{% set version = "3.6.2" %}
+{% set git_branch = "master" %}
+{% set build_number = "0" %}
+
+package:
+  name: isis3
+  version: {{ version }}
+
+source:
+  git_url: 'https://github.com/saedrna/ISIS3.git'
+  git_branch: {{ git_branch }}
+
+build:
+  number: {{ build_number }}
+
+# Shotgun strat on requirements until we can narrow them down
+requirements:
+  build:
+    - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - ninja
+    - make
+  host:  
+    - armadillo
+    - blas 2.5 openblas
+    - bullet
+    - bz2file
+    - bzip2
+    - ceres-solver==1.14.0
+    - cspice
+    - eigen
+    - embree
+    - geos==3.5.1
+    - geotiff
+    - gmm
+    - gmp
+    - gsl
+    - hdf5
+    - jama
+    - jpeg
+    - krb5
+    - libgdal==2.4.1
+    - libpng
+    - libprotobuf
+    - libtiff
+    - libxml2
+    - mesalib
+    - mysql
+    - mysql-connector-c
+    - nanoflann
+    - nn
+    - openblas
+    - opencv
+    - pcl
+    - pip
+    - protobuf
+    - python
+    - qhull
+    - qt5-base
+    - qt5-tools
+    - qt5-imageformats
+    - qt5-multimedia
+    - qwt
+    - suitesparse
+    - superlu
+    - tnt
+    - wheel
+    - x264
+    - xerces-c
+    - xorg-kbproto
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libx11
+    - xorg-libxi
+    - zlib
+    # - xalan-c
+  run:
+    - armadillo
+    - blas 2.5 openblas
+    - bullet
+    - bz2file
+    - bzip2
+    - cspice
+    - embree
+    - geos==3.5.1
+    - geotiff
+    - gmm
+    - gmp
+    - gsl
+    - hdf5
+    - icu
+    - jama
+    - jpeg
+    - krb5
+    - libpng
+    - libprotobuf
+    - libtiff
+    - libxml2
+    - mesalib
+    - mysql
+    - mysql-connector-c
+    - nanoflann
+    - nn
+    - openblas
+    - opencv
+    - pcl
+    - pip
+    - protobuf
+    - python
+    - qhull
+    - qt5-base
+    - qt5-tools
+    - qt5-imageformats
+    - qt5-multimedia
+    - qwt
+    - sqlite
+    - suitesparse
+    - superlu
+    - tnt
+    - wheel
+    - x264
+    - xerces-c
+    - xorg-kbproto
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libx11
+    - xorg-libxi
+    - zlib
+    # - xalan-c
+# Add the tests eventually
+# test:
+#
+
+
+extra:
+  recipe-maintainers:
+    - saedrna

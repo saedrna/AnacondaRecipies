@@ -1,0 +1,1397 @@
+From 3464036303d6258c3beecf66111ae8191235953f Mon Sep 17 00:00:00 2001
+From: "Dougal J. Sutherland" <dougal@gmail.com>
+Date: Mon, 5 Mar 2018 21:15:20 +0000
+Subject: [PATCH] changes from release to
+ https://github.com/ampl/gsl/tree/v2.4.0
+
+---
+ CMakeLists.txt                              | 711 ++++++++++++++++++++++++++++
+ appveyor.yml                                |   8 +
+ cmake/c_flag_overrides.cmake                |   6 +
+ cmake/cxx_flag_overrides.cmake              |   6 +
+ cmake/init.cmake                            |  92 ++++
+ gsl-msvc14-x64-build.nuget.bat              |  99 ++++
+ gsl-msvc14-x64.nuspec                       |  15 +
+ gsl-msvc14-x86-build.nuget.bat              |  99 ++++
+ gsl-msvc14-x86.nuspec                       |  15 +
+ gsl-msvc14.targets                          |  34 ++
+ gsl.pc.cmake                                |  11 +
+ gsl_inline.h                                |   2 +-
+ ieee-utils/fp-win.c                         |  70 +++
+ ieee-utils/fp.c                             |   2 +
+ matrix/test.c                               |   1 -
+ multilarge_nlinear/fdf.c                    |   4 +
+ multilarge_nlinear/gsl_multilarge_nlinear.h |   4 +
+ spmatrix/test.c                             |   1 -
+ vector/test.c                               |   1 -
+ 19 files changed, 1177 insertions(+), 4 deletions(-)
+ create mode 100644 CMakeLists.txt
+ create mode 100644 appveyor.yml
+ create mode 100644 cmake/c_flag_overrides.cmake
+ create mode 100644 cmake/cxx_flag_overrides.cmake
+ create mode 100644 cmake/init.cmake
+ create mode 100644 gsl-msvc14-x64-build.nuget.bat
+ create mode 100644 gsl-msvc14-x64.nuspec
+ create mode 100644 gsl-msvc14-x86-build.nuget.bat
+ create mode 100644 gsl-msvc14-x86.nuspec
+ create mode 100644 gsl-msvc14.targets
+ create mode 100644 gsl.pc.cmake
+ create mode 100644 ieee-utils/fp-win.c
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..6f1825c
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,711 @@
++# CMake build script for the GNU Scientific Library.
++
++# Use CMake 2.8.3 for CMakeParseArguments.
++cmake_minimum_required(VERSION 2.8.3)
++
++set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
++include(init)
++
++project(GSL)
++
++if (POLICY CMP0054)
++  # Only interpret `if` arguments as variables or keywords when unquoted.
++  cmake_policy(SET CMP0054 NEW)
++endif ()
++if (POLICY CMP0053)
++  cmake_policy(SET CMP0053 NEW)
++endif( )
++
++set(PACKAGE "gsl")
++set(PACKAGE_NAME ${PACKAGE})
++set(PACKAGE_TARNAME ${PACKAGE})
++set(PACKAGE_BUGREPORT "")
++set(PACKAGE_URL "")
++set(LT_OBJDIR ".libs/")
++
++set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
++
++# The following part of config.h is hard to derive from configure.ac.
++string(REGEX MATCHALL "[^\n]*\n" CONFIG
++"/* Define if you have inline with C99 behavior */
++#undef HAVE_C99_INLINE
++
++/* Define to 1 if you have the declaration of `acosh', and to 0 if you don't.
++   */
++#undef HAVE_DECL_ACOSH
++
++/* Define to 1 if you have the declaration of `asinh', and to 0 if you don't.
++   */
++#undef HAVE_DECL_ASINH
++
++/* Define to 1 if you have the declaration of `atanh', and to 0 if you don't.
++   */
++#undef HAVE_DECL_ATANH
++
++/* Define to 1 if you have the declaration of `expm1', and to 0 if you don't.
++   */
++#undef HAVE_DECL_EXPM1
++
++/* Define to 1 if you have the declaration of `feenableexcept', and to 0 if
++   you don't. */
++#undef HAVE_DECL_FEENABLEEXCEPT
++
++/* Define to 1 if you have the declaration of `fesettrapenable', and to 0 if
++   you don't. */
++#undef HAVE_DECL_FESETTRAPENABLE
++
++/* Define to 1 if you have the declaration of `finite', and to 0 if you don't.
++   */
++#undef HAVE_DECL_FINITE
++
++/* Define to 1 if you have the declaration of `fprnd_t', and to 0 if you
++   don't. */
++#undef HAVE_DECL_FPRND_T
++
++/* Define to 1 if you have the declaration of `frexp', and to 0 if you don't.
++   */
++#undef HAVE_DECL_FREXP
++
++/* Define to 1 if you have the declaration of `hypot', and to 0 if you don't.
++   */
++#undef HAVE_DECL_HYPOT
++
++/* Define to 1 if you have the declaration of `isfinite', and to 0 if you
++   don't. */
++#undef HAVE_DECL_ISFINITE
++
++/* Define to 1 if you have the declaration of `isinf', and to 0 if you don't.
++   */
++#undef HAVE_DECL_ISINF
++
++/* Define to 1 if you have the declaration of `isnan', and to 0 if you don't.
++   */
++#undef HAVE_DECL_ISNAN
++
++/* Define to 1 if you have the declaration of `ldexp', and to 0 if you don't.
++   */
++#undef HAVE_DECL_LDEXP
++
++/* Define to 1 if you have the declaration of `log1p', and to 0 if you don't.
++   */
++#undef HAVE_DECL_LOG1P
++
++/* Define to 1 if you have the <dlfcn.h> header file. */
++#undef HAVE_DLFCN_H
++
++/* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
++#undef HAVE_DOPRNT
++
++/* Defined if you have ansi EXIT_SUCCESS and EXIT_FAILURE in stdlib.h */
++#undef HAVE_EXIT_SUCCESS_AND_FAILURE
++
++/* Defined on architectures with excess floating-point precision */
++#undef HAVE_EXTENDED_PRECISION_REGISTERS
++
++/* Define if x86 processor has sse extensions. */
++#undef HAVE_FPU_X86_SSE
++
++/* Define to 1 if you have the <ieeefp.h> header file. */
++#undef HAVE_IEEEFP_H
++
++/* Define this if IEEE comparisons work correctly (e.g. NaN != NaN) */
++#undef HAVE_IEEE_COMPARISONS
++
++/* Define this if IEEE denormalized numbers are available */
++#undef HAVE_IEEE_DENORMALS
++
++/* Define if you have inline */
++#undef HAVE_INLINE
++
++/* Define to 1 if you have the <inttypes.h> header file. */
++#undef HAVE_INTTYPES_H
++
++/* Define to 1 if you have the `m' library (-lm). */
++#undef HAVE_LIBM
++
++/* Define to 1 if you have the `memcpy' function. */
++#undef HAVE_MEMCPY
++
++/* Define to 1 if you have the `memmove' function. */
++#undef HAVE_MEMMOVE
++
++/* Define to 1 if you have the <memory.h> header file. */
++#undef HAVE_MEMORY_H
++
++/* Define this if printf can handle %Lf for long double */
++#undef HAVE_PRINTF_LONGDOUBLE
++
++/* Define to 1 if you have the <stdint.h> header file. */
++#undef HAVE_STDINT_H
++
++/* Define to 1 if you have the <stdlib.h> header file. */
++#undef HAVE_STDLIB_H
++
++/* Define to 1 if you have the `strdup' function. */
++#undef HAVE_STRDUP
++
++/* Define to 1 if you have the <strings.h> header file. */
++#undef HAVE_STRINGS_H
++
++/* Define to 1 if you have the <string.h> header file. */
++#undef HAVE_STRING_H
++
++/* Define to 1 if you have the `strtol' function. */
++#undef HAVE_STRTOL
++
++/* Define to 1 if you have the `strtoul' function. */
++#undef HAVE_STRTOUL
++
++/* Define to 1 if you have the <sys/stat.h> header file. */
++#undef HAVE_SYS_STAT_H
++
++/* Define to 1 if you have the <sys/types.h> header file. */
++#undef HAVE_SYS_TYPES_H
++
++/* Define to 1 if you have the <unistd.h> header file. */
++#undef HAVE_UNISTD_H
++
++/* Define to 1 if you have the `vprintf' function. */
++#undef HAVE_VPRINTF
++
++/* Define if you need to hide the static definitions of inline functions */
++#undef HIDE_INLINE_STATIC
++
++/* Define to the sub-directory in which libtool stores uninstalled libraries.
++   */
++#undef LT_OBJDIR
++
++/* Name of package */
++#undef PACKAGE
++
++/* Define to the address where bug reports for this package should be sent. */
++#undef PACKAGE_BUGREPORT
++
++/* Define to the full name of this package. */
++#undef PACKAGE_NAME
++
++/* Define to the full name and version of this package. */
++#undef PACKAGE_STRING
++
++/* Define to the one symbol short name of this package. */
++#undef PACKAGE_TARNAME
++
++/* Define to the home page for this package. */
++#undef PACKAGE_URL
++
++/* Define to the version of this package. */
++#undef PACKAGE_VERSION
++
++/* Defined if this is an official release */
++#undef RELEASED
++
++/* Define to 1 if you have the ANSI C header files. */
++#undef STDC_HEADERS
++
++/* Version number of package */
++#undef VERSION
++
++/* Define to 1 if type `char' is unsigned and you are not using gcc.  */
++#ifndef __CHAR_UNSIGNED__
++# undef __CHAR_UNSIGNED__
++#endif
++
++/* Define to `__inline__' or `__inline' if that's what the C compiler
++   calls it, or to nothing if 'inline' is not supported under any name.  */
++#ifndef __cplusplus
++#undef inline
++#endif
++
++/* Define to `unsigned int' if <sys/types.h> does not define. */
++#undef size_t
++
++/* Define to empty if the keyword `volatile' does not work. Warning: valid
++   code using `volatile' can become incorrect without. Disable with care. */
++#undef volatile
++")
++
++# Get version numbers and parts of config.h from configure.ac.
++file(READ configure.ac LINES)
++# Replace semicolons with "<semi>" to avoid CMake messing with them.
++string(REPLACE ";" "<semi>" LINES "${LINES}")
++# Split into lines keeping newlines to avoid foreach skipping empty ones.
++string(REGEX MATCHALL "[^\n]*\n" LINES "${LINES}")
++set(ah_command FALSE)
++foreach (line "${EXTRA_CONFIG}" ${LINES})
++  string(REPLACE ";" "" line "${line}")
++  if (ah_command)
++    # Do nothing.
++  elseif (line MATCHES "AC_INIT[^,]*,\\[(.*)\\].*")
++    set(VERSION ${CMAKE_MATCH_1})
++    message(STATUS "Got VERSION=${VERSION} from configure.ac")
++  elseif (line MATCHES "((GSL|CBLAS)_(CURRENT|REVISION|AGE))=(.*)\n")
++    set(${CMAKE_MATCH_1} ${CMAKE_MATCH_4})
++    message(STATUS "Got ${CMAKE_MATCH_1}=${CMAKE_MATCH_4} from configure.ac")
++  elseif (line MATCHES "AH_BOTTOM\\(\\[(.*)")
++    set(ah_command bottom)
++    set(line "${CMAKE_MATCH_1}")
++  elseif (line MATCHES "AH_VERBATIM[^,]+,(.*)")
++    set(ah_command verbatim)
++    set(line "${CMAKE_MATCH_1}")
++  endif ()
++  if (ah_command)
++    set(saved_ah_command ${ah_command})
++    if (line MATCHES "^\\[(.*)")
++      set(line "${CMAKE_MATCH_1}")
++    endif ()
++    if (line MATCHES "\\]\\)")
++      set(ah_command FALSE)
++      string(REPLACE "])" "" line "${line}")
++    endif ()
++    # For some reason CMake may bundle several lines together. Split them too.
++    string(REGEX MATCHALL "[^\n]*\n" sublines "${line}")
++    set(config_add "")
++    foreach (subline ${sublines})
++      set(config_add ${config_add} "${subline}")
++    endforeach ()
++    if (saved_ah_command STREQUAL "verbatim")
++      set(CONFIG ${config_add} ${CONFIG})
++    else ()
++      set(CONFIG ${CONFIG} "\n" ${config_add})
++    endif ()
++  endif ()
++endforeach ()
++set(PACKAGE_VERSION ${VERSION})
++set(PACKAGE_STRING "${PACKAGE} ${VERSION}")
++
++if (NOT (VERSION MATCHES "\\+"))
++  # Defined if this is an official release.
++  set(RELEASED /**/)
++endif ()
++
++include(CheckLibraryExists)
++check_library_exists(m cos "" HAVE_LIBM)
++if (HAVE_LIBM)
++  set(CMAKE_REQUIRED_LIBRARIES m)
++endif ()
++
++include(CheckCSourceCompiles)
++
++# Check for inline.
++foreach (keyword inline __inline__ __inline)
++  check_c_source_compiles("
++    static ${keyword} void foo() { return 0; }
++    int main() {}" C_HAS_${keyword})
++  if (C_HAS_${keyword})
++    set(C_INLINE ${keyword})
++    break ()
++  endif ()
++endforeach ()
++if (C_INLINE)
++  # Check for GNU-style extern inline.
++  check_c_source_compiles("
++    extern ${C_INLINE} double foo(double x);
++    extern ${C_INLINE} double foo(double x) { return x + 1.0; }
++    double foo(double x) { return x + 1.0; }
++    int main() { foo(1.0); }" C_EXTERN_INLINE)
++  if (C_EXTERN_INLINE)
++    set(HAVE_INLINE 1)
++  else ()
++    # Check for C99-style inline.
++    check_c_source_compiles("
++      extern inline void* foo() { foo(); return &foo; }
++      int main() { return foo() != 0; }" C_C99INLINE)
++    if (C_C99INLINE)
++      set(HAVE_INLINE 1)
++      set(HAVE_C99_INLINE 1)
++    endif ()
++  endif ()
++endif ()
++if (C_INLINE AND NOT C_HAS_inline)
++  set(inline ${C_INLINE})
++endif ()
++
++# Checks for header files.
++include(CheckIncludeFiles)
++foreach (header ieeefp.h dlfcn.h inttypes.h memory.h stdint.h stdlib.h
++                strings.h string.h sys/stat.h sys/types.h unistd.h)
++  string(TOUPPER HAVE_${header} var)
++  string(REGEX REPLACE "\\.|/" "_" var ${var})
++  check_include_files(${header} ${var})
++endforeach ()
++check_include_files(stdio.h STDC_HEADERS)
++
++# Check for IEEE arithmetic interface type.
++if (CMAKE_SYSTEM_NAME MATCHES Linux)
++  if (CMAKE_SYSTEM_PROCESSOR MATCHES sparc)
++    set(HAVE_GNUSPARC_IEEE_INTERFACE 1)
++  elseif (CMAKE_SYSTEM_PROCESSOR MATCHES powerpc)
++    set(HAVE_GNUPPC_IEEE_INTERFACE 1)
++  elseif (CMAKE_SYSTEM_PROCESSOR MATCHES 86)
++    set(HAVE_GNUX86_IEEE_INTERFACE 1)
++  endif ()
++elseif (CMAKE_SYSTEM_NAME MATCHES SunOS)
++  set(HAVE_SUNOS4_IEEE_INTERFACE 1)
++elseif (CMAKE_SYSTEM_NAME MATCHES Solaris)
++  set(HAVE_SOLARIS_IEEE_INTERFACE 1)
++elseif (CMAKE_SYSTEM_NAME MATCHES hpux)
++  set(HAVE_HPUX_IEEE_INTERFACE 1)
++elseif (CMAKE_SYSTEM_NAME MATCHES Darwin)
++  if (CMAKE_SYSTEM_PROCESSOR MATCHES powerpc)
++    set(HAVE_DARWIN_IEEE_INTERFACE 1)
++  elseif (CMAKE_SYSTEM_PROCESSOR MATCHES 86)
++    set(HAVE_DARWIN86_IEEE_INTERFACE 1)
++  endif ()
++elseif (CMAKE_SYSTEM_NAME MATCHES NetBSD)
++  set(HAVE_NETBSD_IEEE_INTERFACE 1)
++elseif (CMAKE_SYSTEM_NAME MATCHES OpenBSD)
++  set(HAVE_OPENBSD_IEEE_INTERFACE 1)
++elseif (CMAKE_SYSTEM_NAME MATCHES FreeBSD)
++  set(HAVE_FREEBSD_IEEE_INTERFACE 1)
++endif ()
++
++# Check for FPU_SETCW.
++if (HAVE_GNUX86_IEEE_INTERFACE)
++  check_c_source_compiles("
++    #include <fpu_control.h>
++    #ifndef _FPU_SETCW
++    #include <i386/fpu_control.h>
++    #define _FPU_SETCW(cw) __setfpucw(cw)
++    #endif
++    int main() { unsigned short mode = 0 ; _FPU_SETCW(mode); }"
++    HAVE_FPU_SETCW)
++  if (NOT HAVE_FPU_SETCW)
++    set(HAVE_GNUX86_IEEE_INTERFACE 0)
++  endif ()
++endif ()
++
++# Check for SSE extensions.
++if (HAVE_GNUX86_IEEE_INTERFACE)
++  check_c_source_compiles("
++    #include <stdlib.h>
++    #define _FPU_SETMXCSR(cw) asm volatile (\"ldmxcsr %0\" : : \"m\" (*&cw))
++    int main() { unsigned int mode = 0x1f80 ; _FPU_SETMXCSR(mode); exit(0); }"
++    HAVE_FPU_X86_SSE)
++endif ()
++
++# Compiles the source code, runs the program and sets ${VAR} to 1 if the
++# return value is equal to ${RESULT}.
++macro(check_run_result SRC RESULT VAR)
++  set(SRC_FILE ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/src.c)
++  file(WRITE ${SRC_FILE} "${SRC}")
++  try_run(RUN_RESULT COMPILE_RESULT ${CMAKE_BINARY_DIR} ${SRC_FILE}
++          CMAKE_FLAGS -DLINK_LIBRARIES:STRING=${CMAKE_REQUIRED_LIBRARIES})
++  if (RUN_RESULT EQUAL ${RESULT})
++    set(${VAR} 1)
++  endif ()
++endmacro()
++
++# Check IEEE comparisons, whether "x != x" is true for NaNs.
++check_run_result("
++  #include <math.h>
++  int main (void)
++  {
++     int status; double inf, nan;
++     inf = exp(1.0e10);
++     nan = inf / inf ;
++     status = (nan == nan);
++     exit (status);
++  }" 0 HAVE_IEEE_COMPARISONS)
++
++# Check for IEEE denormalized arithmetic.
++check_run_result("
++  #include <math.h>
++  int main (void)
++  {
++     int i, status;
++     volatile double z = 1e-308;
++     for (i = 0; i < 5; i++) { z = z / 10.0 ; };
++     for (i = 0; i < 5; i++) { z = z * 10.0 ; };
++     status = (z == 0.0);
++     exit (status);
++  }" 0 HAVE_IEEE_DENORMALS)
++
++# Check for long double stdio.
++check_run_result("
++  #include <stdlib.h>
++  #include <stdio.h>
++  int main (void)
++  {
++    const char * s = \"5678.25\"; long double x = 1.234 ;
++    fprintf(stderr,\"%Lg\n\",x) ;
++    sscanf(s, \"%Lg\", &x);
++    if (x == 5678.25) {exit (0);} else {exit(1); }
++  }" 0 HAVE_PRINTF_LONGDOUBLE)
++
++if (NOT CMAKE_COMPILER_IS_GNUCC)
++  check_run_result("
++    #include <limits.h>
++    int main (void) { return CHAR_MIN == 0; }" 1 __CHAR_UNSIGNED__)
++endif ()
++
++# Remember to put a definition in config.h.in for each of these.
++include(CheckSymbolExists)
++check_symbol_exists(EXIT_SUCCESS stdlib.h HAVE_EXIT_SUCCESS)
++check_symbol_exists(EXIT_FAILURE stdlib.h HAVE_EXIT_FAILURE)
++if (HAVE_EXIT_SUCCESS AND HAVE_EXIT_FAILURE)
++  set(HAVE_EXIT_SUCCESS_AND_FAILURE 1)
++endif ()
++set(CMAKE_REQUIRED_DEFINITIONS "-D_GNU_SOURCE=1")
++check_symbol_exists(feenableexcept fenv.h HAVE_DECL_FEENABLEEXCEPT)
++check_symbol_exists(fesettrapenable fenv.h HAVE_DECL_FESETTRAPENABLE)
++set(CMAKE_REQUIRED_DEFINITIONS "")
++check_symbol_exists(hypot math.h HAVE_DECL_HYPOT)
++check_symbol_exists(expm1 math.h HAVE_DECL_EXPM1)
++check_symbol_exists(acosh math.h HAVE_DECL_ACOSH)
++check_symbol_exists(asinh math.h HAVE_DECL_ASINH)
++check_symbol_exists(atanh math.h HAVE_DECL_ATANH)
++check_symbol_exists(ldexp math.h HAVE_DECL_LDEXP)
++check_symbol_exists(frexp math.h HAVE_DECL_FREXP)
++check_symbol_exists(fprnd_t float.h HAVE_DECL_FPRND_T)
++check_symbol_exists(isinf math.h HAVE_DECL_ISINF)
++check_symbol_exists(isfinite math.h HAVE_DECL_ISFINITE)
++if (HAVE_IEEEFP_H)
++  set(IEEEFP_H ieeefp.h)
++endif ()
++check_symbol_exists(finite math.h;${IEEEFP_H} HAVE_DECL_FINITE)
++check_symbol_exists(isnan math.h HAVE_DECL_ISNAN)
++
++# OpenBSD has a broken implementation of log1p.
++if (CMAKE_SYSTEM_NAME MATCHES OpenBSD)
++  message("avoiding OpenBSD system log1p - using gsl version")
++else ()
++  check_symbol_exists(log1p math.h HAVE_DECL_LOG1P)
++endif ()
++
++# Check for extended floating point registers.
++if (NOT (CMAKE_SYSTEM_PROCESSOR MATCHES "^(sparc|powerpc|hppa|alpha)"))
++  set(HAVE_EXTENDED_PRECISION_REGISTERS 1)
++endif ()
++
++check_symbol_exists(memcpy string.h HAVE_MEMCPY)
++check_symbol_exists(memmove string.h HAVE_MEMMOVE)
++check_symbol_exists(strdup string.h HAVE_STRDUP)
++check_symbol_exists(strtol stdlib.h HAVE_STRTOL)
++check_symbol_exists(strtoul stdlib.h HAVE_STRTOUL)
++check_symbol_exists(vprintf stdio.h HAVE_VPRINTF)
++
++# Process config.h using autoconf rules.
++#file(STRINGS ${GSL_SOURCE_DIR}/config.h.in CONFIG)
++list(LENGTH CONFIG length)
++math(EXPR length "${length} - 1")
++foreach (i RANGE ${length})
++  list(GET CONFIG ${i} line)
++  if (line MATCHES "^#( *)undef (.*)\n")
++    set(space "${CMAKE_MATCH_1}")
++    set(var ${CMAKE_MATCH_2})
++    if (NOT DEFINED ${var} OR (var MATCHES "HAVE_.*_H" AND NOT ${var}))
++      set(line "/* #${space}undef ${var} */\n")
++    else ()
++      if ("${${var}}" STREQUAL "/**/" OR "${var}" STREQUAL "inline")
++        set(value ${${var}})
++      elseif (NOT (var MATCHES ^HAVE OR ${var} EQUAL 0 OR ${var} EQUAL 1))
++        set(value \"${${var}}\")
++      elseif (${var})
++        set(value 1)
++      else ()
++        set(value 0)
++      endif ()
++      set(line "#${space}define ${var} ${value}\n")
++    endif ()
++  elseif (BUILD_SHARED_LIBS AND WIN32 AND line MATCHES "^#define GSL_DISABLE_DEPRECATED .*")
++    # Keep deprecated symbols when compiling a Windows DLL to prevent linkage errors.
++    set(line "/* #undef GSL_DISABLE_DEPRECATED */\n")
++  endif ()
++  string(REPLACE "<semi>" ";" line "${line}")
++  set(CONFIG_OUT "${CONFIG_OUT}${line}")
++endforeach ()
++file(WRITE ${GSL_BINARY_DIR}/config.h
++"/* config.h.  Generated from config.h.in by configure.  */
++/* config.h.in.  Generated from configure.ac by autoheader.  */
++
++${CONFIG_OUT}")
++
++include_directories(${GSL_BINARY_DIR} ${GSL_SOURCE_DIR})
++add_definitions(-DHAVE_CONFIG_H)
++
++if (GSL_DISABLE_WARNINGS)
++  # Disable additional warnings.
++  if (MSVC)
++    add_definitions(
++      -D_CRT_SECURE_NO_WARNINGS
++      /wd4018 /wd4028 /wd4056 /wd4244 /wd4267 /wd4334 /wd4700 /wd4723 /wd4756)
++  else ()
++    foreach (flag -Wall -Wextra -pedantic)
++      string(REPLACE ${flag} "" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
++    endforeach ()
++  endif ()
++endif ()
++
++option(MSVC_RUNTIME_DYNAMIC "Use dynamically-linked runtime: /MD(d)" OFF)
++
++if (MSVC_RUNTIME_DYNAMIC)
++  set(CMAKE_COMPILER_FLAGS_VARIABLES
++    CMAKE_C_FLAGS_DEBUG
++    CMAKE_C_FLAGS_MINSIZEREL
++    CMAKE_C_FLAGS_RELEASE
++    CMAKE_C_FLAGS_RELWITHDEBINFO
++    CMAKE_CXX_FLAGS_DEBUG
++    CMAKE_CXX_FLAGS_MINSIZEREL
++    CMAKE_CXX_FLAGS_RELEASE
++    CMAKE_CXX_FLAGS_RELWITHDEBINFO
++  )
++  foreach(variable ${CMAKE_COMPILER_FLAGS_VARIABLES})
++    string(REGEX REPLACE "/MT" "/MD" ${variable} "${${variable}}")
++  endforeach()
++endif ()
++
++enable_testing()
++
++# Adds a GSL test. Usage:
++#   add_gsl_test(<exename> <source> ...)
++function(add_gsl_test exename)
++  if (GSL_DISABLE_TESTS)
++    return()
++  endif ()
++  add_executable(${exename} ${ARGN})
++  target_link_libraries(${exename} gsl)
++  add_test(${exename} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${exename})
++endfunction()
++
++file(GLOB GSL_HEADER_PATHS "${GSL_SOURCE_DIR}/gsl*.h")
++file(GLOB dirs "${GSL_SOURCE_DIR}/*")
++foreach (dir ${dirs})
++  if (NOT (dir MATCHES "gsl$"))
++    file(GLOB headers "${dir}/gsl*.h")
++    set(GSL_HEADER_PATHS ${GSL_HEADER_PATHS} ${headers})
++  endif ()
++endforeach()
++
++foreach (path ${GSL_HEADER_PATHS})
++  get_filename_component(name ${path} NAME)
++  set(GSL_HEADERS ${GSL_HEADERS} gsl/${name})
++endforeach ()
++
++file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/copy-headers.cmake "
++  file(MAKE_DIRECTORY gsl)
++  foreach (path ${GSL_HEADER_PATHS})
++    get_filename_component(filename \${path} NAME)
++    configure_file(\${path} ${GSL_BINARY_DIR}/gsl/\${filename} COPYONLY)
++  endforeach ()")
++
++add_custom_command(OUTPUT ${GSL_HEADERS}
++  COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/copy-headers.cmake)
++add_custom_target(copy-headers DEPENDS ${GSL_HEADERS})
++
++macro(get_sources dir line source_var)
++  set(${source_var})
++  string(REGEX REPLACE ".*_SOURCES[ \t]*=(.*)" "\\1" sources ${line})
++  string(REGEX MATCHALL "[^ \t]+" sources ${sources})
++  foreach (src ${sources})
++    set(${source_var} ${${source_var}} ${dir}/${src})
++  endforeach ()
++endmacro()
++
++# Get subdirectories from Makefile.am.
++file(STRINGS Makefile.am lines REGEX "^SUBDIRS[ \t]*=")
++foreach (line ${lines})
++  string(REGEX REPLACE "SUBDIRS[ \t]*=(.*)" "\\1" dirs ${line})
++  string(REGEX MATCHALL "[^ ]+" dirs ${dirs})
++endforeach ()
++
++# Extract sources from automake files and add tests.
++foreach (dir "." ${dirs})
++  file(STRINGS ${dir}/Makefile.am lines)
++  foreach (line ${lines})
++    if (line MATCHES "_la_SOURCES[ \t]*=")
++      get_sources(${dir} "${line}" SOURCES)
++      if (dir STREQUAL cblas)
++        # Build gslcblas as a static library on MSVC because it doesn't have a .def file.
++        if (MSVC)
++          set(GSLCBLAS_TYPE STATIC)
++        endif ()
++        add_library(gslcblas ${GSLCBLAS_TYPE} ${SOURCES})
++        target_link_libraries(gslcblas ${CMAKE_REQUIRED_LIBRARIES})
++        add_dependencies(gslcblas copy-headers)
++      else ()
++        set(GSL_SOURCES ${GSL_SOURCES} ${SOURCES})
++      endif ()
++    elseif (line MATCHES "^test.*_SOURCES[ \t]*=")
++      get_sources(${dir} "${line}" SOURCES)
++      string(REGEX REPLACE "(.*)_SOURCES.*" "\\1" suffix ${line})
++      add_gsl_test("${dir}_${suffix}" ${SOURCES})
++    endif ()
++  endforeach ()
++endforeach ()
++
++if (BUILD_SHARED_LIBS)
++  include(CheckCCompilerFlag)
++  check_c_compiler_flag(-fPIC HAVE_FPIC)
++  if (HAVE_FPIC)
++    add_definitions(-fPIC)
++  endif ()
++  if (WIN32)
++    add_definitions(-DGSL_DLL)
++    # Extract function names from header and generate a .def file.
++    file(WRITE gsl.def "LIBRARY GSL\nEXPORTS\n")
++    foreach (header ${GSL_HEADER_PATHS})
++      file(READ ${header} content)
++      string(REGEX REPLACE
++        "/\\*([^*]|[\r\n]|(\\*+([^*/]|[\r\n])))*\\*+/" " " content "${content}")
++      set(RE "\n([^\n]*[ *])?(gsl_[A-Za-z0-9_]+)[ ]*\\(")
++      string(REGEX MATCHALL "${RE}" candidates "${content}")
++      foreach (line ${candidates})
++        if (NOT line MATCHES typedef AND line MATCHES "${RE}")
++          file(APPEND gsl.def "   ${CMAKE_MATCH_2}\n")
++        endif ()
++      endforeach ()
++    endforeach ()
++    set(GSL_SOURCES ${GSL_SOURCES} gsl.def)
++  endif ()
++endif ()
++
++add_library(gsl ${shared} ${GSL_SOURCES})
++set_target_properties(gsl PROPERTIES COMPILE_DEFINITIONS DLL_EXPORT)
++target_link_libraries(gsl gslcblas)
++add_dependencies(gsl copy-headers)
++
++option(GSL_INSTALL_MULTI_CONFIG "Install libraries in lib/<config> directory" OFF)
++
++if (GSL_INSTALL OR NOT DEFINED GSL_INSTALL)
++  if (MSVC AND GSL_INSTALL_MULTI_CONFIG)
++    foreach(config ${CMAKE_CONFIGURATION_TYPES})
++      install(TARGETS gsl gslcblas
++        CONFIGURATIONS ${config}
++        LIBRARY DESTINATION lib/${config}
++        RUNTIME DESTINATION bin/${config}
++        ARCHIVE DESTINATION lib/${config})
++    endforeach ()
++  else ()
++    install(TARGETS gsl gslcblas
++      LIBRARY DESTINATION lib
++      RUNTIME DESTINATION bin
++      ARCHIVE DESTINATION lib)
++  endif ()
++  install(FILES ${GSL_HEADER_PATHS} DESTINATION include/gsl)
++  set(PC_FILE ${CMAKE_BINARY_DIR}/gsl.pc)
++  configure_file("gsl.pc.cmake" ${PC_FILE} @ONLY)
++  install(FILES ${PC_FILE} DESTINATION lib/pkgconfig)
++
++  # Read config file and replace placeholders.
++  file(READ "${CMAKE_CURRENT_SOURCE_DIR}/gsl-config.in" GSL_CONFIG_FILE)
++  string(REPLACE ";" "@SEMICOLON@" GSL_CONFIG_FILE "${GSL_CONFIG_FILE}")
++  # Replace
++  string(REPLACE @prefix@ ${CMAKE_INSTALL_PREFIX} GSL_CONFIG_FILE "${GSL_CONFIG_FILE}")
++  string(REPLACE @exec_prefix@ ${CMAKE_INSTALL_PREFIX}/bin GSL_CONFIG_FILE ${GSL_CONFIG_FILE})
++  string(REPLACE @includedir@ ${CMAKE_INSTALL_PREFIX}/include GSL_CONFIG_FILE
++      "${GSL_CONFIG_FILE}")
++  string(REPLACE @VERSION@ ${VERSION} GSL_CONFIG_FILE "${GSL_CONFIG_FILE}")
++  string(REPLACE @GSL_CFLAGS@ "${CMAKE_C_FLAGS_RELEASE}" GSL_CONFIG_FILE
++      "${GSL_CONFIG_FILE}")
++  string(REPLACE @GSL_LIBS@ "-lgsl -lgslcblas" GSL_CONFIG_FILE
++      "${GSL_CONFIG_FILE}")
++  string(REPLACE @GSL_LIBM@ "-lm" GSL_CONFIG_FILE "${GSL_CONFIG_FILE}")
++
++  # write after putting back ;
++  string(REPLACE "@SEMICOLON@"  "\\;" GSL_CONFIG_FILE "${GSL_CONFIG_FILE}")
++  file(WRITE ${CMAKE_BINARY_DIR}/gsl-config ${GSL_CONFIG_FILE})
++
++  # Install gsl-config
++  install(PROGRAMS ${CMAKE_BINARY_DIR}/gsl-config DESTINATION bin)
++
++endif ()
+diff --git a/appveyor.yml b/appveyor.yml
+new file mode 100644
+index 0000000..979ab56
+--- /dev/null
++++ b/appveyor.yml
+@@ -0,0 +1,8 @@
++install: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
++
++before_build:
++  - cmake .
++
++build_script:
++  - msbuild /m GSL.sln
++  - msbuild RUN_TESTS.vcxproj
+diff --git a/cmake/c_flag_overrides.cmake b/cmake/c_flag_overrides.cmake
+new file mode 100644
+index 0000000..e72f341
+--- /dev/null
++++ b/cmake/c_flag_overrides.cmake
+@@ -0,0 +1,6 @@
++if (MSVC)
++  set(CMAKE_C_FLAGS_DEBUG_INIT          "/MP /D_DEBUG /MTd /Zi /Ob0 /Od /RTC1")
++  set(CMAKE_C_FLAGS_MINSIZEREL_INIT     "/MP /MT /O1 /Ob1 /D NDEBUG")
++  set(CMAKE_C_FLAGS_RELEASE_INIT        "/MP /MT /O2 /Ob2 /D NDEBUG")
++  set(CMAKE_C_FLAGS_RELWITHDEBINFO_INIT "/MP /MT /Zi /O2 /Ob1 /D NDEBUG")
++endif ()
+diff --git a/cmake/cxx_flag_overrides.cmake b/cmake/cxx_flag_overrides.cmake
+new file mode 100644
+index 0000000..9d83af5
+--- /dev/null
++++ b/cmake/cxx_flag_overrides.cmake
+@@ -0,0 +1,6 @@
++if (MSVC)
++  set(CMAKE_CXX_FLAGS_DEBUG_INIT          "/MP /D_DEBUG /MTd /Zi /Ob0 /Od /RTC1")
++  set(CMAKE_CXX_FLAGS_MINSIZEREL_INIT     "/MP /MT /O1 /Ob1 /D NDEBUG")
++  set(CMAKE_CXX_FLAGS_RELEASE_INIT        "/MP /MT /O2 /Ob2 /D NDEBUG")
++  set(CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "/MP /MT /Zi /O2 /Ob1 /D NDEBUG")
++endif ()
+diff --git a/cmake/init.cmake b/cmake/init.cmake
+new file mode 100644
+index 0000000..df402ae
+--- /dev/null
++++ b/cmake/init.cmake
+@@ -0,0 +1,92 @@
++# CMake initialization code that should be run before the project command.
++
++include(CMakeParseArguments)
++
++# Joins arguments and sets the result to <var>.
++# Usage:
++#   join(<var> [<arg>...])
++function (join var)
++  unset(result)
++  foreach (arg ${ARGN})
++    if (DEFINED result)
++      set(result "${result} ${arg}")
++    else ()
++      set(result "${arg}")
++    endif ()
++  endforeach ()
++  set(${var} "${result}" PARENT_SCOPE)
++endfunction ()
++
++# Sets cache variable <var> to the value <value>. The arguments
++# following <type> are joined into a single docstring which allows
++# breaking long documentation into smaller strings.
++# Usage:
++#   set_cache(<var> <value> <type> docstring... [FORCE])
++function (set_cache var value type)
++  cmake_parse_arguments(set_cache FORCE "" "" ${ARGN})
++  unset(force)
++  if (set_cache_FORCE)
++    set(force FORCE)
++  endif ()
++  join(docstring ${set_cache_UNPARSED_ARGUMENTS})
++  set(${var} ${value} CACHE ${type} "${docstring}" ${force})
++endfunction ()
++
++if (NOT CMAKE_BUILD_TYPE)
++  # Set the default CMAKE_BUILD_TYPE to Release.
++  # This should be done before the project command since the latter sets
++  # CMAKE_BUILD_TYPE itself.
++  set_cache(CMAKE_BUILD_TYPE Release STRING
++    "Choose the type of build, options are: None(CMAKE_CXX_FLAGS or"
++    "CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.")
++endif ()
++
++function (override var file)
++  if (EXISTS "${file}")
++    set(${var} ${file} PARENT_SCOPE)
++  endif ()
++endfunction ()
++
++# Set compiler options (MSVC)
++# This should be done before the project command.
++override(CMAKE_USER_MAKE_RULES_OVERRIDE
++  ${CMAKE_CURRENT_LIST_DIR}/c_flag_overrides.cmake)
++override(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX
++  ${CMAKE_CURRENT_LIST_DIR}/cxx_flag_overrides.cmake)
++
++if (MP_WINSDK)
++  # Find Windows SDK.
++  set(winsdk_key
++    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows")
++  find_program(MP_SETENV NAMES SetEnv.cmd
++    PATHS "[${winsdk_key};CurrentInstallFolder]/bin")
++  if (MP_SETENV)
++    if (NOT CMAKE_GENERATOR MATCHES Win64)
++      set(setenv_arg "/x86")
++    endif ()
++
++    # Call SetEnv.cmd and set environment variables accordingly.
++    message(STATUS "Found SetEnv: ${MP_SETENV}")
++    set(run_setenv "CMakeFiles\\run-setenv.bat")
++    file(WRITE ${run_setenv} "call %*\nset\n")
++    execute_process(COMMAND ${run_setenv} "${MP_SETENV}" "${setenv_arg}"
++      OUTPUT_VARIABLE out ERROR_VARIABLE err)
++    string(REPLACE ";" "\;" out "${out}")
++    string(REGEX MATCHALL "[^\n]+\n" out "${out}")
++    foreach (env ${out})
++      if (env MATCHES "([^=]+)=(.*)\n")
++        set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
++      endif ()
++    endforeach ()
++
++    # If Microsoft SDK is installed create script run-msbuild.bat that
++    # calls SetEnv.cmd to set up build environment and runs msbuild.
++    # It is useful when building Visual Studio projects with the SDK
++    # toolchain rather than Visual Studio.
++    # Set FrameworkPathOverride to get rid of MSB3644 warnings.
++    file(WRITE "${CMAKE_BINARY_DIR}/run-msbuild.bat" "
++      call \"${MP_SETENV}\" ${setenv_arg}
++      msbuild -p:FrameworkPathOverride=^\"C:\\Program Files^
++\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.0^\" %*")
++  endif ()
++endif ()
+diff --git a/gsl-msvc14-x64-build.nuget.bat b/gsl-msvc14-x64-build.nuget.bat
+new file mode 100644
+index 0000000..9721f7d
+--- /dev/null
++++ b/gsl-msvc14-x64-build.nuget.bat
+@@ -0,0 +1,99 @@
++REM @echo off
++
++Echo GSL Windows Build NuGet
++set INCREMENTDISABLE=true
++
++REM # XEON x64 Build Vars #
++set _SCRIPT_DRIVE=%~d0
++set _SCRIPT_FOLDER=%~dp0
++set SRC=%CD%
++set BUILDTREE=%SRC%\build-win\
++SET tbs_arch=x64
++SET vcvar_arg=x86_amd64
++SET ms_build_suffix=Bin\amd64
++SET cmake_platform="Visual Studio 14 2015 Win64"
++SET VS14="C:\Program Files (x86)\Microsoft Visual Studio 14.0\"
++SET MSB14="C:\Program Files (x86)\MSBuild\14.0\"
++SET MSBPath=%MSB14%%ms_build_suffix%
++set PATH=%MSBPath%;%SRC%;%PATH%
++
++REM # VC Vars #
++call %VS14%\VC\vcvarsall %vcvar_arg%
++@echo on
++
++REM # Clean Build Tree #
++if defined INCREMENTDISABLE ( 
++	echo "Incremental Build disabled"
++    rd /s /q %BUILDTREE%
++) else (
++	echo "Incremental Build enabled"
++)
++mkdir %BUILDTREE%
++cd %BUILDTREE%
++
++:shared_GSL
++REM # GSL SHARED #
++if exist %BUILDTREE%Release\gsl.lib (
++    if exist %BUILDTREE%Release\gslcblas.lib (
++		ECHO GSL Libs Found
++		GOTO:copy_files
++	)
++)
++
++ECHO %cmake_platform% SHARED
++cmake -G %cmake_platform% ^
++-DBUILD_SHARED_LIBS:BOOL=ON ^
++-DCMAKE_CXX_FLAGS_RELEASE="/MD" ^
++-DCMAKE_CXX_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_C_FLAGS_RELEASE="/MD" ^
++-DCMAKE_C_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_BUILD_TYPE="Release" %SRC%
++msbuild gsl.sln /p:Configuration=Release /m
++
++:copy_files
++set BINDIR=%SRC%\build-nuget\
++rd /s /q %BINDIR%
++mkdir %BINDIR%
++echo %BINDIR%
++xcopy %BUILDTREE%Release\gsl* %BINDIR%
++xcopy %BUILDTREE%bin\Release\gsl.dll %BINDIR%
++del %BINDIR%gsl
++xcopy /I %BUILDTREE%gsl %BINDIR%gsl
++copy %SRC%\gsl-msvc14.targets %BINDIR%\gsl-msvc14-x64.targets
++
++mkdir %BUILDTREE%Static
++cd %BUILDTREE%Static
++
++:static_GSL
++REM # GSL STATIC #
++if exist %BUILDTREE%Static\Release\gsl.lib (
++    if exist %BUILDTREE%Static\Release\gslcblas.lib (
++		ECHO GSL Libs Found
++		GOTO:copy_static_files
++	)
++)
++
++ECHO %cmake_platform% STATIC
++cmake -G %cmake_platform% ^
++-DBUILD_SHARED_LIBS:BOOL=OFF ^
++-DCMAKE_CXX_FLAGS_RELEASE="/MD" ^
++-DCMAKE_CXX_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_C_FLAGS_RELEASE="/MD" ^
++-DCMAKE_C_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_BUILD_TYPE="Release" %SRC%
++msbuild gsl.sln /p:Configuration=Release /m
++
++:copy_static_files
++set BINDIR=%SRC%\build-nuget\static
++rd /s /q %BINDIR%
++mkdir %BINDIR%
++echo %BINDIR%
++xcopy %BUILDTREE%Static\Release\gsl* %BINDIR%
++
++:nuget_req
++REM # make nuget packages from binaries #
++cd %BUILDTREE%
++nuget pack %SRC%\gsl-msvc14-x64.nuspec
++cd %SRC%
++REM --- exit ----
++GOTO:eof
+diff --git a/gsl-msvc14-x64.nuspec b/gsl-msvc14-x64.nuspec
+new file mode 100644
+index 0000000..330f19f
+--- /dev/null
++++ b/gsl-msvc14-x64.nuspec
+@@ -0,0 +1,15 @@
++﻿<?xml version="1.0" encoding="utf-8"?>
++<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
++    <metadata>
++        <id>gsl-msvc14-x64</id>
++        <version>2.3.0.2778</version>
++        <authors>administrator</authors>
++        <requireLicenseAcceptance>false</requireLicenseAcceptance>
++        <description>Release GSL as NuGet package.</description>
++    </metadata>
++    <files>
++        <file src=".\COPYING" target="COPYING" />
++        <file src=".\README" target="README" />
++		<file src=".\build-nuget\**\*.*" target="build\native" />
++    </files>
++</package>
+\ No newline at end of file
+diff --git a/gsl-msvc14-x86-build.nuget.bat b/gsl-msvc14-x86-build.nuget.bat
+new file mode 100644
+index 0000000..848d124
+--- /dev/null
++++ b/gsl-msvc14-x86-build.nuget.bat
+@@ -0,0 +1,99 @@
++REM @echo off
++
++Echo GSL Windows Build NuGet
++set INCREMENTDISABLE=true
++
++REM # XEON x86 Build Vars #
++set _SCRIPT_DRIVE=%~d0
++set _SCRIPT_FOLDER=%~dp0
++set SRC=%CD%
++set BUILDTREE=%SRC%\build-win\
++SET tbs_arch=x86
++SET vcvar_arg=x86
++SET ms_build_suffix=Bin
++SET cmake_platform="Visual Studio 14 2015"
++SET VS14="C:\Program Files (x86)\Microsoft Visual Studio 14.0\"
++SET MSB14="C:\Program Files (x86)\MSBuild\14.0\"
++SET MSBPath=%MSB14%%ms_build_suffix%
++set PATH=%MSBPath%;%SRC%;%PATH%
++
++REM # VC Vars #
++call %VS14%\VC\vcvarsall %vcvar_arg%
++@echo on
++
++REM # Clean Build Tree #
++if defined INCREMENTDISABLE ( 
++	echo "Incremental Build disabled"
++    rd /s /q %BUILDTREE%
++) else (
++	echo "Incremental Build enabled"
++)
++mkdir %BUILDTREE%
++cd %BUILDTREE%
++
++:shared_GSL
++REM # GSL SHARED #
++if exist %BUILDTREE%Release\gsl.lib (
++    if exist %BUILDTREE%Release\gslcblas.lib (
++		ECHO GSL Libs Found
++		GOTO:copy_files
++	)
++)
++
++ECHO %cmake_platform% SHARED
++cmake -G %cmake_platform% ^
++-DBUILD_SHARED_LIBS:BOOL=ON ^
++-DCMAKE_CXX_FLAGS_RELEASE="/MD" ^
++-DCMAKE_CXX_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_C_FLAGS_RELEASE="/MD" ^
++-DCMAKE_C_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_BUILD_TYPE="Release" %SRC%
++msbuild gsl.sln /p:Configuration=Release /m
++
++:copy_files
++set BINDIR=%SRC%\build-nuget\
++rd /s /q %BINDIR%
++mkdir %BINDIR%
++echo %BINDIR%
++xcopy %BUILDTREE%Release\gsl* %BINDIR%
++xcopy %BUILDTREE%bin\Release\gsl.dll %BINDIR%
++del %BINDIR%gsl
++xcopy /I %BUILDTREE%gsl %BINDIR%gsl
++copy %SRC%\gsl-msvc14.targets %BINDIR%\gsl-msvc14-x86.targets
++
++mkdir %BUILDTREE%Static
++cd %BUILDTREE%Static
++
++:static_GSL
++REM # GSL STATIC #
++if exist %BUILDTREE%Static\Release\gsl.lib (
++    if exist %BUILDTREE%Static\Release\gslcblas.lib (
++		ECHO GSL Libs Found
++		GOTO:copy_static_files
++	)
++)
++
++ECHO %cmake_platform% STATIC
++cmake -G %cmake_platform% ^
++-DBUILD_SHARED_LIBS:BOOL=OFF ^
++-DCMAKE_CXX_FLAGS_RELEASE="/MD" ^
++-DCMAKE_CXX_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_C_FLAGS_RELEASE="/MD" ^
++-DCMAKE_C_FLAGS_DEBUG="/MDd" ^
++-DCMAKE_BUILD_TYPE="Release" %SRC%
++msbuild gsl.sln /p:Configuration=Release /m
++
++:copy_static_files
++set BINDIR=%SRC%\build-nuget\static
++rd /s /q %BINDIR%
++mkdir %BINDIR%
++echo %BINDIR%
++xcopy %BUILDTREE%Static\Release\gsl* %BINDIR%
++
++:nuget_req
++REM # make nuget packages from binaries #
++cd %BUILDTREE%
++nuget pack %SRC%\gsl-msvc14-x86.nuspec
++cd %SRC%
++REM --- exit ----
++GOTO:eof
+diff --git a/gsl-msvc14-x86.nuspec b/gsl-msvc14-x86.nuspec
+new file mode 100644
+index 0000000..751d51b
+--- /dev/null
++++ b/gsl-msvc14-x86.nuspec
+@@ -0,0 +1,15 @@
++﻿<?xml version="1.0" encoding="utf-8"?>
++<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
++    <metadata>
++        <id>gsl-msvc14-x86</id>
++        <version>2.3.0.2778</version>
++        <authors>administrator</authors>
++        <requireLicenseAcceptance>false</requireLicenseAcceptance>
++        <description>Release GSL as NuGet package.</description>
++    </metadata>
++    <files>
++        <file src=".\COPYING" target="COPYING" />
++        <file src=".\README" target="README" />
++		<file src=".\build-nuget\**\*.*" target="build\native" />
++    </files>
++</package>
+\ No newline at end of file
+diff --git a/gsl-msvc14.targets b/gsl-msvc14.targets
+new file mode 100644
+index 0000000..486e43f
+--- /dev/null
++++ b/gsl-msvc14.targets
+@@ -0,0 +1,34 @@
++<?xml version="1.0" encoding="utf-8"?>
++<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <ItemDefinitionGroup>
++    <ClCompile>
++      <PreprocessorDefinitions>HAS_GSL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../..//build/native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++    </ClCompile>
++    <ResourceCompile>
++      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../..//build/native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++    </ResourceCompile>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Label="Release and x64 and v140" Condition="( $(Configuration.ToLower().IndexOf('debug')) == -1 ) And '$(Platform.ToLower())' == 'x64' And '$(PlatformToolset.ToLower())' == 'v140'">
++    <Link>
++      <AdditionalDependencies>$(MSBuildThisFileDirectory)../..//build/native/static/gsl.lib;$(MSBuildThisFileDirectory)../..//build/native/static/gslcblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
++    </Link>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Label="Debug and x64 and v140" Condition="( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 ) And '$(Platform.ToLower())' == 'x64' And '$(PlatformToolset.ToLower())' == 'v140'">
++    <Link>
++      <AdditionalDependencies>$(MSBuildThisFileDirectory)../..//build/native/static/gsl.lib;$(MSBuildThisFileDirectory)../..//build/native/static/gslcblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
++    </Link>
++  </ItemDefinitionGroup>
++    <ItemDefinitionGroup Label="Release and Win32 and v140" Condition="( $(Configuration.ToLower().IndexOf('debug')) == -1 ) And '$(Platform.ToLower())' == 'win32' And '$(PlatformToolset.ToLower())' == 'v140'">
++    <Link>
++      <AdditionalDependencies>$(MSBuildThisFileDirectory)../..//build/native/static/gsl.lib;$(MSBuildThisFileDirectory)../..//build/native/static/gslcblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
++    </Link>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Label="Debug and Win32 and v140" Condition="( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 ) And '$(Platform.ToLower())' == 'win32' And '$(PlatformToolset.ToLower())' == 'v140'">
++    <Link>
++      <AdditionalDependencies>$(MSBuildThisFileDirectory)../..//build/native/static/gsl.lib;$(MSBuildThisFileDirectory)../..//build/native/static/gslcblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
++    </Link>
++  </ItemDefinitionGroup>
++  <Target Name="gsl-msvc">
++  </Target>
++</Project>
+diff --git a/gsl.pc.cmake b/gsl.pc.cmake
+new file mode 100644
+index 0000000..2ffb37f
+--- /dev/null
++++ b/gsl.pc.cmake
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++GSL_CBLAS_LIB=-lgslcblas
++
++Name: GSL
++Description: GNU Scientific Library
++Version: @PACKAGE_VERSION@
++Libs: -L${libdir} -lgsl ${GSL_CBLAS_LIB} -lm -lm
++Cflags: -I${includedir}
+diff --git a/gsl_inline.h b/gsl_inline.h
+index 2172201..8a00378 100644
+--- a/gsl_inline.h
++++ b/gsl_inline.h
+@@ -49,7 +49,7 @@
+ #ifdef HAVE_INLINE
+ #  if defined(__GNUC_STDC_INLINE__) || defined(GSL_C99_INLINE) || defined(HAVE_C99_INLINE)
+ #    define INLINE_DECL inline  /* use C99 inline */
+-#    define INLINE_FUN inline
++#    define INLINE_FUN static inline
+ #  else
+ #    define INLINE_DECL         /* use GNU extern inline */
+ #    define INLINE_FUN extern inline
+diff --git a/ieee-utils/fp-win.c b/ieee-utils/fp-win.c
+new file mode 100644
+index 0000000..e024eae
+--- /dev/null
++++ b/ieee-utils/fp-win.c
+@@ -0,0 +1,70 @@
++/* fp-win.c
++ * 
++ * Author: Brian Gladman
++ * 
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or (at
++ * your option) any later version.
++ * 
++ * This program is distributed in the hope that it will be useful, but
++ * WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ * General Public License for more details.
++ * 
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
++ */
++
++#include <float.h>
++
++#include <config.h>
++#include <gsl/gsl_ieee_utils.h>
++#include <gsl/gsl_errno.h>
++
++const char *fp_env_string = "round-to-nearest,double-precision,mask-all";
++
++int
++gsl_ieee_set_mode (int precision, int rounding, int exception_mask)
++{
++	unsigned int old, mode = _DN_SAVE, mask = _MCW_DN | _MCW_RC | _MCW_EM;
++
++	switch(precision)
++    {
++    case GSL_IEEE_SINGLE_PRECISION:		mode |= _PC_24; break;
++    case GSL_IEEE_EXTENDED_PRECISION:	mode |= _PC_64; break;
++    case GSL_IEEE_DOUBLE_PRECISION:
++    default:							mode |= _PC_53;
++	}
++#ifndef _M_AMD64
++	mask |= _MCW_PC;
++#endif
++
++	switch(rounding)
++    {
++    case GSL_IEEE_ROUND_DOWN:			mode |= _RC_DOWN; break;
++    case GSL_IEEE_ROUND_UP:				mode |= _RC_UP;   break;
++    case GSL_IEEE_ROUND_TO_ZERO:		mode |= _RC_CHOP; break;
++    case GSL_IEEE_ROUND_TO_NEAREST:
++    default:							mode |= _RC_NEAR;
++    }
++
++	if(exception_mask & GSL_IEEE_MASK_INVALID)
++		mode |= _EM_INVALID;
++	if(exception_mask & GSL_IEEE_MASK_DENORMALIZED)
++		mode |= _EM_DENORMAL;
++	if(exception_mask & GSL_IEEE_MASK_DIVISION_BY_ZERO)
++		mode |= _EM_ZERODIVIDE;
++	if(exception_mask & GSL_IEEE_MASK_OVERFLOW)
++		mode |= _EM_OVERFLOW;
++	if(exception_mask & GSL_IEEE_MASK_UNDERFLOW)
++		mode |= _EM_UNDERFLOW;
++	if(exception_mask & GSL_IEEE_TRAP_INEXACT)
++		mode &= ~_EM_INEXACT;
++	else
++		mode |= _EM_INEXACT;
++
++	_controlfp_s( &old, mode, mask);
++	return GSL_SUCCESS;
++}
+diff --git a/ieee-utils/fp.c b/ieee-utils/fp.c
+index 445a14f..b6ae5af 100644
+--- a/ieee-utils/fp.c
++++ b/ieee-utils/fp.c
+@@ -45,6 +45,8 @@
+ #endif
+ #elif HAVE_DECL_FEENABLEEXCEPT || HAVE_DECL_FESETTRAPENABLE
+ #include "fp-gnuc99.c"
++#elif _MSC_VER
++#include "fp-win.c"
+ #else
+ #include "fp-unknown.c" 
+ #endif
+diff --git a/matrix/test.c b/matrix/test.c
+index 9539ad6..fa3b82e 100644
+--- a/matrix/test.c
++++ b/matrix/test.c
+@@ -30,7 +30,6 @@
+ 
+ #include <stdlib.h>
+ #include <stdio.h>
+-#include <unistd.h>
+ #include <math.h>
+ #include <gsl/gsl_math.h>
+ #include <gsl/gsl_matrix.h>
+diff --git a/multilarge_nlinear/fdf.c b/multilarge_nlinear/fdf.c
+index 9fe3a23..f10ea09 100644
+--- a/multilarge_nlinear/fdf.c
++++ b/multilarge_nlinear/fdf.c
+@@ -502,7 +502,9 @@ gsl_multilarge_nlinear_eval_df(const CBLAS_TRANSPOSE_t TransJ,
+         {
+ #if 0
+           /* use finite difference Jacobian approximation */
++          /*
+           status = gsl_multilarge_nlinear_df(h, fdtype, x, swts, fdf, f, df, work);
++          */
+ #endif
+         }
+ 
+@@ -551,8 +553,10 @@ gsl_multilarge_nlinear_eval_fvv(const double h,
+     {
+ #if 0
+       /* use finite difference approximation */
++      /*
+       status = gsl_multilarge_nlinear_fdfvv(h, x, v, f, J,
+                                           swts, fdf, yvv, work);
++                                          */
+ #endif
+     }
+ 
+diff --git a/multilarge_nlinear/gsl_multilarge_nlinear.h b/multilarge_nlinear/gsl_multilarge_nlinear.h
+index 51e131b..a243f19 100644
+--- a/multilarge_nlinear/gsl_multilarge_nlinear.h
++++ b/multilarge_nlinear/gsl_multilarge_nlinear.h
+@@ -275,18 +275,22 @@ gsl_multilarge_nlinear_test (const double xtol, const double gtol,
+                              const gsl_multilarge_nlinear_workspace * w);
+ 
+ /* fdjac.c */
++/*
+ int
+ gsl_multilarge_nlinear_df(const double h, const gsl_multilarge_nlinear_fdtype fdtype,
+                           const gsl_vector *x, const gsl_vector *wts,
+                           gsl_multilarge_nlinear_fdf *fdf,
+                           const gsl_vector *f, gsl_matrix *J, gsl_vector *work);
++						  */
+ 
+ /* fdfvv.c */
++/*
+ int
+ gsl_multilarge_nlinear_fdfvv(const double h, const gsl_vector *x, const gsl_vector *v,
+                              const gsl_vector *f, const gsl_matrix *J,
+                              const gsl_vector *swts, gsl_multilarge_nlinear_fdf *fdf,
+                              gsl_vector *fvv, gsl_vector *work);
++							 */
+ 
+ /* top-level algorithms */
+ GSL_VAR const gsl_multilarge_nlinear_type * gsl_multilarge_nlinear_trust;
+diff --git a/spmatrix/test.c b/spmatrix/test.c
+index 2951b8c..9a15348 100644
+--- a/spmatrix/test.c
++++ b/spmatrix/test.c
+@@ -21,7 +21,6 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <math.h>
+-#include <unistd.h>
+ 
+ #include <gsl/gsl_math.h>
+ #include <gsl/gsl_errno.h>
+diff --git a/vector/test.c b/vector/test.c
+index a5f5eee..6d9887b 100644
+--- a/vector/test.c
++++ b/vector/test.c
+@@ -30,7 +30,6 @@
+ #endif
+ 
+ #include <stdlib.h>
+-#include <unistd.h>
+ #include <fcntl.h>
+ #include <stdio.h>
+ #include <gsl/gsl_math.h>
+-- 
+2.16.2
+

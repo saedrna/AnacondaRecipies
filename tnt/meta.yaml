@@ -1,0 +1,21 @@
+
+package:
+  name: tnt
+  version: 126
+
+source:
+  fn: tnt_2.86.1.zip
+  url: http://math.nist.gov/tnt/tnt_126.zip
+  patches:
+    - 0001_tnt_macOS_10.13.patch
+
+about:
+  home:  http://math.nist.gov/tnt/
+  license: public domain
+  summary: collection of interfaces and reference implementations
+    of numerical objects useful for scientific c``omputing in C++.
+
+extra:
+  recipe-maintainers:
+    - rbogle
+    - saedrna

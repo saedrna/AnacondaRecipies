@@ -1,0 +1,39 @@
+--- CMakeLists.txt	2016-06-16 18:16:31.000000000 +0200
++++ CMakeLists_new.txt	2017-06-28 19:30:47.000000000 +0200
+@@ -142,15 +142,30 @@
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake_aux/Modules/")
+ 
+ if(APPLE)
+-  
++
+   set(ARMA_OS macos)
+-  
++
+   set(ARMA_USE_LAPACK true)
+   set(ARMA_USE_BLAS   true)
+-  
+-  set(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
+-  message(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
+-  
++
++  include(ARMA_FindLAPACK)
++  include(ARMA_FindBLAS)
++
++  if(BLAS_FOUND)
++    set(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
++    set(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
++    message(STATUS "")
++    message(STATUS "*** If the BLAS library is installed in")
++    message(STATUS "*** /usr/local/lib or /usr/local/lib64")
++    message(STATUS "*** make sure the run-time linker can find it.")
++    message(STATUS "*** On Linux systems this can be done by editing /etc/ld.so.conf")
++    message(STATUS "*** or modifying the LD_LIBRARY_PATH environment variable.")
++    message(STATUS "")
++  else()
++    set(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
++    message(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
++  endif()
++    
+   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+     message(STATUS "Clang compiler on MacOS X detected. Added '-stdlib=libc++' to compiler flags")

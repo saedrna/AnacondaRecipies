@@ -1,0 +1,40 @@
+{% set version = "5.2.1" %}
+
+
+package:
+    name: superlu
+    version: {{ version }}
+
+source:
+    fn: superlu-{{ version }}.tar.gz
+    url: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/superlu_{{ version }}.tar.gz
+    sha256: 28fb66d6107ee66248d5cf508c79de03d0621852a0ddeba7301801d3d859f463
+    patches:
+      - fix-fortran.patch
+
+build:
+  number: 1205
+  skip: True  # [win]
+  features:
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+  host:
+    - blas 2.5 openblas
+  run:
+    - blas 2.5 openblas
+
+about:
+    home: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/
+    license: BSD 3-clause
+    summary: |
+      Supernodal LU: solvers for large, sparse, nonsymmetric systems of linear
+      equations.
+
+extra:
+    recipe-maintainers:
+      - grlee77
+      - saedrna

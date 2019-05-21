@@ -1,0 +1,20 @@
+package:
+  name: xalan-c
+  version: 1.11
+
+source:
+  url: http://apache.cs.utah.edu//xalan/xalan-c/sources/xalan_c-1.11-src.tar.gz
+  fn: xalan_c-1.11-src.tar.gz
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - xerces-c
+  run:
+    - xerces-c
+
+extra:
+  recipe-maintainers:
+    - saedrna

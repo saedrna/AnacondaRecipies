@@ -1,0 +1,48 @@
+{% set version = "2.4" %}
+{% set variant = "openblas" %}
+
+package:
+  name: gsl
+  version: {{ version }}
+
+source:
+  url: http://ftp.gnu.org/gnu/gsl/gsl-{{ version }}.tar.gz
+  sha256: 4d46d07b946e7b31c19bbf33dda6204d7bedc2f5462a1bae1d4013426cd1ce9b
+  patches:
+    # diff from source distribution to https://github.com/ampl/gsl/tree/v2.4.0
+    - patch_cmake_for_windows.diff  # [win]
+    # avoid "make check" error: https://savannah.gnu.org/bugs/?52927
+    - bessel_test.diff
+
+build:
+  number: 1004
+  features:
+    - blas_{{ variant }}  # [not win]
+  run_exports:
+    # tends to break at minor revs
+    #    https://abi-laboratory.pro/index.php?view=timeline&l=gsl
+    - {{ pin_subpackage("gsl", max_pin="x.x") }}
+
+requirements:
+  build:
+    - {{ compiler("c") }}
+    - cmake  # [win]
+  host:
+    - blas 2.5 {{ variant }}
+    - openblas     
+  run:
+    - blas 2.5 {{ variant }}
+    - openblas   
+
+about:
+  home: http://www.gnu.org/software/gsl/
+  license: GPL-3.0
+  license_file: COPYING
+  summary: 'GNU Scientific Library'
+
+extra:
+  recipe-maintainers:
+    - kwilcox
+    - mingwandroid
+    - ocefpaf
+    - saedrna

@@ -1,0 +1,15 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e79ad41..cd43ef5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -39,8 +39,8 @@ else()
+ endif()
+ 
+ enable_language(C)
+-enable_language (Fortran)
+-set(NOFORTRAN FALSE)
++# enable_language (Fortran)
++set(NOFORTRAN TRUE)
+ set(SUPERLU_VERSION "${PROJECT_VERSION}")
+ set(SUPERLU_REV "${PROJECT_REV}")
+ 

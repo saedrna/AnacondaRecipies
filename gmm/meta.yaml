@@ -1,0 +1,23 @@
+
+package:
+  name: gmm
+  version: 5.0
+
+source:
+  fn: gmm-5.0.tar.gz
+  url: http://download-mirror.savannah.gnu.org/releases/getfem/stable/gmm-5.0.tar.gz
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+about:
+  home: http://getfem.org/
+  license: GPL v3.1
+  summary: part of getfem++, includes a generic matrix template library inspired by MTL and ITL.
+
+extra:
+  recipe-maintainers:
+    - rbogle
+    - saedrna
