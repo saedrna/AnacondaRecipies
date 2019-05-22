@@ -7,6 +7,10 @@ source:
   fn: gmm-5.0.tar.gz
   url: http://download-mirror.savannah.gnu.org/releases/getfem/stable/gmm-5.0.tar.gz
 
+build:
+  number: 1000
+  skip: True # [win]
+
 requirements:
   build:
     - {{ compiler('c') }}

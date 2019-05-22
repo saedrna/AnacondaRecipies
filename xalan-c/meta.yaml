@@ -6,6 +6,10 @@ source:
   url: http://apache.cs.utah.edu//xalan/xalan-c/sources/xalan_c-1.11-src.tar.gz
   fn: xalan_c-1.11-src.tar.gz
 
+build:
+  number: 1000
+  skip: True # [win]
+
 requirements:
   build:
     - {{ compiler('c') }}
