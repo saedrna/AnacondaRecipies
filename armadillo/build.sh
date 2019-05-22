@@ -8,6 +8,7 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 cmake -GNinja \
+      -DDETECT_HDF5=false \
       -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
       -DCMAKE_PREFIX_PATH="${PREFIX}" \
       -DCMAKE_BUILD_TYPE=Release \
