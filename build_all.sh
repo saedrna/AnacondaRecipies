@@ -69,3 +69,5 @@ conda-build opencv
 conda-build openscenegraph
 
 conda-build pdal
+
+conda-build isis3

@@ -20,14 +20,13 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - ninja
-    - make
   host:  
     - armadillo
     - blas 2.5 openblas
     - bullet
     - bz2file
     - bzip2
-    - ceres-solver==1.14.0
+    - ceres-solver
     - cspice
     - eigen
     - embree
@@ -40,7 +39,7 @@ requirements:
     - jama
     - jpeg
     - krb5
-    - libgdal==2.4.1
+    - libgdal
     - libpng
     - libprotobuf
     - libtiff
@@ -53,19 +52,23 @@ requirements:
     - openblas
     - opencv
     - pcl
-    - pip
     - protobuf
-    - python
+    - python>=3.6
     - qhull
     - qt5-base
-    - qt5-tools
+    - qt5-declarative
     - qt5-imageformats
     - qt5-multimedia
+    - qt5-quickcontrols
+    - qt5-quickcontrols2
+    - qt5-script
+    - qt5-svg
+    - qt5-webchannel
+    - qt5-xmlpatterns
     - qwt
     - suitesparse
     - superlu
     - tnt
-    - wheel
     - x264
     - xerces-c
     - xorg-kbproto
@@ -74,14 +77,15 @@ requirements:
     - xorg-libx11
     - xorg-libxi
     - zlib
-    # - xalan-c
   run:
     - armadillo
     - blas 2.5 openblas
     - bullet
     - bz2file
     - bzip2
+    - ceres-solver
     - cspice
+    - eigen
     - embree
     - geos==3.5.1
     - geotiff
@@ -89,10 +93,10 @@ requirements:
     - gmp
     - gsl
     - hdf5
-    - icu
     - jama
     - jpeg
     - krb5
+    - libgdal
     - libpng
     - libprotobuf
     - libtiff
@@ -105,20 +109,23 @@ requirements:
     - openblas
     - opencv
     - pcl
-    - pip
     - protobuf
-    - python
+    - python>=3.6
     - qhull
     - qt5-base
-    - qt5-tools
+    - qt5-declarative
     - qt5-imageformats
     - qt5-multimedia
+    - qt5-quickcontrols
+    - qt5-quickcontrols2
+    - qt5-script
+    - qt5-svg
+    - qt5-webchannel
+    - qt5-xmlpatterns
     - qwt
-    - sqlite
     - suitesparse
     - superlu
     - tnt
-    - wheel
     - x264
     - xerces-c
     - xorg-kbproto
@@ -127,11 +134,6 @@ requirements:
     - xorg-libx11
     - xorg-libxi
     - zlib
-    # - xalan-c
-# Add the tests eventually
-# test:
-#
-
 
 extra:
   recipe-maintainers:
