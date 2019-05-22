@@ -31,6 +31,8 @@ conda-build tbb
 conda-build tnt
 conda-build xerces-c
 
+conda-build geotiff
+
 conda-build openimageio
 
 conda-build viennacl
