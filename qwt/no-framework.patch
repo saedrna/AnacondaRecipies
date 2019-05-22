@@ -1,0 +1,18 @@
+diff --git a/qwtconfig.pri b/qwtconfig.pri
+index 827cb70..b63eeee 100644
+--- a/qwtconfig.pri
++++ b/qwtconfig.pri
+@@ -161,10 +161,9 @@ win32 {
+ # to link frameworks instead of regular libs
+ ######################################################################
+ 
+-macx:!static:CONFIG(qt_framework, qt_framework|qt_no_framework) {
+-
+-    QWT_CONFIG += QwtFramework
+-}
++# macx:!static:CONFIG(qt_framework, qt_framework|qt_no_framework) {
++#    QWT_CONFIG += QwtFramework
++# }
+ 
+ ######################################################################
+ # Create and install pc files for pkg-config

@@ -9,8 +9,6 @@ cmake -GNinja \
       -DbuildTests=OFF \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
-      -DQWT_INCLUDE_DIR=$PREFIX/lib/qwt.framework/Headers \
-      -DQWT_LIBRARY=$PREFIX/lib/qwt.framework/qwt \
       -DOPENCV_INCLUDE_DIR=$PREFIX/include/opencv4 \
       ../isis
 
