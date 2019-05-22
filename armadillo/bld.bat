@@ -1,12 +1,18 @@
 mkdir build
 cd build
 
-cmake   -G "%CMAKE_GENERATOR%" ^
-        -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
-        -DCMAKE_INSTALL_LIBDIR="%LIBRARY_LIB%" ^
-        -DCMAKE_INSTALL_INCLUDEDIR="%LIBRARY_INC%" ^
-        -DCMAKE_INSTALL_BINDIR="%LIBRARY_BIN%" ^
-        -DCMAKE_INSTALL_DATADIR="%LIBRARY_PREFIX%" ^
-        ..
+set UNIX_PREFIX=%PREFIX:\=/%
+set UNIX_LIBRARY_PREFIX=%LIBRARY_PREFIX:\=/%
+set UNIX_LIBRARY_BIN=%LIBRARY_BIN:\=/%
+set UNIX_LIBRARY_INC=%LIBRARY_INC:\=/%
+set UNIX_LIBRARY_LIB=%LIBRARY_LIB:\=/%
+set UNIX_SP_DIR=%SP_DIR:\=/%
+set UNIX_SRC_DIR=%SRC_DIR:\=/%
+
+cmake -GNinja ^
+      -DBUILD_SHARED_LIBS=ON ^
+      -DCMAKE_BUILD_TYPE=Release ^
+      -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
+      ../
 
 cmake --build . --target INSTALL --config Release
