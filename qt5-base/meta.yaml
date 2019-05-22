@@ -36,7 +36,9 @@ requirements:
     - pthread-stubs                      # [linux]
   
   host:
+    - libxcb # [linux]
   run:
+    - libxcb # [linux]
 
 about:
   home: http://qt-project.org
