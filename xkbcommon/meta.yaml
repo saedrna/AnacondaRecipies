@@ -19,11 +19,16 @@ requirements:
     - {{ compiler('cxx') }}
     - meson  
     - ninja
-    - bison
-    - byacc
+    - make                          # [unix]
+    - autoconf                      # [unix]
+    - automake                      # [unix]
+    - gettext                       # [unix]
+    - libtool                       # [unix]
 
   host:
+    - libxcb
   run:
+    - libxcb
 
 about:
   home: https://github.com/xkbcommon/libxkbcommon
