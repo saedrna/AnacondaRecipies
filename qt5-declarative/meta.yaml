@@ -18,6 +18,8 @@ requirements:
     - jom                                # [win]
     - make # [linux]
     
+    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - {{ cdt('mesa-libegl-devel') }}     # [linux]
   host:
     - qt5-base 5.12.3
   
