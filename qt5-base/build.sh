@@ -11,6 +11,7 @@ if [[ ${HOST} =~ .*linux.* ]]; then
 
 ln -s $BUILD_PREFIX/bin/${HOST}-g++ $BUILD_PREFIX/bin/g++ || true
 ln -s $BUILD_PREFIX/bin/${HOST}-gcc $BUILD_PREFIX/bin/gcc || true
+ln -s $BUILD_PREFIX/bin/${HOST}-ar $BUILD_PREFIX/bin/ar || true
 ln -s $BUILD_PREFIX/bin/${HOST}-gcc-ar $BUILD_PREFIX/bin/gcc-ar || true
 
 # Horrible hack! We should not `conda install` in build.sh!!!
@@ -80,3 +81,13 @@ fi
 
 make -j$CPU_COUNT
 make install
+
+# Post build setup
+# ----------------
+# Remove static libraries that are not part of the Qt SDK.
+pushd "${PREFIX}"/lib > /dev/null
+    find . -name "*.a" -and -not -name "libQt*" -exec rm -f {} \;
+popd > /dev/null
+
+# Add qt.conf file to the package to make it fully relocatable
+cp "${RECIPE_DIR}"/qt.conf "${PREFIX}"/bin/
