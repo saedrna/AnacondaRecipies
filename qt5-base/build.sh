@@ -4,10 +4,10 @@ chmod +x configure
 
 if [[ ${HOST} =~ .*linux.* ]]; then
 # Let Qt set its own flags and vars
-for x in OSX_ARCH CFLAGS CXXFLAGS LDFLAGS
-do
-    unset $x
-done
+# for x in OSX_ARCH CFLAGS CXXFLAGS LDFLAGS
+# do
+#     unset $x
+# done
 
 ln -s $BUILD_PREFIX/bin/${HOST}-g++ $BUILD_PREFIX/bin/g++ || true
 ln -s $BUILD_PREFIX/bin/${HOST}-gcc $BUILD_PREFIX/bin/gcc || true
@@ -29,21 +29,20 @@ SYSINCDIRS=$(echo "" | ${CXX} -xc++ -E -v - 2>&1 | awk '/#include <...> search s
 for SYSINCDIR in ${SYSINCDIRS}; do
     INCDIRS+=(-I ${SYSINCDIR})
 done
+            # -extprefix $PREFIX \
+            # -hostprefix $PREFIX \
+            # -sysroot ${BUILD_PREFIX}/${HOST}/sysroot \
+            # "${INCDIRS[@]}" \
 
 ./configure -prefix $PREFIX \
-            -extprefix $PREFIX \
-            -hostprefix $PREFIX \
             -libdir $PREFIX/lib \
             -bindir $PREFIX/bin \
             -headerdir $PREFIX/include/qt \
             -archdatadir $PREFIX \
             -datadir $PREFIX \
-            -sysroot ${BUILD_PREFIX}/${HOST}/sysroot \
             -L$PREFIX/lib \
-            -L${BUILD_PREFIX}/${HOST}/sysroot/usr/lib64 \
             -I$PREFIX/include \
             -I${SRC_DIR}/openssl_hack/include \
-            "${INCDIRS[@]}" \
             -release \
             -opensource \
             -confirm-license \
