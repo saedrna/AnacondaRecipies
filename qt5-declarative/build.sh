@@ -6,7 +6,10 @@ if [[ $(uname) == "Linux" ]]; then
 
     declare -a INCDIRS
     INCDIRS+=(INCLUDEPATH+=$BUILD_PREFIX/$HOST/sysroot/usr/include)
+    # "${INCDIRS[@]}"
+    qmake CONFIG+=release 
+else
+    qmake CONFIG+=release
 fi
-qmake CONFIG+=release
 make all -j$CPU_COUNT
 make install

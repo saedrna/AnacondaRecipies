@@ -1,8 +1,8 @@
-sudo apt install \
-    "^libxcb*" \
-    libgl1-mesa-dev \
-    libglu1-mesa-dev \
-    build-essential
+# sudo apt install \
+#     "^libxcb*" \
+#     libgl1-mesa-dev \
+#     libglu1-mesa-dev \
+#     build-essential
 
 conda config --add channels conda-forge
 conda config --add channels saedrna
