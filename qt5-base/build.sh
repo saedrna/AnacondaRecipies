@@ -32,7 +32,6 @@ done
             # -extprefix $PREFIX \
             # -hostprefix $PREFIX \
             # -sysroot ${BUILD_PREFIX}/${HOST}/sysroot \
-            # "${INCDIRS[@]}" \
 
 ./configure -prefix $PREFIX \
             -libdir $PREFIX/lib \
@@ -43,6 +42,7 @@ done
             -L$PREFIX/lib \
             -I$PREFIX/include \
             -I${SRC_DIR}/openssl_hack/include \
+            "${INCDIRS[@]}" \
             -release \
             -opensource \
             -confirm-license \
