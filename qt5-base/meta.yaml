@@ -15,8 +15,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}    # [win and osx]       
-    - {{ compiler('c') }}      # [win and osx]
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
 
     # Probably only needed for WebEngine
     - m2-gperf                           # [win]
@@ -37,7 +37,10 @@ requirements:
   
   host:
     - libxcb # [linux]
-    - openssl
+    - xkbcommon # [linux]
+    - freetype # [linux]
+    - fontconfig # [linux]
+    - openssl # [linux]
   run:
     - libxcb # [linux]
     - openssl

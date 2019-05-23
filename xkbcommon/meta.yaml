@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-{{ version }}.tar.gz
-  sha256: 1299b47558188017047354995f5882d43c2c8a60367df553319dcecebadb73e1d
+  sha256: 299b47558188017047354995f5882d43c2c8a60367df553319dcecebadb73e1d
 
 
 build:
