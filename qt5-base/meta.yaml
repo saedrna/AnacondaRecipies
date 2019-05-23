@@ -37,8 +37,10 @@ requirements:
   
   host:
     - libxcb # [linux]
+    - openssl
   run:
     - libxcb # [linux]
+    - openssl
 
 about:
   home: http://qt-project.org
