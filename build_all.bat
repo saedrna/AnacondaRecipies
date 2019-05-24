@@ -8,6 +8,7 @@ conda-build cereal
 conda-build cgal-cpp
 conda-build flann
 conda-build geographiclib
+conda-build geos
 conda-build glog
 conda-build gmm
 conda-build gsl

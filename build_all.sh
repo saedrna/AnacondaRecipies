@@ -30,6 +30,7 @@ conda-build purge
 # conda-build tbb
 # conda-build tnt
 # conda-build xerces-c
+# conda-build geos
 
 # conda-build ceres-solver
 # conda-build geotiff

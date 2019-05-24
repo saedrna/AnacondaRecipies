@@ -1,0 +1,45 @@
+{% set version = "3.5.1" %}
+
+package:
+  name: geos
+  version: {{ version }}
+
+source:
+  fn: geos-{{ version }}.tar.gz
+  sha256: f42ee88563ec6d12c1ad1c95619889dfbca8b346072a17bcd32293b8bd0ebd81
+  url: https://github.com/libgeos/libgeos/archive/{{ version }}.tar.gz
+
+build:
+  number: 1000
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+
+  run: 
+
+test:
+  commands:
+    - geos-config --version
+
+about:
+  description: 'GEOS (Geometry Engine - Open Source) is a C++ port of the Java Topology
+         Suite (JTS). As such, it aims to contain the complete functionality of
+        JTS in C++.'
+  dev_url: https://github.com/libgeos/libgeos
+  doc_url: http://trac.osgeo.org/geos/
+  home: http://trac.osgeo.org/geos/
+  license: LGPLv2.1
+  license_file: COPYING
+  summary: Geometry Engine - Open Source.
+
+extra:
+  recipe-maintainers:
+    - ocefpaf
+    - pelson
+    - gillins
+    - saedrna
