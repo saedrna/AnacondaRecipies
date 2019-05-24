@@ -10,7 +10,8 @@ source:
 
 build:
   number: 0
-
+  skip: True # [linux]
+  
 requirements:
   build:
     - {{ compiler('cxx') }}              

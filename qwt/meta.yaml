@@ -15,7 +15,7 @@ source:
     - no-framework.patch
 
 build:
-  skip: True  # [win and vc<14]
+  skip: True # [linux]
   number: 1004
 
 requirements:
