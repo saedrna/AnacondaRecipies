@@ -12,8 +12,9 @@ source:
   url: https://github.com/jlblancoc/suitesparse-metis-for-windows/archive/{{ commit }}.tar.gz
   sha256: ff150a85b26e9c6a87a56770d5e26b08fd1208b35da8c28d37a436142a65e2b7 
   patches:
-    - gh_56.patch  # [win]
-
+    - 1-gh_56.patch  # [win]
+    - 2-linux-fix-rt.patch # [linux]
+    
 build:
   skip: true  # [win32]
   skip: True  # [win and vc<14]

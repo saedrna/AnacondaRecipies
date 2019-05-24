@@ -1,0 +1,12 @@
+diff --git a/SuiteSparse/AMD/CMakeLists.txt b/SuiteSparse/AMD/CMakeLists.txt
+index 66b2de3..fbc2228 100644
+--- a/SuiteSparse/AMD/CMakeLists.txt
++++ b/SuiteSparse/AMD/CMakeLists.txt
+@@ -8,3 +8,7 @@ FILE(GLOB LIBSRCS "SourceWrappers/*.c")
+ 
+ declare_suitesparse_library(amd "${LIBSRCS}" "${LIBHDRS}" )
+ 
++if(UNIX AND NOT APPLE)
++    # missing rt lib for linux
++    target_link_libraries(amd rt)
++endif()

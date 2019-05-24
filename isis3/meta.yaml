@@ -113,17 +113,18 @@ requirements:
     - protobuf
     - python>=3.6
     - qhull
-    - qt5-base
-    - qt5-declarative
-    - qt5-imageformats
-    - qt5-multimedia
-    - qt5-quickcontrols
-    - qt5-quickcontrols2
-    - qt5-script
-    - qt5-svg
-    - qt5-webchannel
-    - qt5-xmlpatterns
+    - qt5-base                      # [win]
+    - qt5-declarative               # [win]
+    - qt5-imageformats              # [win]
+    - qt5-multimedia                # [win]
+    - qt5-quickcontrols             # [win]
+    - qt5-quickcontrols2            # [win]
+    - qt5-script                    # [win]
+    - qt5-svg                       # [win]
+    - qt5-webchannel                # [win]
+    - qt5-xmlpatterns               # [win]
     - qwt
+    - qt                            # [not win]
     - suitesparse
     - superlu
     - tnt
