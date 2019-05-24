@@ -14,7 +14,7 @@ if [[ $(uname) == "Linux" ]]; then
     ln $PREFIX/lib/libtbbmalloc_proxy.so.2 $PREFIX/lib/libtbbmalloc_proxy.so
 else
     cd build
-    cd macos_intel64_clang_cc4.0.1_os10.14.4_release
+    cd macos_intel64_clang_cc4.0.1_os10.14.5_release
 
     cp ./libtbb.dylib $PREFIX/lib
     cp ./libtbbmalloc.dylib $PREFIX/lib
