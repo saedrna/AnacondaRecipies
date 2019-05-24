@@ -1,6 +1,6 @@
 make -j$CPU_COUNT
 
-if [ "${SHORT_OS_STR:0:5}" == "Linux" ]; then
+if [[ $(uname) == "Linux" ]]; then
     cd build
     cd linux_intel64_gcc_cc7_libc2.27_kernel4.15.0_release
 

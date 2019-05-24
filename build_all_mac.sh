@@ -2,7 +2,7 @@ conda config --add channels conda-forge
 conda config --add channels saedrna
 conda config --set anaconda_upload yes
 
-conda activate base
+conda-build purge
 
 conda-build alembic
 conda-build armadillo
