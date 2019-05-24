@@ -5,7 +5,7 @@ mkdir build && cd build
 # needs qt5 for imageio
 if [ "${SHORT_OS_STR:0:5}" == "Linux" ]; then
   cmake -LAH -GNinja \
-    -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
+    -DCMAKE_AR=$BUILD_PREFIX/bin/$HOST-ar \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \

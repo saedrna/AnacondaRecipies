@@ -32,7 +32,7 @@ conda-build purge
 # conda-build xerces-c
 # conda-build geos
 
-# conda-build ceres-solver
+conda-build ceres-solver
 # conda-build geotiff
 # conda-build openimageio
 # conda-build viennacl
@@ -46,6 +46,6 @@ conda-build purge
 # conda-build opencv
 # conda-build openscenegraph
 # conda-build pcl
-conda-build pdal
+# conda-build pdal
 
 conda-build isis3

@@ -12,7 +12,7 @@ cmake -GNinja \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} 
 else
 cmake -GNinja \
-    -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
+    -DCMAKE_AR=$BUILD_PREFIX/bin/$HOST-ar \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} 
 fi

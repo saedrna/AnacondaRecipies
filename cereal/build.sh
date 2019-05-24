@@ -19,12 +19,12 @@ if [[ $(uname) == Darwin ]]; then
         ../
 else
   cmake -G "Ninja" \
-        -DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda_cos6-linux-gnu-ar \
+        -DCMAKE_AR=$BUILD_PREFIX/bin/$HOST-ar \
         -DCMAKE_INSTALL_PREFIX=$PREFIX \
         -DCMAKE_PREFIX_PATH=$PREFIX \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_SHARED_LIBS=ON \
-        -DCMAKE_SYSROOT=$BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot \
+        -DCMAKE_SYSROOT=$BUILD_PREFIX/$HOST/sysroot \
         -DJUST_INSTALL_CEREAL=ON \
         ../
 fi
