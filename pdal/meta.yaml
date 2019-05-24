@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/PDAL/PDAL/releases/download/{{version}}/PDAL-{{version}}-src.tar.bz2
+  url: https://github.com/PDAL/PDAL/releases/download/{{ version }}/PDAL-{{ version }}-src.tar.bz2
   sha256: 31a026279106aabb48aa3cffd94a889325d9247744a53d4ceeda91d12f38430d
   patches:
     - pcl.patch

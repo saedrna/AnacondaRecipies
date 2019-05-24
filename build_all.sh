@@ -45,7 +45,7 @@ conda-build purge
 # conda-build open3d
 # conda-build opencv
 # conda-build openscenegraph
-conda-build pcl
+# conda-build pcl
 conda-build pdal
 
 conda-build isis3
