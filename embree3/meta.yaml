@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1000
   # upstream supports visual studio 13+
   skip: true  # [win and vc<13]]
 

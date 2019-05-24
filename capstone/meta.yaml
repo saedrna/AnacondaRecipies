@@ -10,7 +10,7 @@ source:
     sha256: 79bbea8dbe466bd7d051e037db5961fdb34f67c9fac5c3471dd105cfb1e05dc7
 
 build:
-  number: 0
+  number: 1000
   # only build msvc version
   skip: true # [not win]
   

@@ -9,8 +9,8 @@ source:
     md5: 500035db50b9b4f48ec7c9398ac803ae
 
 build:
-  number: 0
-  skip: True # [linux]
+  number: 1000
+  skip: True # [not win]
 
 requirements:
   build:
