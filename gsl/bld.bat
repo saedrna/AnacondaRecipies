@@ -1,10 +1,12 @@
 mkdir build
-pushd build
+cd build
 
-cmake %SRC_DIR% -G "%CMAKE_GENERATOR%" ^
-                   -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
-                   -D BUILD_SHARED_LIBS=ON ^
-                   %SRC_DIR%
+cmake -GNinja ^
+      -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+      -DBUILD_SHARED_LIBS=ON ^
+      -DCMAKE_BUILD_TYPE=Release ^
+      ../
+
 if errorlevel 1 exit 1
 
 cmake --build . --config Release --target install

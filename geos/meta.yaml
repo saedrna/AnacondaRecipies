@@ -24,7 +24,7 @@ requirements:
 
 test:
   commands:
-    - geos-config --version
+    - geos-config --version # [not win]
 
 about:
   description: 'GEOS (Geometry Engine - Open Source) is a C++ port of the Java Topology

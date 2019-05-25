@@ -44,7 +44,7 @@ requirements:
     - libprotobuf
     - libtiff
     - libxml2
-    - mesalib
+    - mesalib                     # [not win]
     - mysql
     - mysql-connector-c
     - nanoflann
@@ -55,28 +55,18 @@ requirements:
     - protobuf
     - python>=3.6
     - qhull
-    - qt5-base                      # [win]
-    - qt5-declarative               # [win]
-    - qt5-imageformats              # [win]
-    - qt5-multimedia                # [win]
-    - qt5-quickcontrols             # [win]
-    - qt5-quickcontrols2            # [win]
-    - qt5-script                    # [win]
-    - qt5-svg                       # [win]
-    - qt5-webchannel                # [win]
-    - qt5-xmlpatterns               # [win]
     - qwt
-    - qt                            # [not win]
+    - qt                            
     - suitesparse
     - superlu
     - tnt
     - x264
     - xerces-c
-    - xorg-kbproto
-    - xorg-libice
-    - xorg-libsm
-    - xorg-libx11
-    - xorg-libxi
+    - xorg-kbproto                # [not win]
+    - xorg-libice                 # [not win]
+    - xorg-libsm                  # [not win]
+    - xorg-libx11                 # [not win]
+    - xorg-libxi                  # [not win]
     - zlib
   run:
     - armadillo
@@ -102,7 +92,7 @@ requirements:
     - libprotobuf
     - libtiff
     - libxml2
-    - mesalib
+    - mesalib                     # [not win]
     - mysql
     - mysql-connector-c
     - nanoflann
@@ -113,28 +103,18 @@ requirements:
     - protobuf
     - python>=3.6
     - qhull
-    - qt5-base                      # [win]
-    - qt5-declarative               # [win]
-    - qt5-imageformats              # [win]
-    - qt5-multimedia                # [win]
-    - qt5-quickcontrols             # [win]
-    - qt5-quickcontrols2            # [win]
-    - qt5-script                    # [win]
-    - qt5-svg                       # [win]
-    - qt5-webchannel                # [win]
-    - qt5-xmlpatterns               # [win]
     - qwt
-    - qt                            # [not win]
+    - qt   
     - suitesparse
     - superlu
     - tnt
     - x264
     - xerces-c
-    - xorg-kbproto
-    - xorg-libice
-    - xorg-libsm
-    - xorg-libx11
-    - xorg-libxi
+    - xorg-kbproto                # [not win]
+    - xorg-libice                 # [not win]
+    - xorg-libsm                  # [not win]
+    - xorg-libx11                 # [not win]
+    - xorg-libxi                  # [not win]
     - zlib
 
 extra:

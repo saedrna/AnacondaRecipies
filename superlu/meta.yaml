@@ -1,6 +1,5 @@
 {% set version = "5.2.1" %}
 
-
 package:
     name: superlu
     version: {{ version }}
@@ -11,6 +10,7 @@ source:
     sha256: 28fb66d6107ee66248d5cf508c79de03d0621852a0ddeba7301801d3d859f463
     patches:
       - fix-fortran.patch
+      - windows-no-libm.patch # [win]
 
 build:
   number: 1205
@@ -21,6 +21,8 @@ requirements:
     - cmake
     - ninja
     - {{ compiler('c') }}
+    - m2-patch # [win]
+
   host:
     - blas 2.5 openblas
   run:

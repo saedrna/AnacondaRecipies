@@ -1,3 +1,5 @@
+mkdir build_vs
+cd build_vs
 
 :: Had to set TIFF_NAMES, PROJ4_NAMES and JPEG_NAMES to force use of shared libs
 :: Note that zlib and jpeg only get linked in if tiff is linked statically, otherwise
@@ -19,8 +21,8 @@ cmake -GNinja ^
       -DWITH_JPEG=ON ^
       -DWITH_TIFF=ON ^
       -DTIFF_NAMES=tiff ^
-      -DPROJ_NAMES=proj_6_1 ^
-      -DJPEG_NAMES=libjpeg ^
+      -DPROJ_NAMES=proj_6_0 ^
+      -DJPEG_NAMES=jpeg-static ^
       -DJPEG_LIBRARY_RELEASE=%UNIX_LIBRARY_PREFIX%/lib/jpeg-static.lib ^
       ../
 if errorlevel 1 exit 1

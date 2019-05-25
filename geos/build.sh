@@ -1,3 +1,5 @@
+echo "#define GEOS_SVN_REVISION 4298" > geos_svn_revision.h
+
 mkdir build
 cd build
 

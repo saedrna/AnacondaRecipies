@@ -1,0 +1,18 @@
+﻿diff --git a/SRC/CMakeLists.txt b/SRC/CMakeLists.txt
+index bd70af2..42f7926 100644
+--- a/SRC/CMakeLists.txt
++++ b/SRC/CMakeLists.txt
+@@ -228,7 +228,12 @@ endif()
+ 
+ add_library(superlu ${sources} ${HEADERS})
+ 
+-target_link_libraries(superlu ${BLAS_LIB} m)
++if(MSVC)
++  target_link_libraries(superlu ${BLAS_LIB})
++else()
++  target_link_libraries(superlu ${BLAS_LIB} m)
++endif()
++
+ set_target_properties(superlu PROPERTIES
+   VERSION ${PROJECT_VERSION} SOVERSION ${VERSION_MAJOR}
+   )
