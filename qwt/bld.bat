@@ -14,3 +14,5 @@ if errorlevel 1 exit 1
 mkdir %LIBRARY_PREFIX%\bin
 move %LIBRARY_PREFIX%\lib\qwt.dll %LIBRARY_PREFIX%\bin
 if errorlevel 1 exit 1
+
+exit 0

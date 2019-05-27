@@ -7,7 +7,7 @@ source:
   fn: tnt_2.86.1.zip
   url: http://math.nist.gov/tnt/tnt_126.zip
   patches:
-    - 0001_tnt_macOS_10.13.patch
+    - 0001_tnt_macOS_10.13.patch # [not win]
 
 about:
   home:  http://math.nist.gov/tnt/

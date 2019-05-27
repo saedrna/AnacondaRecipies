@@ -1,42 +1,49 @@
-conda-build alembic
-conda-build armadillo
-conda-build assimp
-conda-build boost-cpp
-conda-build capstone
-conda-build catch2
-conda-build cereal
-conda-build cgal-cpp
-conda-build flann
-conda-build geographiclib
-conda-build geos
-conda-build glfw3
-conda-build glog
-conda-build gmm
-conda-build gsl
-conda-build jama
-conda-build khronos-opencl-icd-loader
-conda-build laszip
-conda-build libgdal
-conda-build libtiff
-conda-build opengv
-conda-build qhull
-conda-build suitesparse
-conda-build superlu
-conda-build tnt
-conda-build xerces-c
+conda-build purge
 
-conda-build viennacl
+REM conda-build alembic
+REM conda-build armadillo
+REM conda-build assimp
+REM conda-build boost-cpp
+REM conda-build capstone
+REM conda-build catch2
+REM conda-build cereal
+REM conda-build cgal-cpp
+REM conda-build embree3
+REM conda-build flann
+REM conda-build geogram
+REM conda-build geographiclib
+REM conda-build geos
+REM conda-build glog
+REM conda-build gmm
+REM conda-build gsl
+REM conda-build jama
+REM conda-build khronos-opencl-icd-loader
+REM conda-build laszip
+REM conda-build libgdal
+REM conda-build libtiff
+REM conda-build opengv
+REM conda-build qhull
+REM conda-build suitesparse
+REM conda-build superlu
+REM conda-build tbb
+REM conda-build tnt
+REM conda-build xerces-c
 
-conda-build coinutils
-conda-build osi
-conda-build clp
-conda-build openmvg
+REM conda-build ceres-solver
+REM conda-build viennacl
+REM conda-build pcl
+REM conda-build open3d
+REM conda-build opencv
+REM conda-build openscenegraph
+REM conda-build geotiff
+REM conda-build openimageio
 
-conda-build pcl
+REM conda-build pdal
 
-conda-build open3d
-
-conda-build ceres-solver
+REM conda-build coinutils
+REM conda-build osi
+REM conda-build clp
+REM conda-build openmvg
 
 conda-build qt5-base
 conda-build qt5-declarative
@@ -45,6 +52,7 @@ conda-build qt5-graphicaleffects
 conda-build qt5-imageformats
 conda-build qt5-quickcontrols
 conda-build qt5-quickcontrols2
+conda-build qt5-script
 conda-build qt5-svg
 conda-build qt5-tools
 conda-build qt5-webchannel
@@ -53,12 +61,3 @@ conda-build qt5-xmlpatterns
 
 conda-build qt3d
 conda-build qwt
-
-conda-build opencv
-
-conda-build openscenegraph
-
-conda-build geotiff
-conda-build openimageio
-
-conda-build pdal

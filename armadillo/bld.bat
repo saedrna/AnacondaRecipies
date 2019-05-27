@@ -15,4 +15,4 @@ cmake -GNinja ^
       -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
       ../
 
-cmake --build . --target INSTALL --config Release
+cmake --build . --target install --config Release

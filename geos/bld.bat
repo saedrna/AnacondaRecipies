@@ -1,7 +1,9 @@
+echo #define GEOS_SVN_REVISION 4298 > geos_svn_revision.h
+
 mkdir build
 cd build
 
-echo "#define GEOS_SVN_REVISION 4298" > geos_svn_revision.h
+echo #define GEOS_SVN_REVISION 4298 > geos_svn_revision.h
 
 :: CMake/OpenCV like Unix-style paths for some reason.
 set UNIX_PREFIX=%PREFIX:\=/%
