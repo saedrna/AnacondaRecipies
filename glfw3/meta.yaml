@@ -1,12 +1,12 @@
-{% set name = "glfw3" %}
+{% set name = "glfw" %}
 {% set version = "3.2.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: glfw3
   version: {{ version }}
 
 source:
-  url: https://github.com/{{ name }}/{{ name }}/archive/{{ version }}.tar.gz
+  url: https://github.com/glfw/glfw/archive/{{ version }}.tar.gz
   fn: glfw-{{ version}}.tar.gz
   sha256: e10f0de1384d75e6fc210c53e91843f6110d6c4f3afbfb588130713c2f9d8fe8
   patches:
@@ -14,8 +14,7 @@ source:
     - GNUInstallDirs.patch
 
 build:
-  number: 0
-  skip: True  # [osx]
+  number: 1000
   skip: True  # [win and vc<14]
 
 requirements:
