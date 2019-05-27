@@ -16,6 +16,7 @@ conda-build flann
 conda-build geogram
 conda-build geographiclib
 conda-build geos
+conda-build glfw3
 conda-build glog
 conda-build gmm
 conda-build gsl
