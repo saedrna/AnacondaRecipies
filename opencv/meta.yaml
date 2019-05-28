@@ -36,17 +36,21 @@ requirements:
     - {{ cdt('libxxf86vm') }}        # [linux]
   host:
     - eigen 3.3.7
-    - zlib
-    - libjpeg-turbo
-    - libtiff
-    - libpng
     - ffmpeg 4.1.*                   # [not win]
+    - khronos-opencl-icd-loader      # [not linux]
+    - libjpeg-turbo
+    - libpng
+    - libtiff
+    - ocl-icd                        # [linux]
+    - zlib
   run:
     - eigen 3.3.7
-    - zlib
-    - libtiff
-    - libpng
     - ffmpeg 4.1.*                   # [not win]
+    - khronos-opencl-icd-loader      # [not linux]
+    - libpng
+    - libtiff
+    - ocl-icd                        # [linux]
+    - zlib
 
 about:
   home: http://opencv.org/

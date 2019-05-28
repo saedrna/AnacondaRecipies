@@ -22,6 +22,7 @@ source:
 build:
   number: 1001
   skip: true  # [win and vc<14]
+  skip: true  # [linux]
 
 requirements:
   build:
