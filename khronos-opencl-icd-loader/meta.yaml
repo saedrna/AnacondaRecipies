@@ -34,6 +34,7 @@ requirements:
     - m2-patch # [win]
   host:
   run:
+    - ocl_icd_wrapper_apple # [osx]
 
 test:
   commands:
