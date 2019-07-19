@@ -13,9 +13,6 @@ fi
 export CXXFLAGS="-fPIC ${CXXFLAGS}"
 export CFLAGS="-fPIC ${CFLAGS}"
 
-
-mkdir build_gcc
-cd build_gcc
 if [[ $(uname) == Darwin ]]; then
   cmake -G "Ninja" \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \

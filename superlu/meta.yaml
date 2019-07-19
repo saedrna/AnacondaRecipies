@@ -14,7 +14,7 @@ source:
 
 build:
   number: 1205
-  features:
+  skip: True # [not win]
 
 requirements:
   build:

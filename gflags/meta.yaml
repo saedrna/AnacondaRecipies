@@ -22,17 +22,6 @@ requirements:
   host:
   
 
-test:
-  commands:
-    - test -f ${PREFIX}/lib/libgflags.dylib                           # [osx]
-    - test -f ${PREFIX}/lib/libgflags_nothreads.dylib                 # [osx]
-    - test -f ${PREFIX}/lib/libgflags.so                              # [linux]
-    - test -f ${PREFIX}/lib/libgflags_nothreads.so                    # [linux]
-    - test -f ${PREFIX}/lib/libgflags.a                               # [not win]
-    - test -f ${PREFIX}/lib/libgflags_nothreads.a                     # [not win]
-    - if not exist %PREFIX%\\Library\\bin\\gflags.dll exit 1          # [win]
-    - if not exist %PREFIX%\\Library\\lib\\gflags.lib exit 1          # [win]
-
 about:
   home: https://github.com/gflags/gflags
   license: BSD 3-Clause

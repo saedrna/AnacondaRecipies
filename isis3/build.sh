@@ -31,6 +31,7 @@ cmake -GNinja \
       -DbuildTests=OFF \
       -DOPENCV_INCLUDE_DIR=$PREFIX/include/opencv4 \
       -DCHOLMOD_INCLUDE_DIR=$PREFIX/include/suitesparse \
+      -DLAPACK_LIBRARY=$PREFIX/lib/libopenblas.so.0 \
       ../isis
 fi
 
