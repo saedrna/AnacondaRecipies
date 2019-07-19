@@ -25,9 +25,9 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     # optional items below here
-    - blas 2.5 openblas
+    - blas * openblas
   run:
-    - blas 2.5 openblas
+    - blas * openblas
 
 about:
     home: http://arma.sourceforge.net

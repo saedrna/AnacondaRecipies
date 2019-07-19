@@ -22,10 +22,10 @@ requirements:
     - {{ compiler('cxx') }}
   
   host:
-    - blas 2.5 openblas
+    - blas * openblas
   
   run:
-    - blas 2.5 openblas
+    - blas * openblas
 
 
 about:

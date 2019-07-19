@@ -20,6 +20,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
+    - gflags
+  
+  run:
+    - gflags
 
 about:
   home: https://github.com/google/glog

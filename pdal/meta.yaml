@@ -23,7 +23,7 @@ requirements:
     - ninja
     - m2-patch # [win]
   host:
-    - blas 2.5 openblas
+    - blas * openblas
     - boost-cpp 1.69 
     - curl
     - eigen 3.3.7
@@ -41,7 +41,7 @@ requirements:
     - sqlite
     - zlib
   run:
-    - blas 2.5 openblas
+    - blas * openblas
     - boost-cpp 1.69 
     - curl
     - eigen 3.3.7

@@ -28,10 +28,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - blas 2.5 openblas
+    - blas * openblas
 
   run:
-    - blas 2.5 openblas
+    - blas * openblas
 
 about:
   home: http://faculty.cse.tamu.edu/davis/suitesparse.html

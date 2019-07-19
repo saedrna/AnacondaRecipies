@@ -31,10 +31,10 @@ requirements:
     - m2-patch # [win]
     
   host:
-    - blas 2.5 {{ variant }}
+    - blas * {{ variant }}
     - openblas     
   run:
-    - blas 2.5 {{ variant }}
+    - blas * {{ variant }}
     - openblas   
 
 about:

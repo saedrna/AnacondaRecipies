@@ -242,8 +242,6 @@ pin_run_as_build:
 # blas
 blas_impl:
   - openblas
-  - mkl          # [x86 or x86_64]
-  - blis         # [x86 or x86_64]
 
 arpack:
   - 3.6.3
@@ -409,8 +407,7 @@ numpy:
   - 1.11   # [win]
 occt:
   - 7.3
-openblas:
-  - 0.3.5
+
 openjpeg:
   - 2.3
 openssl:

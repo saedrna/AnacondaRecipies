@@ -22,7 +22,7 @@ requirements:
     - ninja
   host:  
     - armadillo
-    - blas 2.5 openblas
+    - blas * openblas
     - bullet
     - bz2file
     - bzip2
@@ -70,7 +70,7 @@ requirements:
     - zlib
   run:
     - armadillo
-    - blas 2.5 openblas
+    - blas * openblas
     - bullet
     - bz2file
     - bzip2

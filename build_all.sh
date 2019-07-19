@@ -16,8 +16,8 @@ conda-build flann
 conda-build geogram
 conda-build geographiclib
 conda-build geos
+conda-build gflags
 conda-build glfw3
-conda-build glog
 conda-build gmm
 conda-build gsl
 conda-build jama
@@ -32,6 +32,9 @@ conda-build superlu
 conda-build tbb
 conda-build tnt
 conda-build xerces-c
+
+conda-build glog
+
 
 conda-build ceres-solver
 conda-build geotiff
