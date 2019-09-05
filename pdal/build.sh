@@ -30,6 +30,7 @@ cmake -GNinja \
   -DWITH_ZLIB=ON \
   -DWITH_LAZPERF=ON \
   -DWITH_LASZIP=ON \
+  -DWITH_ZSTD=ON \
   ../
 
 # CircleCI offers two cores.

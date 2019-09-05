@@ -8,34 +8,34 @@ conda-build capstone
 conda-build catch2
 conda-build cereal
 conda-build cgal-cpp
-conda-build embree3
+REM conda-build embree3
 conda-build flann
 conda-build geogram
 conda-build geographiclib
-conda-build geos
-conda-build gflags
-conda-build glfw3
-conda-build gmm
-conda-build gsl
-conda-build jama
-conda-build khronos-opencl-icd-loader
-conda-build laszip
+REM conda-build geos
+REM conda-build gflags
+REM conda-build glfw3
+REM conda-build gmm
+REM conda-build gsl
+REM conda-build jama
+REM conda-build khronos-opencl-icd-loader
+REM conda-build laszip
 conda-build libgdal
 conda-build libtiff
-conda-build opengv
+REM conda-build opengv
 conda-build qhull
 conda-build suitesparse
-conda-build superlu
+REM conda-build superlu
 conda-build tbb
-conda-build tnt
+REM conda-build tnt
 conda-build xerces-c
 
-conda-build glog
+REM conda-build glog
 
 conda-build ceres-solver
 conda-build viennacl
 conda-build pcl
-conda-build open3d
+REM conda-build open3d
 conda-build opencv
 conda-build openscenegraph
 conda-build geotiff
@@ -43,24 +43,9 @@ conda-build openimageio
 
 conda-build pdal
 
+conda-build entwine
+
 conda-build coinutils
 conda-build osi
 conda-build clp
 conda-build openmvg
-
-conda-build qt5-base
-conda-build qt5-declarative
-conda-build qt5-charts
-conda-build qt5-graphicaleffects
-conda-build qt5-imageformats
-conda-build qt5-quickcontrols
-conda-build qt5-quickcontrols2
-conda-build qt5-script
-conda-build qt5-svg
-conda-build qt5-tools
-conda-build qt5-webchannel
-conda-build qt5-winextras
-conda-build qt5-xmlpatterns
-
-conda-build qt3d
-conda-build qwt

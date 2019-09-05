@@ -9,7 +9,7 @@ source:
   sha256: b5d149726266f5f87d84f896aec672e07846ebf8b2ba2a33e696feaa2e250ef3
 
 build:
-  number: 1000
+  number: 1001
   # mpfr only supports vc14
   skip: true  # [win and vc<14]
 
@@ -20,11 +20,11 @@ requirements:
     - cmake
     - ninja
   host:
-    - boost-cpp 1.69.0
+    - boost-cpp
     - mpfr
     - eigen 3.3.7 *
   run:
-    - boost-cpp 1.69.0
+    - boost-cpp
     - mpfr
     - eigen 3.3.7 *
 

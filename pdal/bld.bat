@@ -27,6 +27,8 @@ cmake -GNinja ^
       -DWITH_ZLIB=ON ^
       -DWITH_LAZPERF=ON ^
       -DWITH_LASZIP=ON ^
+      -DWITH_ZSTD=ON ^
+      -DZSTD_LIBRARY=%UNIX_LIBRARY_PREFIX%/lib/libzstd_static.lib ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 

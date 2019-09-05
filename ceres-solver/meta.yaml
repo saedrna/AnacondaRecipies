@@ -10,7 +10,7 @@ source:
     sha256: 4744005fc3b902fed886ea418df70690caa8e2ff6b5a90f3dd88a3d291ef8e8e
 
 build:
-  number: 1000
+  number: 1001
 
 requirements:
   build:
@@ -20,13 +20,15 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - blas * openblas
-    - suitesparse 5.1.2
-    - glog 0.4.0
+    - suitesparse
+    - glog
+    - gflags
     - eigen 3.3.7
   run: 
     - blas * openblas
-    - suitesparse 5.1.2
-    - glog 0.4.0
+    - suitesparse
+    - glog
+    - gflags
     - eigen 3.3.7
 
 about:

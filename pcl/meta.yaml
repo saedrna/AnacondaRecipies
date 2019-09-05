@@ -14,7 +14,7 @@ source:
     - except.patch
 
 build:
-  number: 1001
+  number: 1002
   skip: true  # [win and vc<14]
 
 requirements:
@@ -25,15 +25,15 @@ requirements:
     - m2-patch # [win]
     - ninja
   host:
-    - boost-cpp 1.69.0
+    - boost-cpp
     - eigen 3.3.7 *
-    - flann 1.9.1
-    - qhull 2015.2
+    - flann
+    - qhull
   run:
-    - boost-cpp 1.69.0
+    - boost-cpp
     - eigen 3.3.7 *
-    - flann 1.9.1
-    - qhull 2015.2
+    - flann
+    - qhull
 
 test:
   commands:

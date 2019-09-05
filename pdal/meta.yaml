@@ -12,7 +12,7 @@ source:
     - apps.patch
 
 build:
-  number: 1000
+  number: 1001
   skip: True  # [win and vc<14]
 
 requirements:
@@ -24,7 +24,7 @@ requirements:
     - m2-patch # [win]
   host:
     - blas * openblas
-    - boost-cpp 1.69 
+    - boost-cpp 
     - curl
     - eigen 3.3.7
     - geos
@@ -40,9 +40,10 @@ requirements:
     - postgresql
     - sqlite
     - zlib
+    - zstd
   run:
     - blas * openblas
-    - boost-cpp 1.69 
+    - boost-cpp 
     - curl
     - eigen 3.3.7
     - geos
@@ -58,6 +59,7 @@ requirements:
     - postgresql
     - sqlite
     - zlib
+    - zstd
 
 about:
   home: https://www.pdal.io
