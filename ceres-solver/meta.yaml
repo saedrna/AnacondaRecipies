@@ -24,12 +24,14 @@ requirements:
     - glog
     - gflags
     - eigen 3.3.7
+    - openblas
   run: 
     - blas * openblas
     - suitesparse
     - glog
     - gflags
     - eigen 3.3.7
+    - openblas
 
 about:
   home: http://ceres-solver.org/index.html
