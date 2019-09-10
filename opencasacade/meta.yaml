@@ -1,0 +1,43 @@
+{% set version = "7.3.0" %}
+
+package:
+  name: opencasacade
+  version: {{ version }}
+
+source:
+  - url: https://github.com/saedrna/occt-anaconda/archive/7.3.0.tar.gz
+    sha256: 0cc605bd45c0cc104c686d1422d08eeb81c9e06c447db3bc01e38d2c6f92e49e
+
+build:
+  number: 1000
+  skip: true  # [win32 and vc<14]
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+  host:
+    - tcl
+    - tk
+    - freeimageplus
+    - qt
+    - freetype
+  run:
+    - tcl
+    - tk
+    - freeimageplus
+    - qt
+    - freetype
+
+about:
+  home: https://www.opencascade.com/content/latest-release
+  license: LGPL
+  summary: Open CASCADE Technology.
+  license_file: LICENSE_LGPL_21.txt
+
+extra:
+  recipe-maintainers:
+    - saedrna

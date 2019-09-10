@@ -10,6 +10,7 @@ conda-build cereal
 conda-build cgal-cpp
 REM conda-build embree3
 conda-build flann
+conda-build freeimageplus
 conda-build geogram
 conda-build geographiclib
 REM conda-build geos
@@ -49,3 +50,5 @@ conda-build coinutils
 conda-build osi
 conda-build clp
 conda-build openmvg
+
+conda-build opencasacade
