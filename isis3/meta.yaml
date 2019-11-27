@@ -39,7 +39,7 @@ requirements:
     - jama
     - jpeg
     - krb5
-    - libgdal
+    - libgdal==2.4.1=he1b5a44_1000
     - libpng
     - libprotobuf
     - libtiff

@@ -31,7 +31,7 @@ conda-build suitesparse
 conda-build superlu
 conda-build tbb
 conda-build tnt
-# conda-build xerces-c
+conda-build xerces-c
 
 conda-build glog
 
@@ -46,7 +46,7 @@ conda-build geotiff
 # conda-build openmvg
 
 # conda-build open3d
-# conda-build opencv
+conda-build opencv
 # conda-build openscenegraph
 conda-build pcl
 # conda-build pdal
