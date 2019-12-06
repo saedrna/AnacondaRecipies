@@ -19,6 +19,10 @@ requirements:
     - make # [unix]
 
   host:
+    - libpng
+  
+  run:
+    - libpng
 
 
 about:
