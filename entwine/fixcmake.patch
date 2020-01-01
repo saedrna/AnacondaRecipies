@@ -1,0 +1,62 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index aa82cab..70bc3ad 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -3,6 +3,11 @@ cmake_minimum_required(VERSION 2.8.12)
+ project(entwine)
+ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE_PATH})
+ 
++if(BUILD_SHARED_LIBS AND MSVC)
++    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
++endif(BUILD_SHARED_LIBS AND MSVC)
++
++
+ set(ENTWINE_VERSION_MAJOR 2 CACHE STRING "Entwine major version" FORCE)
+ set(ENTWINE_VERSION_MINOR 1 CACHE STRING "Entwine minor version" FORCE)
+ set(ENTWINE_VERSION_PATCH 0 CACHE STRING "Entwine patch version" FORCE)
+@@ -58,7 +63,7 @@ set(OBJS
+ )
+ 
+ if (MSVC)
+-    add_library(entwine STATIC ${OBJS})
++    add_library(entwine SHARED ${OBJS})
+     target_link_libraries(entwine PRIVATE wsock32 ws2_32)
+ else()
+     add_library(entwine SHARED ${OBJS})
+@@ -98,7 +103,10 @@ endif()
+ #
+ # Installation
+ #
+-install(TARGETS entwine DESTINATION lib EXPORT entwine-targets)
++install(TARGETS entwine EXPORT entwine-targets
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ install(FILES ${entwine_defs_hpp} DESTINATION "include/entwine/types")
+ #export(
+ #    EXPORT entwine-targets
+diff --git a/app/CMakeLists.txt b/app/CMakeLists.txt
+index 850a668..be3c6d5 100644
+--- a/app/CMakeLists.txt
++++ b/app/CMakeLists.txt
+@@ -24,6 +24,8 @@ target_link_libraries(app
+         ${CMAKE_DL_LIBS}
+         ${CMAKE_THREAD_LIBS_INIT}
+         ${JSONCPP_LIBRARY}
++        wsock32
++        ws2_32
+ )
+ set_target_properties(app PROPERTIES OUTPUT_NAME entwine)
+ 
+diff --git a/entwine/io/CMakeLists.txt b/entwine/io/CMakeLists.txt
+index 4371144..f06776e 100644
+--- a/entwine/io/CMakeLists.txt
++++ b/entwine/io/CMakeLists.txt
+@@ -19,6 +19,6 @@ set(
+     "${BASE}/zstandard.hpp"
+ )
+ 
+-install(FILES ${HEADERS} DESTINATION include/entwine/types/${MODULE})
++install(FILES ${HEADERS} DESTINATION include/entwine/${MODULE})
+ add_library(${MODULE} OBJECT ${SOURCES})
+ compiler_options(${MODULE})

@@ -10,6 +10,8 @@ package:
 source:
   url: https://github.com/connormanning/entwine/archive/{{version}}.zip
   sha256: {{ sha256 }}
+  patches: 
+    - fixcmake.patch # [win]
 
 build:
   number: 1000
@@ -20,6 +22,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - ninja
+    - m2-patch # [win]
   host:
     - pdal
     - libgdal
