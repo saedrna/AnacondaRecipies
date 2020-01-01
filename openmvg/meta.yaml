@@ -24,30 +24,26 @@ requirements:
     - m2-patch # [win]
   
   host:
+    - cbc
     - cereal
     - ceres-solver
-    - clp
-    - coinutils
     - eigen 3.3.7
     - flann
     - lemon
     - libjpeg-turbo
     - libpng
     - libtiff 4.0.10
-    - osi
     - zlib
 
   run:
+    - cbc
     - cereal
     - ceres-solver
-    - clp
-    - coinutils
     - eigen 3.3.7
     - flann
     - lemon
     - libpng
     - libtiff 4.0.10
-    - osi
     - zlib
 
 about:
