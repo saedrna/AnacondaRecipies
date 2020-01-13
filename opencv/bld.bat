@@ -76,6 +76,7 @@ cmake -LAH -G "Ninja"                                                           
     -DOPENCV_SKIP_PYTHON_LOADER=1                                                   ^
     -DCPU_BASELINE=SSE2                                                             ^
     -DCPU_DISPATCH=SSE2                                                             ^
+    -DOPENCV_ENABLE_NONFREE=ON                                                      ^
     ..
 
 if errorlevel 1 exit 1

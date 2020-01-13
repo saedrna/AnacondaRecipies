@@ -123,6 +123,7 @@ cmake -LAH -G "Ninja"                                                     \
     -DPYTHON_LIBRARY=${LIB_PYTHON}                                        \
     -DOPENCV_SKIP_PYTHON_LOADER=1                                         \
     -DJPEG_LIBRARY_RELEASE=$PREFIX/lib/libjpeg.a                          \
+    -DOPENCV_ENABLE_NONFREE=ON                                            \
     ..
 
 ninja install -v
