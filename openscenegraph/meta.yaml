@@ -11,15 +11,28 @@ source:
 
 build:
   number: 1000
-  skip: true # [not win]
+  # skip: true # [not win]
 
 requirements:
   build:
     - cmake
     - ninja
+    - {{ cdt('libselinux-devel') }}      # [linux]
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('libxau-devel') }}          # [linux]
+    - {{ cdt('libxcb') }}                # [linux]
+    - {{ cdt('libxdamage-devel') }}      # [linux]
+    - {{ cdt('libxext-devel') }}         # [linux]
+    - {{ cdt('libxext-devel') }}         # [linux]
+    - {{ cdt('libxfixes-devel') }}       # [linux]
+    - {{ cdt('libxrender-devel') }}      # [linux]
+    - {{ cdt('libxxf86vm-devel') }}      # [linux]
+    - {{ cdt('mesa-dri-drivers') }}      # [linux]
+    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-  
+
   host:
     - freetype
     - libgdal 2.4.1
@@ -40,7 +53,7 @@ requirements:
 about:
   home: http://www.openscenegraph.org
   license: OpenSceneGraph Public License
-  license_file: LICENSE.TXT
+  license_file: LICENSE.txt
   summary: The OpenSceneGraph is an open source high performance 3D graphics toolkit。
 
 extra:

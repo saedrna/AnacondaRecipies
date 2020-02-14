@@ -47,7 +47,7 @@ conda-build geotiff
 
 # conda-build open3d
 conda-build opencv
-# conda-build openscenegraph
+conda-build openscenegraph
 conda-build pcl
 # conda-build pdal
 
