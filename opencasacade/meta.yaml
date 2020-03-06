@@ -20,13 +20,11 @@ requirements:
     - {{ compiler('cxx') }}
 
   host:
-    - tcl
     - tk
     - freeimageplus
     - qt
     - freetype
   run:
-    - tcl
     - tk
     - freeimageplus
     - qt
