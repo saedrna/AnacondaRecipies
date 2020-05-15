@@ -10,7 +10,7 @@ source:
     sha256: 930eb46f05781a76883ec16c5f49cfb29a059421db131005d75bec4d78401fd5
 
 build:
-  number: 1000
+  number: 1001
   # skip: true # [not win]
 
 requirements:
@@ -35,19 +35,19 @@ requirements:
 
   host:
     - freetype
-    - libgdal 2.4.1
+    - libgdal
     - libjpeg-turbo
     - libpng
-    - libtiff 4.0.10
-    - openexr 2.3.0
+    - libtiff
+    - openexr
     - zlib
   
   run:
     - freetype
-    - libgdal 2.4.1
+    - libgdal
     - libpng
-    - libtiff 4.0.10
-    - openexr 2.3.0
+    - libtiff
+    - openexr
     - zlib
 
 about:
