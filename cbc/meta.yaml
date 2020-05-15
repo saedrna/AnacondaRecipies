@@ -10,7 +10,7 @@ source:
     sha256: ad388357129497c1cc3be50c3707b1995fddf0a4188abc8e3669173f0179ecff
 
 build:
-  number: 1000
+  number: 1001
   skip: true # [not win]
 
 requirements:
@@ -20,12 +20,16 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - openblas
+    - libblas
+    - libcblas
+    - liblapack
     - zlib
     - bzip2
 
   run:
-    - openblas
+    - libblas
+    - libcblas
+    - liblapack
     - zlib
     - bzip2
 
