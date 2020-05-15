@@ -1,4 +1,4 @@
-{% set version = "1.5" %}
+{% set version = "1.6" %}
 
 package:
   name: openmvg
@@ -7,7 +7,7 @@ package:
 source:
   - url: https://github.com/openMVG/openMVG/archive/v{{ version }}.tar.gz
     fn: openmvg-{{ version }}.tar.gz
-    sha256: 4f89edb0d4568aeb817fcbd3c761e8bfc92c1597b97c4b5482cfe9989f40ab97
+    sha256: 11b7f632a773f8c06fe7e30caeebc8ac124049cd5dd947eaadc8c7bf0a294d64
     patches: 
       - fixcmake.patch
 
@@ -27,23 +27,23 @@ requirements:
     - cbc
     - cereal
     - ceres-solver
-    - eigen 3.3.7
+    - eigen
     - flann
     - lemon
     - libjpeg-turbo
     - libpng
-    - libtiff 4.0.10
+    - libtiff
     - zlib
 
   run:
     - cbc
     - cereal
     - ceres-solver
-    - eigen 3.3.7
+    - eigen
     - flann
     - lemon
     - libpng
-    - libtiff 4.0.10
+    - libtiff
     - zlib
 
 about:

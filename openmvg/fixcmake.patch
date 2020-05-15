@@ -412,10 +412,10 @@ index 0348964..2653260 100644
  UNIT_TEST(openMVG exif_IO "openMVG_testing;${STLPLUS_LIBRARY};openMVG_exif")
  
 diff --git a/src/openMVG/features/CMakeLists.txt b/src/openMVG/features/CMakeLists.txt
-index 08d77ec..63d1b3f 100644
+index c7d3d3b..ec62b55 100644
 --- a/src/openMVG/features/CMakeLists.txt
 +++ b/src/openMVG/features/CMakeLists.txt
-@@ -30,14 +30,18 @@ target_include_directories(openMVG_features
+@@ -32,14 +32,18 @@ target_include_directories(openMVG_features
      $<INSTALL_INTERFACE:include/openMVG>
  )
  target_link_libraries(openMVG_features
@@ -438,7 +438,7 @@ index 08d77ec..63d1b3f 100644
  
  UNIT_TEST(openMVG features "openMVG_features")
 diff --git a/src/openMVG/geodesy/CMakeLists.txt b/src/openMVG/geodesy/CMakeLists.txt
-index 9991ada..804bfb9 100644
+index f814793..39d46d7 100644
 --- a/src/openMVG/geodesy/CMakeLists.txt
 +++ b/src/openMVG/geodesy/CMakeLists.txt
 @@ -7,6 +7,9 @@ target_link_libraries(openMVG_geodesy
@@ -544,10 +544,14 @@ index e10c945..68077db 100644
  set(LOCAL_LIBS
    openMVG_lInftyComputerVision
 diff --git a/src/openMVG/matching/CMakeLists.txt b/src/openMVG/matching/CMakeLists.txt
-index 5fcd972..3423b1b 100644
+index 5fcd972..e04d385 100644
 --- a/src/openMVG/matching/CMakeLists.txt
 +++ b/src/openMVG/matching/CMakeLists.txt
-@@ -37,9 +37,8 @@ target_link_libraries(openMVG_matching
+@@ -34,12 +34,12 @@ target_link_libraries(openMVG_matching
+   PRIVATE
+     ${STLPLUS_LIBRARY}
+     ${OPENMVG_LIBRARY_DEPENDENCIES}
++    cereal
    PUBLIC
      openMVG_features
      Threads::Threads
@@ -558,7 +562,7 @@ index 5fcd972..3423b1b 100644
  target_link_libraries(openMVG_matching
    PUBLIC
      ${FLANN_LIBRARIES}
-@@ -55,7 +54,10 @@ if (USE_AVX2)
+@@ -55,7 +55,10 @@ if (USE_AVX2)
    endif (UNIX)
  endif (USE_AVX2)
  
@@ -599,7 +603,7 @@ index 1afd2bc..b0e9efe 100644
  
  UNIT_TEST(openMVG Pair_Builder "openMVG_matching_image_collection")
 diff --git a/src/openMVG/multiview/CMakeLists.txt b/src/openMVG/multiview/CMakeLists.txt
-index fb13ca1..072a39f 100644
+index 91f1bc3..f1e1c4b 100644
 --- a/src/openMVG/multiview/CMakeLists.txt
 +++ b/src/openMVG/multiview/CMakeLists.txt
 @@ -23,7 +23,10 @@ add_library(openMVG_multiview
@@ -615,10 +619,10 @@ index fb13ca1..072a39f 100644
    PUBLIC
      openMVG_numeric
 diff --git a/src/openMVG/numeric/CMakeLists.txt b/src/openMVG/numeric/CMakeLists.txt
-index 06baee7..2d7367a 100644
+index 1f3fc30..3c5f629 100644
 --- a/src/openMVG/numeric/CMakeLists.txt
 +++ b/src/openMVG/numeric/CMakeLists.txt
-@@ -24,7 +24,7 @@ target_include_directories(openMVG_numeric
+@@ -26,7 +26,7 @@ target_include_directories(openMVG_numeric
      $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
      $<INSTALL_INTERFACE:include>
  )
@@ -627,7 +631,7 @@ index 06baee7..2d7367a 100644
    target_include_directories(openMVG_numeric PUBLIC
      $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include/openMVG/third_party/eigen/>)
  else()
-@@ -37,7 +37,10 @@ if (MSVC)
+@@ -39,7 +39,10 @@ if (MSVC)
  endif (MSVC)
  set_target_properties(openMVG_numeric PROPERTIES SOVERSION ${OPENMVG_VERSION_MAJOR} VERSION "${OPENMVG_VERSION_MAJOR}.${OPENMVG_VERSION_MINOR}")
  set_property(TARGET openMVG_numeric PROPERTY FOLDER OpenMVG/OpenMVG)
@@ -695,8 +699,32 @@ index c5f2844..96da4eb 100644
  
  add_library(openMVG_progress_test INTERFACE)
  target_link_libraries(openMVG_progress_test INTERFACE ${OPENMVG_LIBRARY_DEPENDENCIES})
+diff --git a/src/software/Localization/CMakeLists.txt b/src/software/Localization/CMakeLists.txt
+index 2f60393..6d5a6fc 100644
+--- a/src/software/Localization/CMakeLists.txt
++++ b/src/software/Localization/CMakeLists.txt
+@@ -12,6 +12,7 @@ target_link_libraries(openMVG_main_SfM_Localization
+   openMVG_exif
+   ${STLPLUS_LIBRARY}
+   vlsift
++  cereal
+   )
+ 
+ # Installation rules
+diff --git a/src/software/SfM/CMakeLists.txt b/src/software/SfM/CMakeLists.txt
+index 013a6c8..4757618 100644
+--- a/src/software/SfM/CMakeLists.txt
++++ b/src/software/SfM/CMakeLists.txt
+@@ -45,6 +45,7 @@ target_link_libraries(openMVG_main_ComputeFeatures
+     openMVG_sfm
+     ${STLPLUS_LIBRARY}
+     vlsift
++    cereal
+ )
+ if (MSVC)
+   set_target_properties(openMVG_main_ComputeFeatures PROPERTIES COMPILE_FLAGS "/bigobj")
 diff --git a/src/third_party/CMakeLists.txt b/src/third_party/CMakeLists.txt
-index 816a941..f0b7145 100644
+index b71dfab..ad98e51 100644
 --- a/src/third_party/CMakeLists.txt
 +++ b/src/third_party/CMakeLists.txt
 @@ -18,7 +18,7 @@ add_subdirectory(stlplus3)
