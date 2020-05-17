@@ -1,16 +1,16 @@
 conda-build purge
 
-conda-build alembic
-conda-build armadillo
-conda-build assimp
-conda-build boost-cpp
+REM conda-build alembic
+REM conda-build armadillo
+REM conda-build assimp
+REM conda-build boost-cpp
 conda-build capstone
-conda-build catch2
-conda-build cereal
-conda-build cgal-cpp
+REM conda-build catch2
+REM conda-build cereal
+REM conda-build cgal-cpp
 REM conda-build embree3
-conda-build flann
-conda-build freeimageplus
+REM conda-build flann
+REM conda-build freeimageplus
 conda-build geogram
 conda-build geographiclib
 REM conda-build geos
@@ -21,34 +21,35 @@ REM conda-build gsl
 REM conda-build jama
 REM conda-build khronos-opencl-icd-loader
 REM conda-build laszip
-conda-build libgdal
-conda-build libtiff
+REM conda-build libgdal
+REM conda-build libtiff
 REM conda-build opengv
-conda-build qhull
-conda-build suitesparse
+REM conda-build qhull
+REM conda-build suitesparse
 REM conda-build superlu
-conda-build tbb
+REM conda-build tbb
 REM conda-build tnt
-conda-build xerces-c
+REM conda-build xerces-c
 
 REM conda-build glog
 
-conda-build ceres-solver
+REM conda-build ceres-solver
 conda-build viennacl
-conda-build pcl
+REM conda-build pcl
 REM conda-build open3d
-conda-build opencv
+REM conda-build opencv
 conda-build openscenegraph
-conda-build geotiff
-conda-build openimageio
+REM conda-build geotiff
+REM conda-build openimageio
 
-conda-build pdal
+REM conda-build pdal
 
 conda-build entwine
 
-conda-build coinutils
-conda-build osi
-conda-build clp
+REM conda-build coinutils
+REM conda-build osi
+REM conda-build clp
+conda-build cbc
 conda-build openmvg
 
-conda-build opencasacade
+REM conda-build opencasacade
