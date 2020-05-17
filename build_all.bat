@@ -44,7 +44,7 @@ REM conda-build openimageio
 
 REM conda-build pdal
 
-conda-build entwine
+REM conda-build entwine
 
 REM conda-build coinutils
 REM conda-build osi

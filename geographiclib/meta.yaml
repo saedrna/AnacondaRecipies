@@ -1,4 +1,4 @@
-{% set version = "1.49" %}
+{% set version = "1.50" %}
 
 package:
   name: geographiclib
@@ -7,7 +7,7 @@ package:
 source:
   - url: https://nchc.dl.sourceforge.net/project/geographiclib/distrib/GeographicLib-{{ version }}.tar.gz
     fn: geographiclib-{{ version }}.tar.gz
-    sha256: aec0ab52b6b9c9445d9d0a77e3af52257e21d6e74e94d8c2cb8fa6f11815ee2b
+    sha256: 2ac8888094d21ba48adb433c4bb569937497b39733e96c080b5ce278e2587622
 
 build:
   number: 1000
