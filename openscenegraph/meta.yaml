@@ -10,7 +10,7 @@ source:
     sha256: 930eb46f05781a76883ec16c5f49cfb29a059421db131005d75bec4d78401fd5
 
 build:
-  number: 1001
+  number: 1002
   # skip: true # [not win]
 
 requirements:

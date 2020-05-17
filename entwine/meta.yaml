@@ -14,7 +14,7 @@ source:
     - fixcmake.patch # [win]
 
 build:
-  number: 1000
+  number: 1001
   skip: True  # [win and vc<14]
 
 requirements:
