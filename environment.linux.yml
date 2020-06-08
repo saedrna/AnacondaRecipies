@@ -23,6 +23,7 @@ dependencies:
   - glew
   - glfw
   - glog
+  - glm
   - ipp-include
   - ipp-static
   - ocl-icd

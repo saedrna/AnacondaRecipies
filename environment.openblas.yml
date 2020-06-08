@@ -20,6 +20,7 @@ dependencies:
   - geogram
   - geographiclib 1.50 ha925a31_1000
   - gflags
+  - glm
   - glew
   - glfw
   - glog
