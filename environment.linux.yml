@@ -39,6 +39,7 @@ dependencies:
   # - openimageio
   # - openmvg 1.6
   - openscenegraph
+  - openexr
   - pcl
   - pdal
   - proj
