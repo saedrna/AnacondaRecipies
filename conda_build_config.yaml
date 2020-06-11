@@ -246,9 +246,9 @@ pin_run_as_build:
 arpack:
   - 3.6.3
 boost:
-  - 1.69.0
+  - 1.72
 boost_cpp:
-  - 1.69.0
+  - 1.72
 bzip2:
   - 1
 cairo:

@@ -1,6 +1,6 @@
 {% set name = "openimageio" %}
-{% set version = "2.0.7" %}
-{% set sha256 = "3abe7e09c9d4e17e357c31c3cb856aea1fa7f79ab24f1fbe0bd46fd8fbd8c769" %}
+{% set version = "2.1.16" %}
+{% set sha256 = "f44e3b3cffe9a8f47395da1ae59e972ecb26adf65f17581e6a489fdcce0cb116" %}
 
 package:
   name: {{ name }}
@@ -8,7 +8,7 @@ package:
 
 source:
   fn: openimageio-{{ version }}.tar.gz
-  url: https://github.com/OpenImageIO/oiio/archive/Release-{{ version }}.tar.gz
+  url: https://github.com/OpenImageIO/oiio/archive/Release-{{ version }}.0.tar.gz
   sha256: {{ sha256 }}
 
 build:

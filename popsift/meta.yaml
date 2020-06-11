@@ -1,0 +1,34 @@
+{% set version = "1.0.0" %}
+
+package:
+  name: popsift
+  version: {{ version }}
+
+source:
+  url: https://github.com/alicevision/popsift/archive/v1.0.0-rc1.tar.gz
+  sha256: dc7800ee3161485c2f97ecc185cdbb4d367d50ef83f9826a01a28afbc806c381
+
+
+build:
+  number: 1000
+  skip: true # [not win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - ninja
+  run:
+    - cudatoolkit 10.0
+
+about:
+  home: https://github.com/alicevision/popsift
+  license: MPL-2.0
+  license_file: COPYING.md
+  summary: 'PopSift is an implementation of the SIFT algorithm in CUDA. http://alicevision.org'
+  description: PopSift is an open-source implementation of the SIFT algorithm in CUDA. PopSift tries to stick as closely as possible to David Lowe's famous paper, while extracting features from an image in real-time at least on an NVidia GTX 980 Ti GPU.
+
+extra:
+   recipe-maintainers:
+    - saedrna
