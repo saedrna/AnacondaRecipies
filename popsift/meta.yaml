@@ -10,7 +10,7 @@ source:
 
 
 build:
-  number: 1000
+  number: 1001
   skip: true # [not win]
 
 requirements:
@@ -20,7 +20,7 @@ requirements:
     - cmake
     - ninja
   run:
-    - cudatoolkit 10.0
+    - cudatoolkit 10.2
 
 about:
   home: https://github.com/alicevision/popsift

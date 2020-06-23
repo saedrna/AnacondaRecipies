@@ -16,7 +16,7 @@ cmake -G "Ninja" ^
   -DCMAKE_PREFIX_PATH=%UNIX_LIBRARY_PREFIX% ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DPopSift_BUILD_EXAMPLES=OFF ^
-  -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0" ^
+  -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2" ^
   ../
 
 if errorlevel 1 exit 1

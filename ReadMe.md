@@ -2,7 +2,7 @@
 ``` bash
 # conda env create -n osketch -f environment.h2o.yml
 conda env create -n openblas -f environment.openblas.yml
-conda env create -n cuda -f environment.openblas.yml
+conda env create -n cuda -f environment.cuda.yml
 
 conda activate [envname, e.g. openblas]
 
