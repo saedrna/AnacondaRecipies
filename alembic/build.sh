@@ -21,7 +21,6 @@ if [ "${SHORT_OS_STR:0:5}" == "Linux" ]; then
       -DCMAKE_SYSROOT=$BUILD_PREFIX/$HOST/sysroot \
       -DUSE_TESTS=OFF \
       -DALEMBIC_SHARED_LIBS=ON \
-      -DILMBASE_VERSION=2.3.0 \
       ../
 else
     cmake -G "Ninja" \
@@ -32,7 +31,6 @@ else
       -DCMAKE_SKIP_RPATH=ON \
       -DUSE_TESTS=OFF \
       -DALEMBIC_SHARED_LIBS=ON \
-      -DILMBASE_VERSION=2.3.0 \
       ../
 fi
 

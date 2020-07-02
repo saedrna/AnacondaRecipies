@@ -5,6 +5,7 @@ channels:
   - defaults
 
 dependencies:
+  - alembic 1.7.12 h200bbdf_1000
   - assimp
   - boost-cpp
   - blas[openblas]

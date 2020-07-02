@@ -19,11 +19,12 @@ cmake -GNinja ^
     -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
     -DUSE_TESTS=OFF ^
     -DALEMBIC_SHARED_LIBS=ON ^
-    -DILMBASE_VERSION=2.3.0 ^
     ../
 
 if errorlevel 1 exit 1
 cmake --build . --target install --config Release
 if errorlevel 1 exit 1
+
+robocopy %LIBRARY_PREFIX%/lib %LIBRARY_PREFIX%/bin Alembic.dll
 
 exit 0
