@@ -13,7 +13,6 @@ source:
 
 build:
   number: 1000
-  skip: true # [not win]
 
 requirements:
   build:
@@ -24,7 +23,8 @@ requirements:
     - m2-patch # [win]
   
   host:
-    - cbc
+    - cbc # [win]
+    - coincbc #[not win]
     - cereal
     - ceres-solver
     - eigen
@@ -36,7 +36,8 @@ requirements:
     - zlib
 
   run:
-    - cbc
+    - cbc # [win]
+    - coincbc #[not win]
     - cereal
     - ceres-solver
     - eigen
