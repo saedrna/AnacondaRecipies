@@ -11,12 +11,11 @@ source:
 
 build:
   number: 1001
-  skip: true # [not win]
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}   # [win]
+    - {{ compiler('cxx') }} # [win]
     - cmake
     - ninja
   run:
