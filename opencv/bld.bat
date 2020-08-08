@@ -32,7 +32,20 @@ cmake -LAH -G "Ninja"                                                           
     -DCMAKE_BUILD_TYPE="Release"                                                    ^
     -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX%                                    ^
     -DCMAKE_PREFIX_PATH=%UNIX_LIBRARY_PREFIX%                                       ^
+    -DOPENCV_CONFIG_INSTALL_PATH=cmake                                              ^
+    -DOPENCV_BIN_INSTALL_PATH=bin                                                   ^
+    -DOPENCV_LIB_INSTALL_PATH=lib                                                   ^
+    -DOPENCV_GENERATE_SETUPVARS=OFF                                                 ^
+    -DOPENCV_DOWNLOAD_TRIES=1;2;3;4;5                                               ^
+    -DOPENCV_DOWNLOAD_PARAMS=INACTIVITY_TIMEOUT;30;TIMEOUT;180;SHOW_PROGRESS        ^
+    -DWITH_LAPACK=1                                                                 ^
+    -DLAPACK_INCLUDE_DIR=%UNIX_LIBRARY_INC%                                         ^
+    -DLAPACK_LAPACKE_H=lapacke.h                                                    ^
+    -DLAPACK_CBLAS_H=cblas.h                                                        ^
+    -DLAPACK_LIBRARIES=%UNIX_LIBRARY_LIB%/lapack.lib;%UNIX_LIBRARY_LIB%/cblas.lib   ^
     -DWITH_EIGEN=1                                                                  ^
+    -DENABLE_CONFIG_VERIFICATION=ON                                                 ^
+    -DENABLE_PRECOMPILED_HEADERS=OFF                                                ^
     -DBUILD_TESTS=0                                                                 ^
     -DBUILD_DOCS=0                                                                  ^
     -DBUILD_PERF_TESTS=0                                                            ^
@@ -42,18 +55,22 @@ cmake -LAH -G "Ninja"                                                           
     -DBUILD_PNG=0                                                                   ^
     -DBUILD_OPENEXR=1                                                               ^
     -DBUILD_JASPER=1                                                                ^
+    -DWITH_JASPER=1                                                                 ^
+    -DWITH_OPENJPEG=0                                                               ^
     -DBUILD_JPEG=0                                                                  ^
     -DWITH_CUDA=0                                                                   ^
     -DWITH_OPENCL=1                                                                 ^
+    -DWITH_OPENCLAMDFFT=0                                                           ^
+    -DWITH_OPENCLAMDBLAS=0                                                          ^
+    -DWITH_OPENCL_D3D11_NV=0                                                        ^
+    -DWITH_1394=0                                                                   ^
     -DWITH_OPENNI=0                                                                 ^
     -DWITH_FFMPEG=1                                                                 ^
+    -DWITH_TENGINE=0                                                                ^
     -DWITH_GSTREAMER=0                                                              ^
     -DWITH_VTK=0                                                                    ^
-    -DJPEG_LIBRARY_RELEASE=%UNIX_LIBRARY_PREFIX%/lib/jpeg-static.lib                ^
     -DINSTALL_C_EXAMPLES=0                                                          ^
     -DOPENCV_EXTRA_MODULES_PATH=%UNIX_SRC_DIR%/opencv_contrib/modules               ^
-    -DEXECUTABLE_OUTPUT_PATH=%UNIX_LIBRARY_BIN%                                     ^
-    -DLIBRARY_OUTPUT_PATH=%UNIX_LIBRARY_BIN%                                        ^
     -DPYTHON_EXECUTABLE=""                                                          ^
     -DPYTHON_INCLUDE_DIR=""                                                         ^
     -DPYTHON_PACKAGES_PATH=""                                                       ^
@@ -72,11 +89,17 @@ cmake -LAH -G "Ninja"                                                           
     -DPYTHON_PACKAGES_PATH=%UNIX_SP_DIR%                                            ^
     -DPYTHON_LIBRARY=%UNIX_PREFIX%/libs/%PY_LIB%                                    ^
     -DPYTHON_NUMPY_INCLUDE_DIRS=%UNIX_SP_DIR%/numpy/core/include                    ^
-    -DBUILD_opencv_python3=0                                                        ^
+    -DBUILD_opencv_python3=1                                                        ^
     -DOPENCV_SKIP_PYTHON_LOADER=1                                                   ^
-    -DCPU_BASELINE=SSE2                                                             ^
-    -DCPU_DISPATCH=SSE2                                                             ^
+    -DPYTHON3_EXECUTABLE=%UNIX_PREFIX%/python                                       ^
+    -DPYTHON3_INCLUDE_DIR=%UNIX_PREFIX%/include                                     ^
+    -DPYTHON3_NUMPY_INCLUDE_DIRS=%UNIX_SP_DIR%/numpy/core/include                   ^
+    -DPYTHON3_LIBRARY=%UNIX_PREFIX%/libs/%PY_LIB%                                   ^
+    -DPYTHON3_PACKAGES_PATH=%UNIX_SP_DIR%                                           ^
+    -DOPENCV_PYTHON3_INSTALL_PATH=%UNIX_SP_DIR%                                     ^
     -DOPENCV_ENABLE_NONFREE=ON                                                      ^
+    -DCPU_BASELINE=SSE2                                                             ^
+    -DCPU_DISPATCH=SSE4_2;AVX;AVX2                                                  ^
     ..
 
 if errorlevel 1 exit 1

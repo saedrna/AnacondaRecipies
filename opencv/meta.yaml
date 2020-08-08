@@ -1,63 +1,132 @@
-{% set version = "4.2.0" %}
-{% set blas_variant = "openblas" %}
+# This recipe creates 3 packages
+# libopencv, py-opencv, opencv
+#
+# libopencv actually contains all the files, including the site-packages
+# file needed to run opencv with python.
+#     opencv-dnn seems to change on every patch version, therefore, we pin
+#     to the patch version x.x.x
+#
+# py-opencv is a meta package that constrains the python dependencies
+#     This one is pinned to the minor version. x.x
+#
+# opencv is a backward compatible package, with no pinnings
+#
+# This approach is different than the one in defaults. Default's package
+# seperates well the files generated with python dependencies, from those
+# generated without. Unfortunately, this isn't entirely supported by
+# upstream. Their hacks are quite elaborate, making it seem difficult to
+# maintain as opencv has been changing their build system recently.
+#
+# By putting all the generated files in 1 package, this makes the build process
+# much easier, at the expense of a few MBs in the 'lib' package.
+{% set version = "4.4.0" %}
+{% set PY_VER_MAJOR = PY_VER[0] %}
+{% set PY_VER_MINOR = PY_VER[2] %}
 
 package:
-  name: opencv
+  name: libopencv
   version: {{ version }}
 
 source:
-  - url: https://github.com/opencv/opencv/archive/{{ version }}.tar.gz
+  - url: https://codeload.github.com/opencv/opencv/zip/{{ version }}
     fn: opencv-{{ version }}.tar.gz
-    sha256: 9ccb2192d7e8c03c58fee07051364d94ed7599363f3b0dce1c5e6cc11c1bb0ec
-  - url: https://github.com/opencv/opencv_contrib/archive/{{ version }}.tar.gz
+    sha256: 7faa0991c74cda52313ee37ef73f3e451332a47e7aa36c2bb2240b69f5002d27
+  - url: https://codeload.github.com/opencv/opencv_contrib/tar.gz/{{ version }}
     fn: opencv_contrib-{{ version }}.tar.gz
-    sha256: 8a6b5661611d89baa59a26eb7ccf4abb3e55d73f99bb52d8f7c32265c8a43020
+    sha256: a69772f553b32427e09ffbfd0c8d5e5e47f7dab8b3ffc02851ffd7f912b76840
     folder: opencv_contrib
 
 build:
-  number: 1001
-  # Python2.7 support dropped: https://github.com/opencv/opencv/issues/8481
-  # skip: true  # [win and py27]
+  number: 1003
+  run_exports:
+    # https://abi-laboratory.pro/index.php?view=timeline&l=opencv
+    # Things seem to change every patch versions, mostly the dnn module
+    - {{ pin_subpackage('libopencv', max_pin='x.x.x') }}
 
 requirements:
   build:
     # Required to find ffpmeg
     - pkg-config                     # [not win]
-    # - m2-patch                       # [win]
     - cmake
     - ninja
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-libegl-devel') }}  # [linux]
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
     - {{ cdt('libselinux') }}        # [linux]
     - {{ cdt('libxdamage') }}        # [linux]
     - {{ cdt('libxfixes') }}         # [linux]
     - {{ cdt('libxxf86vm') }}        # [linux]
   host:
-    - eigen 3.3.7
-    - ffmpeg 4.1.*                   # [not win]
-    - khronos-opencl-icd-loader      # [not linux]
-    - libjpeg-turbo
-    - libpng
-    - libtiff
-    - ocl-icd                        # [linux]
+    - python
+    - numpy
+    - hdf5                           # [unix]
+    - eigen
+    # Jasper pin https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/659
+    - jasper                        # [not win]
     - zlib
+    - jpeg
+    - libtiff
+    - libwebp
+    - harfbuzz                       # [unix]
+    - libpng
+    - ffmpeg                         # [not win]
+    - liblapacke
+    - freetype
+    - khronos-opencl-icd-loader      # [not linux]
   run:
-    - eigen 3.3.7
-    - ffmpeg 4.1.*                   # [not win]
-    - khronos-opencl-icd-loader      # [not linux]
-    - libpng
-    - libtiff
-    - ocl-icd                        # [linux]
-    - zlib
+    # https://github.com/conda-forge/harfbuzz-feedstock/pull/52
+    - harfbuzz                       # [unix]
+    # Don't depend on python in the run section
+    # py-opencv will depend on python
+    # https://github.com/conda-forge/opencv-feedstock/issues/174
+    # Seems like the OSX ABI has changed between 2.9 and 2.10???
+    # That or a dependency wasn't merged in
+    # Since we don't know the cause, we are choosing this pinning on all platforms.
+    - {{ pin_compatible('freetype', min_pin='x.x') }}
 
+outputs:
+  - name: libopencv
+  - name: opencv
+    requirements:
+      run:
+        - {{ pin_subpackage('libopencv', exact=True) }}
+        - {{ pin_subpackage('py-opencv', exact=True) }}
+
+  - name: py-opencv
+    build:
+      run_exports:
+        # Should we even have this???
+        # don't pin the python version so hard.
+        # Actually, I have found pretty good compatibility in the python
+        # package
+        - {{ pin_subpackage('py-opencv') }}
+    requirements:
+      # There is no build script, but I just want it to think
+      # that it needs python and numpy at build time
+      host:
+        - python
+        - numpy
+      run:
+        - python
+        - {{ pin_compatible('numpy') }}
+        - {{ pin_subpackage('libopencv', exact=True) }}
+    
 about:
   home: http://opencv.org/
-  license: BSD 3-clause
-  summary: Computer vision and machine learning software library.
+  license: BSD-3-Clause
+  license_family: BSD
   license_file: LICENSE
+  summary: Computer vision and machine learning software library.
 
 extra:
   recipe-maintainers:
+    - jakirkham
+    - msarahan
+    - patricksnape
+    - zym1010
+    - hajapy
+    - ocefpaf
+    - hmaarrfk
     - saedrna
