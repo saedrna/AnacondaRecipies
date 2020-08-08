@@ -35,7 +35,7 @@ dependencies:
   - libtiff
   - ninja
   # - occt
-  - opencv
+  - opencv 4.4.0 1003
   - openimageio
   - openmvg 1.6
   - openscenegraph

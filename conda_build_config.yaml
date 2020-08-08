@@ -56,6 +56,198 @@ ignore_build_only_deps:
   - numpy
   - python
 
+
+# TODO: remove these when run_exports are added to the packages.
+pin_run_as_build:
+  arpack:
+    max_pin: x.x.x
+  boost:
+    max_pin: x.x.x
+  boost-cpp:
+    max_pin: x.x.x
+  bzip2:
+    max_pin: x
+  cairo:
+    max_pin: x.x
+  curl:
+    max_pin: x
+  dbus:
+    max_pin: x
+  expat:
+    max_pin: x.x
+  ffmpeg:
+    max_pin: x.x
+  flann:
+    max_pin: x.x.x
+  fontconfig:
+    max_pin: x
+  freetype:
+    max_pin: x
+  gsl:
+    max_pin: x.x
+  gdal:
+    max_pin: x.x
+  gdk_pixbuf:
+    max_pin: x.x.x
+  geos:
+    max_pin: x.x.x
+  geotiff:
+    max_pin: x.x.x
+  glew:
+    max_pin: x.x
+  glpk:
+    max_pin: x.x
+  gmp:
+    max_pin: x
+  graphviz:
+    max_pin: x
+  harfbuzz:
+    max_pin: x
+  hdf4:
+    max_pin: x.x
+  icu:
+    max_pin: x
+  isl:
+    max_pin: x.x
+  jasper:
+    max_pin: x
+  jpeg:
+    max_pin: x
+  libjpeg_turbo:
+    max_pin: x
+  json-c:
+    max_pin: x.x
+  jsoncpp:
+    max_pin: x.x.x
+  kealib:
+    max_pin: x.x
+  krb5:
+    max_pin: x.x
+  libblitz:
+    max_pin: x.x
+  libcurl:
+    max_pin: x
+  libdap4:
+    max_pin: x.x
+  libevent:
+    max_pin: x.x.x
+  libffi:
+    max_pin: x.x
+  libgdal:
+    max_pin: x.x
+  libiconv:
+    max_pin: x.x
+  libkml:
+    max_pin: x.x
+  libmatio:
+    max_pin: x.x
+  libnetcdf:
+    max_pin: x.x.x
+  libpcap:
+    max_pin: x.x
+  libpng:
+    max_pin: x.x
+  libprotobuf:
+    max_pin: x.x
+  librdkafka:
+    max_pin: x.x.x
+  librsvg:
+    max_pin: x.x
+  libspatialindex:
+    max_pin: x.x
+  libssh2:
+    max_pin: x.x
+  libsvm:
+    max_pin: x.x
+  libunwind:
+    max_pin: x.x
+  libtiff:
+    max_pin: x
+  libwebp:
+    max_pin: x.x
+  libxml2:
+    max_pin: x.x
+  libuuid:
+    max_pin: x
+  lz4-c:
+    max_pin: x.x.x
+  lzo:
+    max_pin: x
+  metis:
+    max_pin: x.x
+  mkl:
+    max_pin: x
+  mpfr:
+    max_pin: x
+  ncurses:
+    max_pin: x.x
+  netcdf-cxx4:
+    max_pin: x.x
+  netcdf-fortran:
+    max_pin: x.x
+  nettle:
+    max_pin: x.x
+  nlopt:
+    max_pin: x.x.x
+  nss:
+    max_pin: x
+  nspr:
+    max_pin: x
+  occt:
+    max_pin: x.x
+  openblas:
+    max_pin: x.x.x
+  openturns:
+    max_pin: x.x
+  openjpeg:
+    max_pin: x.x
+  openssl:
+    max_pin: x.x.x
+  pango:
+    max_pin: x.x
+  perl:
+    max_pin: x.x.x
+  pixman:
+    max_pin: x.x
+  poppler:
+    max_pin: x.x
+  proj4:
+    max_pin: x.x.x
+  pyqt:
+    max_pin: x.x
+  qt:
+    max_pin: x.x
+  readline:
+    max_pin: x
+  r-base:
+    max_pin: x.x.x
+  snappy:
+    max_pin: x.x.x
+  sox:
+    max_pin: x.x.x
+  sqlite:
+    max_pin: x
+  sundials:
+    max_pin: x.x
+  tk:
+    max_pin: x.x
+  vc:
+    max_pin: x
+  vlfeat:
+    max_pin: x.x.x
+  vtk:
+    max_pin: x.x.x
+  xerces-c:
+    max_pin: x.x.x
+  xz:
+    max_pin: x.x
+  zeromq:
+    max_pin: x.x
+  zlib:
+    max_pin: x.x
+  zstd:
+    max_pin: x.x.x
+
 libblas: 3.8 *netlib
 libcblas: 3.8 *netlib
 liblapack: 3.8.0 *netlib
