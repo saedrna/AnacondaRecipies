@@ -26,7 +26,7 @@ dependencies:
   - glog
   - ipp-include
   - ipp-static
-  - khronos-opencl-icd-loader
+  - khronos-opencl-icd-loader 2020.03.13
   - laszip
   - libgdal
   - libblas
@@ -36,7 +36,7 @@ dependencies:
   - lemon 1.3.1 h8fccee9_1
   - ninja
   # - occt
-  - opencv 4.4.0 1003
+  - opencv
   - openimageio
   - openmvg 1.6
   - openscenegraph
