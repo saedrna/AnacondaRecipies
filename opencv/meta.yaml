@@ -37,7 +37,7 @@ source:
     folder: opencv_contrib
 
 build:
-  number: 1003
+  number: 1004
   run_exports:
     # https://abi-laboratory.pro/index.php?view=timeline&l=opencv
     # Things seem to change every patch versions, mostly the dnn module
@@ -74,7 +74,7 @@ requirements:
     - ffmpeg                         # [not win]
     - liblapacke
     - freetype
-    - khronos-opencl-icd-loader      # [not linux]
+    - khronos-opencl-icd-loader 2020.03.13     # [not linux]
   run:
     # https://github.com/conda-forge/harfbuzz-feedstock/pull/52
     - harfbuzz                       # [unix]
