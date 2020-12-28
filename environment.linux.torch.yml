@@ -1,0 +1,25 @@
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - typing_extensions
+  - pytorch 1.7.1 py3.8_cuda10.2.89_cudnn7.6.5_0
+  - torchvision
+  - cudatoolkit
+  - blas-devel
+  - nvcc_linux-64                 # [linux]
+  - gcc_linux-64                  # [linux]
+  - gxx_linux-64                  # [linux]
+  - ocl-icd                       # [linux]
+  - libselinux-cos6-x86_64        # [linux]
+  - libx11-cos6-x86_64            # [linux]
+  - libxau-cos6-x86_64            # [linux]
+  - libxcb-cos6-x86_64            # [linux]
+  - libxdamage-cos6-x86_64        # [linux]
+  - libxext-cos6-x86_64           # [linux]
+  - libxfixes-cos6-x86_64         # [linux]
+  - libxxf86vm-cos6-x86_64        # [linux]
+  - mesa-dri-drivers-cos6-x86_64  # [linux]
+  - mesa-libgl-devel-cos6-x86_64  # [linux]
