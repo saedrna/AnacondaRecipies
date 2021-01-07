@@ -1,0 +1,38 @@
+export http_proxy=http://127.0.0.1:10809
+export https_proxy=http://127.0.0.1:10809
+
+if [[ $(uname) == "Linux" ]]; then
+    export LDFLAGS="$LDFLAGS -Wl,-rpath,$BUILD_PREFIX/lib -Wl,-rpath-link,$BUILD_PREFIX/lib -L$BUILD_PREFIX/lib"
+fi
+
+mkdir build
+cd build
+
+cmake -LAH \
+    -DCMAKE_BUILD_TYPE="Release" \
+    -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DCMAKE_PREFIX_PATH=$PREFIX \
+    -DCMAKE_INSTALL_RPATH="${PREFIX}/lib" -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_MACOSX_RPATH=ON \
+    -DCMAKE_SYSROOT=$BUILD_PREFIX/$HOST/sysroot \
+    -DBUILD_CPP_EXAMPLES=OFF \
+    -DBUILD_SHARED_LIBS=ON \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_PYTHON_MODULE=OFF \
+    -DBUILD_PYBIND11=OFF \
+    -DENABLE_JUPYTER=OFF \
+    -DBUILD_GUI=OFF \
+    -DGLIBCXX_USE_CXX11_ABI=ON \
+    -DENABLE_HEADLESS_RENDERING=OFF \
+    -DSTATIC_WINDOWS_RUNTIME=OFF \
+    -DUSE_BLAS=OFF \
+    -DUSE_SYSTEM_EIGEN3=OFF \
+    -DUSE_SYSTEM_FLANN=ON \
+    -DUSE_SYSTEM_JPEG=ON \
+    -DUSE_SYSTEM_PNG=ON \
+    -DUSE_SYSTEM_GLEW=ON \
+    -DUSE_SYSTEM_GLFW=ON \
+    -DUSE_SYSTEM_PYBIND11=ON \
+    -DOpenGL_GL_PREFERENCE=LEGACY \
+    ..
+
+cmake --build . --target install --config Release -j ${nproc}

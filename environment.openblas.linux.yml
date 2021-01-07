@@ -6,8 +6,8 @@ channels:
 
 dependencies:
   - assimp
+  - blas * openblas
   - boost-cpp
-  - blas[openblas]
   - capstone
   - catch2
   - cereal
@@ -22,24 +22,23 @@ dependencies:
   - gflags
   - glew
   - glfw
-  - glog
   - glm
+  - glog
   - ipp-include
   - ipp-static
-  - ocl-icd
   - laszip
-  - libgdal
   - libblas
   - libcblas
+  - libgdal
   - liblapacke
   - libtiff
   - ninja
-  # - occt
+  - ocl-icd
+  - open3d 0.12.0 h9c3ff4c_1001
   - opencv
-  # - openimageio
-  # - openmvg 1.6
-  - openscenegraph
   - openexr
+  - openmvg 1.6 h859e10a_1001
+  - openscenegraph
   - pcl
   - pdal
   - proj
@@ -48,6 +47,9 @@ dependencies:
   - tbb
   - tbb-devel
   - xerces-c
+  - gcc_linux-64                  # [linux]
+  - gxx_linux-64                  # [linux]
+  - ocl-icd                       # [linux]
   - gcc_linux-64                  # [linux]
   - gxx_linux-64                  # [linux]
   - ocl-icd                       # [linux]
