@@ -73,6 +73,8 @@ pin_run_as_build:
     max_pin: x
   dbus:
     max_pin: x
+  eigen:
+    max_pin: x.x.x
   expat:
     max_pin: x.x
   ffmpeg:
@@ -253,6 +255,7 @@ libcblas: 3.8 *netlib
 liblapack: 3.8.0 *netlib
 liblapacke: 3.8.0 *netlib
 python: 3.8.* *_cpython
+eigen: 3.3.9 *
 
 vs2017_win_64:
   - 19.15.26726 h3c6f0ee_0  # [win-64]

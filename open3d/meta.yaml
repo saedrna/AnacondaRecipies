@@ -1,15 +1,12 @@
-{% set version = "0.6.0" %}
+{% set version = "0.12.0" %}
 
 package:
   name: open3d
   version: {{ version }}
 
 source:
-  - url: https://github.com/intel-isl/Open3D/archive/v{{ version }}.tar.gz
-    fn: open3d-{{ version }}.tar.gz
-    sha256: c415c3213e732c6ccc135e5216a79e7d81e81017813108aa391e5d7f5c60bbc3
-    patches:
-      - fix-cmake.patch
+  - git_url: https://github.com/intel-isl/Open3D
+  - git_rev: v0.12.0
 
 build:
   number: 1000
@@ -19,26 +16,27 @@ requirements:
   build:
     - cmake
     - ninja
-    - m2-patch # [win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
 
   host:
-    - eigen 3.3.7
+    - eigen 3.3.9
     - flann
     - glew
     - glfw
+    - libjpeg-turbo
     - libpng
     - zlib
-    - libjpeg-turbo
-    - jsoncpp
+    - pybind11 
 
   run:
-    - eigen 3.3.7
-    - jsoncpp
+    - eigen 3.3.9
     - flann
     - glew
     - glfw
+    - libjpeg-turbo
+    - libpng
+    - zlib
 
 about:
   home: http://www.open3d.org
