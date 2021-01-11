@@ -11,6 +11,7 @@ cmake -LAH -GNinja \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_RPATH="${PREFIX}/lib" -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_MACOSX_RPATH=ON \
     -DCMAKE_SYSROOT=$BUILD_PREFIX/$HOST/sysroot \
+    -DENABLE_DIAGNOSTIC_PRINT=OFF \
     ..
 
 cmake --build . --target install --config Release

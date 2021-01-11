@@ -16,6 +16,7 @@ cmake -LAH -G "Visual Studio 16 2019" -A x64 ^
     -DCMAKE_BUILD_TYPE="Release" ^
     -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
     -DCMAKE_PREFIX_PATH=%UNIX_LIBRARY_PREFIX% ^
+    -DENABLE_DIAGNOSTIC_PRINT=OFF ^
     ..
 
 if errorlevel 1 exit 1
