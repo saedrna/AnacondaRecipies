@@ -1,6 +1,5 @@
 channels:
   - conda-forge
-  - intel
   - saedrna
   - defaults
 
@@ -24,8 +23,6 @@ dependencies:
   - glfw
   - glm
   - glog
-  - ipp-include
-  - ipp-static
   - laszip
   - libblas
   - libcblas
@@ -46,6 +43,7 @@ dependencies:
   - suitesparse
   - tbb
   - tbb-devel
+  - teaserpp
   - xerces-c
   - gcc_linux-64                  # [linux]
   - gxx_linux-64                  # [linux]

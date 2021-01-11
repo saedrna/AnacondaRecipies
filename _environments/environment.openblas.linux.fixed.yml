@@ -1,6 +1,4 @@
-name: openblas
 channels:
-  - intel
   - saedrna
   - conda-forge
   - defaults
@@ -16,11 +14,11 @@ dependencies:
   - c-ares=1.17.1=h36c2ea0_0
   - ca-certificates=2020.12.5=ha878542_0
   - cairo=1.16.0=h9f066cc_1006
-  - capstone=4.0.2=py39h07f9747_1
+  - capstone=4.0.2=py38h1e0a361_1
   - catch2=2.13.3=h0efe328_0
   - cereal=1.3.0=0
   - ceres-solver=2.0.0=h5605472_1
-  - certifi=2020.12.5=py39hf3d152e_1
+  - certifi=2020.12.5=py38h578d9bd_1
   - cfitsio=3.470=h2e3daa1_7
   - cgal-cpp=5.1.1=h4e7cd93_0
   - cmake=3.19.2=h4547794_0
@@ -39,7 +37,7 @@ dependencies:
   - freexl=1.0.5=h516909a_1002
   - gcc_impl_linux-64=9.3.0=h28f5a38_17
   - gcc_linux-64=9.3.0=h7247604_29
-  - gdal=3.1.4=py39hdef80c4_0
+  - gdal=3.1.4=py38h9edfc58_0
   - geogram=1.7.5=h5171369_1001
   - geographiclib=1.50=he1b5a44_1000
   - geos=3.8.1=he1b5a44_0
@@ -65,8 +63,6 @@ dependencies:
   - hdf5=1.10.6=nompi_h7c3c948_1111
   - icu=67.1=he1b5a44_0
   - ilmbase=2.5.4=h780b84a_0
-  - ipp-include=2021.1.1=intel_47
-  - ipp-static=2021.1.1=intel_47
   - jasper=1.900.1=h07fcdf6_1006
   - jpeg=9d=h36c2ea0_0
   - json-c=0.13.1=hbfbb72e_1002
@@ -106,7 +102,7 @@ dependencies:
   - libnetcdf=4.7.4=nompi_h56d31a8_107
   - libnghttp2=1.41.0=h8cfc5f6_2
   - libopenblas=0.3.10=pthreads_hb3c22a3_5
-  - libopencv=4.5.0=py39_6
+  - libopencv=4.5.0=py38h703c3c0_7
   - libpng=1.6.37=h21135ba_2
   - libpq=12.3=h255efa7_3
   - libselinux-cos6-x86_64=2.0.94=h9d98e8f_1104
@@ -146,10 +142,10 @@ dependencies:
   - nitro=2.7.dev6=he1b5a44_3
   - nspr=4.29=h9c3ff4c_1
   - nss=3.60=hb5efdd6_0
-  - numpy=1.19.5=py39hdbf815f_0
+  - numpy=1.19.5=py38h18fd61f_0
   - ocl-icd=2.2.14=h7f98852_0
   - open3d=0.12.0=h9c3ff4c_1001
-  - opencv=4.5.0=py39_6
+  - opencv=4.5.0=py38h578d9bd_7
   - openexr=2.5.4=hf817b99_0
   - openh264=2.1.1=h780b84a_0
   - openjpeg=2.3.1=hf7af979_3
@@ -166,34 +162,34 @@ dependencies:
   - postgresql=12.3=hc2f5b80_3
   - proj=7.1.1=h966b41f_3
   - pthread-stubs=0.4=h36c2ea0_1001
-  - py-opencv=4.5.0=py39hef51801_6
-  - python=3.9.1=hffdb5ce_2_cpython
-  - python_abi=3.9=1_cp39
+  - py-opencv=4.5.0=py38h81c977d_7
+  - python=3.8.6=hffdb5ce_4_cpython
+  - python_abi=3.8=1_cp38
   - qhull=2019.1=hc9558a2_0
   - qt=5.12.9=h763d07f_1
   - readline=8.0=he28a2e2_2
-  - rhash=1.3.6=h516909a_1001
-  - setuptools=49.6.0=py39h079e4ff_2
+  - rhash=1.4.1=h7f98852_0
+  - setuptools=49.6.0=py38h578d9bd_3
   - sqlite=3.34.0=h74cdb3f_0
   - suitesparse=5.7.2=h717dc36_0
   - sysroot_linux-64=2.12=h77966d4_13
   - tbb=2020.2=h4bd325d_2
   - tbb-devel=2020.2=h4bd325d_2
+  - teaserpp=0.1.0=h9c3ff4c_1000
   - tiledb=2.1.6=h91fcb0e_1
   - tk=8.6.10=h21135ba_1
   - tzcode=2020f=h7f98852_0
-  - tzdata=2020f=he74cb21_0
   - wheel=0.36.2=pyhd3deb0d_0
   - x264=1!161.3030=h7f98852_0
   - xerces-c=3.2.3=hfe33f54_1
   - xorg-fixesproto=5.0=h14c3975_1002
-  - xorg-kbproto=1.0.7=h14c3975_1002
+  - xorg-kbproto=1.0.7=h7f98852_1002
   - xorg-libice=1.0.10=h516909a_0
   - xorg-libsm=1.2.3=h84519dc_1000
   - xorg-libx11=1.6.12=h516909a_0
-  - xorg-libxau=1.0.9=h14c3975_0
+  - xorg-libxau=1.0.9=h7f98852_0
   - xorg-libxcursor=1.2.0=h516909a_0
-  - xorg-libxdmcp=1.1.3=h516909a_0
+  - xorg-libxdmcp=1.1.3=h7f98852_0
   - xorg-libxext=1.3.4=h516909a_0
   - xorg-libxfixes=5.0.3=h516909a_1004
   - xorg-libxinerama=1.1.4=hf484d3e_1000
@@ -201,7 +197,7 @@ dependencies:
   - xorg-libxrender=0.9.10=h516909a_1002
   - xorg-randrproto=1.5.0=h516909a_1001
   - xorg-renderproto=0.11.1=h14c3975_1002
-  - xorg-xextproto=7.3.0=h14c3975_1002
+  - xorg-xextproto=7.3.0=h7f98852_1002
   - xorg-xproto=7.0.31=h7f98852_1007
   - xz=5.2.5=h516909a_1
   - zlib=1.2.11=h516909a_1010
