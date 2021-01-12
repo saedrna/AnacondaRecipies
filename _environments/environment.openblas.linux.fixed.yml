@@ -175,7 +175,6 @@ dependencies:
   - sysroot_linux-64=2.12=h77966d4_13
   - tbb=2020.2=h4bd325d_2
   - tbb-devel=2020.2=h4bd325d_2
-  - teaserpp=0.1.0=h9c3ff4c_1000
   - tiledb=2.1.6=h91fcb0e_1
   - tk=8.6.10=h21135ba_1
   - tzcode=2020f=h7f98852_0

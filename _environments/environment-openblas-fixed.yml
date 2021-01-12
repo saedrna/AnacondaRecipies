@@ -120,7 +120,6 @@ dependencies:
   - suitesparse=5.4.0=h5d0cbe0_1
   - tbb=2020.2=h2d74725_2
   - tbb-devel=2020.2=h2d74725_2
-  - teaserpp=0.1.0=h0e60522_1001
   - tiledb=2.1.6=hf84e3da_1
   - tk=8.6.10=h8ffe710_1
   - tzdata=2020f=he74cb21_0

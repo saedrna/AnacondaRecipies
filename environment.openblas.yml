@@ -45,5 +45,4 @@ dependencies:
   - suitesparse
   - tbb
   - tbb-devel
-  - teaserpp
   - xerces-c
