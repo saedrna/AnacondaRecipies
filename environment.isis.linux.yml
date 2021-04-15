@@ -57,9 +57,11 @@ dependencies:
   - superlu
   - tnt
   - x264
+  - tbb
+  - tbb-devel 2020.2 h4bd325d_4
   # - xalan-c
   - xerces-c
-  - zlib
+  - zlib 1.2.11 h516909a_1010
   - gcc_linux-64                  # [linux]
   - gxx_linux-64                  # [linux]
   - libselinux-cos6-x86_64        # [linux]
