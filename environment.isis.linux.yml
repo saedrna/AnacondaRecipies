@@ -1,0 +1,76 @@
+channels:
+  - conda-forge
+  - usgs-astrogeology
+  - intel
+  - defaults
+
+dependencies:
+  - ale >=0.8.5
+  - armadillo
+  - blas * openblas
+  - boost-cpp
+  - bullet 2.89
+  - bz2file
+  - bzip2
+  - ceres-solver
+  - csm>=3.0.3,<3.0.4
+  - cspice
+  - eigen
+  - embree
+  - ffmpeg
+  - geographiclib-cpp
+  - geos>=3.7,<3.8
+  - geotiff
+  - glfw
+  - glew
+  - gmm
+  - gmp
+  - gsl
+  - hdf5
+  - icu
+  - ipp-devel
+  - ipp-include
+  - ipp-static
+  - jama
+  - jpeg
+  - krb5
+  - libgdal 3.0.2 h852c1c0_4
+  - libpng>=1.6.34
+  - libprotobuf
+  - libtiff
+  - libxml2
+  - mesalib
+  - mysql
+  - mysql-connector-c
+  - nanoflann
+  - ninja
+  - nlohmann_json
+  - nn
+  - opencv
+  - pcl 1.9.1
+  - protobuf
+  - qhull
+  - qt
+  - qwt
+  - sqlite
+  - suitesparse
+  - superlu
+  - tnt
+  - x264
+  # - xalan-c
+  - xerces-c
+  - zlib
+  - gcc_linux-64                  # [linux]
+  - gxx_linux-64                  # [linux]
+  - libselinux-cos6-x86_64        # [linux]
+  - libx11-cos6-x86_64            # [linux]
+  - libxau-cos6-x86_64            # [linux]
+  - libxcb-cos6-x86_64            # [linux]
+  - libxdamage-cos6-x86_64        # [linux]
+  - libxext-cos6-x86_64           # [linux]
+  - libxfixes-cos6-x86_64         # [linux]
+  - libxinerama-cos6-x86_64       # [linux]
+  - libxxf86vm-cos6-x86_64        # [linux]
+  - mesa-dri-drivers-cos6-x86_64  # [linux]
+  - mesa-libgl-devel-cos6-x86_64  # [linux]
+  - ocl-icd                       # [linux]
