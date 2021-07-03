@@ -1,5 +1,5 @@
 channels:
-  - pytorch
+  - pytorch-lts
   - conda-forge
   - defaults
 
@@ -10,12 +10,11 @@ dependencies:
   - future_fstrings
   - matplotlib
   - pip
-  - pytorch 1.7.1 py3.8_cuda11.0.221_cudnn8.0.5_0
+  - pytorch 1.8.1 py3.9_cuda11.1_cudnn8.0.5_0
   - scikit-learn
   - tensorboardx
   - torchvision
   - typing_extensions
-  - nvcc_linux-64                 # [linux]
   - gcc_linux-64                  # [linux]
   - gxx_linux-64                  # [linux]
   - ocl-icd                       # [linux]
