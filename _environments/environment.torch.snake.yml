@@ -129,7 +129,6 @@ dependencies:
   - zlib=1.2.11=h516909a_1010
   - zstd=1.4.9=ha95c52a_0
   - pip:
-    - apex==0.1
     - decorator==4.4.2
     - imageio==2.9.0
     - imgaug==0.2.9
