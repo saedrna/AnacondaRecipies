@@ -17,7 +17,7 @@ dependencies:
   - embree3
   - entwine
   - geogram
-  - geographiclib 1.50 he1b5a44_1000
+  - geographiclib-cpp
   - gflags
   - glew
   - glfw
