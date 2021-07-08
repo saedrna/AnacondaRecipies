@@ -4,17 +4,15 @@ channels:
   - defaults
 
 dependencies:
-  - blas-devel
   - cudatoolkit
-  - easydict
-  - future_fstrings
-  - matplotlib
+  - cython
   - pip
   - pytorch 1.8.1 py3.9_cuda11.1_cudnn8.0.5_0
-  - scikit-learn
-  - tensorboardx
+  - pyyaml
+  - requests
   - torchvision
-  - typing_extensions
+  - tensorboard
+  - tensorboardx
   - gcc_linux-64                  # [linux]
   - gxx_linux-64                  # [linux]
   - ocl-icd                       # [linux]
@@ -28,4 +26,3 @@ dependencies:
   - libxxf86vm-cos6-x86_64        # [linux]
   - mesa-dri-drivers-cos6-x86_64  # [linux]
   - mesa-libgl-devel-cos6-x86_64  # [linux]
-
