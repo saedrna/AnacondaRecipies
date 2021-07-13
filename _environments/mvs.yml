@@ -1,0 +1,33 @@
+channels:
+  - pytorch-lts
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cudatoolkit
+  - cython
+  - einops
+  - jupyter
+  - kornia
+  - pip
+  - plyfile
+  - pytorch 1.8.1 py3.8_cuda11.1_cudnn8.0.5_0
+  - pytorch-lightning
+  - pyyaml
+  - requests
+  - tensorboard
+  - tensorboardx
+  - torchvision
+  - gcc_linux-64                  # [linux]
+  - gxx_linux-64                  # [linux]
+  - ocl-icd                       # [linux]
+  - libselinux-cos6-x86_64        # [linux]
+  - libx11-cos6-x86_64            # [linux]
+  - libxau-cos6-x86_64            # [linux]
+  - libxcb-cos6-x86_64            # [linux]
+  - libxdamage-cos6-x86_64        # [linux]
+  - libxext-cos6-x86_64           # [linux]
+  - libxfixes-cos6-x86_64         # [linux]
+  - libxxf86vm-cos6-x86_64        # [linux]
+  - mesa-dri-drivers-cos6-x86_64  # [linux]
+  - mesa-libgl-devel-cos6-x86_64  # [linux]
