@@ -12,16 +12,16 @@ dependencies:
   - boost-cpp=1.74.0=h312852a_4
   - bzip2=1.0.8=h7f98852_4
   - c-ares=1.17.1=h7f98852_1
-  - ca-certificates=2021.5.30=ha878542_0
+  - ca-certificates=2021.10.8=ha878542_0
   - cairo=1.16.0=h6cf1ce9_1008
   - capstone=4.0.2=py39h3811e60_1
   - catch2=2.13.6=h4bd325d_0
   - cereal=1.3.0=0
   - ceres-solver=2.0.0=h1a78537_2
-  - certifi=2021.5.30=py39hf3d152e_0
+  - certifi=2021.10.8=py39hf3d152e_1
   - cfitsio=3.470=h2e3daa1_7
   - cgal-cpp=5.2.3=h09f2f54_0
-  - cmake=3.20.5=h8897547_0
+  - cmake=3.21.1=h8897547_0
   - coincbc=2.10.5=hab63836_1
   - collada-dom=2.5.0=h1713cda_4
   - curl=7.77.0=hea6ffbf_0
