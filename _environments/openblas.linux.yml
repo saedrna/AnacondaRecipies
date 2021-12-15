@@ -1,6 +1,5 @@
 channels:
   - conda-forge
-  - saedrna
   - defaults
 
 dependencies:
@@ -16,7 +15,6 @@ dependencies:
   - eigen
   - embree3
   - entwine
-  - geogram
   - geographiclib-cpp
   - gflags
   - glew
@@ -31,10 +29,8 @@ dependencies:
   - libtiff
   - ninja
   - ocl-icd
-  - open3d 0.12.0 h9c3ff4c_1001
   - opencv
   - openexr
-  - openmvg 1.6 h859e10a_1001
   - openscenegraph
   - pcl
   - pdal
@@ -57,3 +53,4 @@ dependencies:
   - libxxf86vm-cos6-x86_64        # [linux]
   - mesa-dri-drivers-cos6-x86_64  # [linux]
   - mesa-libgl-devel-cos6-x86_64  # [linux]
+  - mesa-libegl-devel-cos6-x86_64 # [linux]
