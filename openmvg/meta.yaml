@@ -1,4 +1,4 @@
-{% set version = "1.6" %}
+{% set version = "2.0" %}
 
 package:
   name: openmvg
@@ -7,12 +7,12 @@ package:
 source:
   - url: https://github.com/openMVG/openMVG/archive/v{{ version }}.tar.gz
     fn: openmvg-{{ version }}.tar.gz
-    sha256: 11b7f632a773f8c06fe7e30caeebc8ac124049cd5dd947eaadc8c7bf0a294d64
+    sha256: 950da7d6fc370cc99ad29092fd3b46196f782af2f905e475a7262ceb96170618
     patches: 
       - fixcmake.patch
 
 build:
-  number: 1001
+  number: 1000
 
 requirements:
   build:

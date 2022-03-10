@@ -38,15 +38,9 @@ cmake -G "Ninja" ^
         -DCOINUTILS_INCLUDE_DIR_HINTS=%UNIX_LIBRARY_PREFIX%/include/coin ^
         -DCLP_INCLUDE_DIR_HINTS=%UNIX_LIBRARY_PREFIX%/include/coin ^
         -DOSI_INCLUDE_DIR_HINTS=%UNIX_LIBRARY_PREFIX%/include/coin ^
-        -DOpenMVG_USE_INTERNAL_CLP=OFF ^
-        -DOpenMVG_USE_INTERNAL_COINUTILS=OFF ^
-        -DOpenMVG_USE_INTERNAL_OSI=OFF ^
-        -DOpenMVG_USE_INTERNAL_EIGEN=OFF ^
-        -DOpenMVG_USE_INTERNAL_CEREAL=OFF ^
-        -DOpenMVG_USE_INTERNAL_CERES=OFF ^
-        -DOpenMVG_USE_INTERNAL_FLANN=OFF ^
         -DFLANN_LIBRARY=%UNIX_LIBRARY_PREFIX%/lib/flann_cpp_s.lib ^
         -DJPEG_LIBRARY_RELEASE=%UNIX_LIBRARY_PREFIX%/lib/jpeg-static.lib ^
+        -Dcereal_DIR=%UNIX_LIBRARY_PREFIX%/../lib/cmake/cereal ^
         -DTARGET_ARCHITECTURE=core ^
         ../src 
 

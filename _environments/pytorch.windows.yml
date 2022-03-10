@@ -1,0 +1,16 @@
+channels:
+  - pytorch-lts
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cudatoolkit
+  - cython
+  - pip
+  - pytorch 1.8.1 py3.8_cuda11.1_cudnn8_0
+  - pytorch-lightning
+  - pyyaml
+  - requests
+  - tensorboard
+  - tensorboardx
+  - torchvision
