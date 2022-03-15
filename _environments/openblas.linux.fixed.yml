@@ -5,192 +5,210 @@ dependencies:
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=1_llvm
   - alsa-lib=1.2.3=h516909a_0
-  - assimp=5.0.1=hedfc422_5
-  - binutils_impl_linux-64=2.36.1=h193b22a_1
-  - binutils_linux-64=2.36=hf3e587d_31
-  - blas=2.17=openblas
-  - boost-cpp=1.74.0=h312852a_4
+  - assimp=5.2.1=hedfc422_0
+  - binutils_impl_linux-64=2.36.1=h193b22a_2
+  - binutils_linux-64=2.36=hf3e587d_7
+  - blas=2.113=openblas
+  - blas-devel=3.9.0=13_linux64_openblas
+  - blosc=1.21.0=h9c3ff4c_0
+  - boost-cpp=1.74.0=h6cacc03_7
   - bzip2=1.0.8=h7f98852_4
-  - c-ares=1.17.1=h7f98852_1
+  - c-ares=1.18.1=h7f98852_0
   - ca-certificates=2021.10.8=ha878542_0
-  - cairo=1.16.0=h6cf1ce9_1008
-  - capstone=4.0.2=py39h3811e60_1
-  - catch2=2.13.6=h4bd325d_0
-  - cereal=1.3.0=0
-  - ceres-solver=2.0.0=h1a78537_2
-  - certifi=2021.10.8=py39hf3d152e_1
-  - cfitsio=3.470=h2e3daa1_7
-  - cgal-cpp=5.2.3=h09f2f54_0
-  - cmake=3.21.1=h8897547_0
-  - coincbc=2.10.5=hab63836_1
+  - cairo=1.16.0=ha12eb4b_1010
+  - capstone=4.0.2=py310h6acc77f_2
+  - catch2=2.13.8=h4bd325d_0
+  - cereal=1.3.2=hd8ed1ab_0
+  - ceres-solver=2.0.0=hc79d1a1_4
+  - cfitsio=4.0.0=h9a35b8e_0
+  - cgal-cpp=5.4=h09f2f54_0
+  - cmake=3.22.3=h5432695_0
   - collada-dom=2.5.0=h1713cda_4
-  - curl=7.77.0=hea6ffbf_0
-  - dbus=1.13.6=h48d8840_2
-  - draco=1.4.1=h4bd325d_0
-  - eigen=3.3.9=h4bd325d_1
-  - embree3=3.12.2=h4bd325d_0
-  - entwine=2.1.0=hfac6321_10
-  - expat=2.4.1=h9c3ff4c_0
-  - ffmpeg=4.3.1=hca11adc_2
-  - flann=1.9.1=h2e58136_1008
-  - fontconfig=2.13.1=hba837de_1005
+  - curl=7.82.0=h7bff187_0
+  - dbus=1.13.6=h5008d03_3
+  - double-conversion=3.2.0=h9c3ff4c_0
+  - draco=1.5.2=h924138e_0
+  - eigen=3.4.0=h4bd325d_0
+  - embree3=3.13.3=hcdf23c5_0
+  - entwine=2.2.0=hf0c0cb8_4
+  - expat=2.4.7=h27087fc_0
+  - ffmpeg=4.3.2=h37c90e5_3
+  - flann=1.9.1=hfe772e8_1010
+  - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
+  - font-ttf-inconsolata=3.000=h77eed37_0
+  - font-ttf-source-code-pro=2.038=h77eed37_0
+  - font-ttf-ubuntu=0.83=hab24e00_0
+  - fontconfig=2.13.96=h8e229c2_2
+  - fonts-conda-ecosystem=1=0
+  - fonts-conda-forge=1=0
+  - freeglut=3.2.2=h9c3ff4c_1
   - freetype=2.10.4=h0708190_1
   - freexl=1.0.6=h7f98852_0
-  - gcc_impl_linux-64=9.3.0=h70c0ae5_19
-  - gcc_linux-64=9.3.0=hf25ea35_31
-  - geographiclib-cpp=1.51=h4bd325d_2
-  - geos=3.9.1=h9c3ff4c_2
-  - geotiff=1.6.0=h4f31c25_6
-  - gettext=0.19.8.1=h0b5b191_1005
+  - gcc_impl_linux-64=11.2.0=h82a94d6_14
+  - gcc_linux-64=11.2.0=h39a9532_7
+  - geographiclib-cpp=1.52=h4bd325d_1
+  - geos=3.10.2=h9c3ff4c_0
+  - geotiff=1.7.0=h6593c0a_6
+  - gettext=0.19.8.1=h73d1719_1008
   - gflags=2.2.2=he1b5a44_1004
   - giflib=5.2.1=h36c2ea0_2
+  - gl2ps=1.4.2=h0708190_0
   - glew=2.1.0=h9c3ff4c_2
-  - glfw=3.3.4=h7f98852_0
-  - glib=2.68.3=h9c3ff4c_0
-  - glib-tools=2.68.3=h9c3ff4c_0
+  - glfw=3.3.6=h7f98852_0
   - glm=0.9.9.4=hc9558a2_0
   - glog=0.5.0=h48cff8f_0
-  - glpk=5.0=h445213a_0
   - gmp=6.2.1=h58526e2_0
   - gnutls=3.6.13=h85f3911_1
   - graphite2=1.3.13=h58526e2_1001
-  - gst-plugins-base=1.18.4=hf529b03_2
-  - gstreamer=1.18.4=h76c114f_2
-  - gxx_impl_linux-64=9.3.0=hd87eabc_19
-  - gxx_linux-64=9.3.0=h3fbe746_31
-  - harfbuzz=2.8.1=h83ec7ef_0
+  - gst-plugins-base=1.18.5=hf529b03_3
+  - gstreamer=1.18.5=h9f60fe5_3
+  - gxx_impl_linux-64=11.2.0=h82a94d6_14
+  - gxx_linux-64=11.2.0=hacbe6df_7
+  - harfbuzz=3.4.0=hb4a5f5f_0
   - hdf4=4.2.15=h10796ff_3
-  - hdf5=1.10.6=nompi_h7c3c948_1111
-  - icu=68.1=h58526e2_0
+  - hdf5=1.12.1=nompi_h2386368_104
+  - icu=69.1=h9c3ff4c_0
   - ilmbase=2.5.5=h780b84a_0
-  - jasper=1.900.1=h07fcdf6_1006
+  - jasper=2.0.33=ha77e612_0
   - jbig=2.1=h7f98852_2003
-  - jpeg=9d=h36c2ea0_0
+  - jpeg=9e=h7f98852_0
   - json-c=0.15=h98cffda_0
-  - jsoncpp=1.9.4=h4bd325d_2
-  - kealib=1.4.14=hcc255d8_2
-  - kernel-headers_linux-64=2.6.32=h77966d4_13
-  - krb5=1.19.1=hcc1bbae_0
+  - jsoncpp=1.9.5=h4bd325d_1
+  - kealib=1.4.14=h87e4c3c_3
+  - kernel-headers_linux-64=2.6.32=he073ed8_15
+  - keyutils=1.6.1=h166bdaf_0
+  - krb5=1.19.2=h3790be6_4
   - lame=3.100=h7f98852_1001
-  - laszip=3.4.3=he1b5a44_1
-  - laz-perf=2.0.0=h9c3ff4c_0
-  - ld_impl_linux-64=2.36.1=hea4e1c9_1
-  - lerc=2.2.1=h9c3ff4c_0
-  - libblas=3.8.0=17_openblas
-  - libcblas=3.8.0=17_openblas
-  - libclang=11.1.0=default_ha53f305_1
-  - libcurl=7.77.0=h2574ce0_0
+  - laszip=3.4.3=h9c3ff4c_2
+  - laz-perf=3.0.0=h4bd325d_0
+  - lcms2=2.12=hddcbb42_0
+  - ld_impl_linux-64=2.36.1=hea4e1c9_2
+  - lerc=3.0=h9c3ff4c_0
+  - libblas=3.9.0=13_linux64_openblas
+  - libcblas=3.9.0=13_linux64_openblas
+  - libclang=13.0.1=default_hc23dcda_0
+  - libcurl=7.82.0=h7bff187_0
   - libdap4=3.20.6=hd7c4107_2
-  - libdeflate=1.7=h7f98852_5
-  - libdrm-cos6-x86_64=2.4.65=h9d98e8f_1104
+  - libdeflate=1.10=h7f98852_0
+  - libdrm-cos6-x86_64=2.4.65=h9b0a68f_1105
   - libedit=3.1.20191231=he28a2e2_2
   - libev=4.33=h516909a_1
-  - libevent=2.1.10=hcdb4288_3
-  - libffi=3.3=h58526e2_2
-  - libgcc-devel_linux-64=9.3.0=h7864c58_19
-  - libgcc-ng=9.3.0=h2828fa1_19
-  - libgdal=3.3.1=h8f005ca_0
-  - libgfortran-ng=7.5.0=h14aa051_19
-  - libgfortran4=7.5.0=h14aa051_19
-  - libglib=2.68.3=h3e27bee_0
+  - libevent=2.1.10=h9b69904_4
+  - libffi=3.4.2=h7f98852_5
+  - libgcc-devel_linux-64=11.2.0=h0952999_14
+  - libgcc-ng=11.2.0=h1d223b6_14
+  - libgdal=3.4.1=he20be3c_4
+  - libgfortran-ng=11.2.0=h69a702a_14
+  - libgfortran5=11.2.0=h5c6108e_14
+  - libglib=2.70.2=h174f98d_4
   - libglu=9.0.0=he1b5a44_1001
-  - libgomp=9.3.0=h2828fa1_19
+  - libgomp=11.2.0=h1d223b6_14
   - libiconv=1.16=h516909a_0
-  - libjpeg-turbo=2.1.0=h7f98852_0
-  - libkml=1.3.0=h238a007_1013
-  - liblapack=3.8.0=17_openblas
-  - liblapacke=3.8.0=17_openblas
-  - libllvm11=11.1.0=hf817b99_2
-  - libnetcdf=4.8.0=nompi_hcd642e3_103
-  - libnghttp2=1.43.0=h812cca2_0
+  - libjpeg-turbo=2.1.1=h7f98852_0
+  - libkml=1.3.0=h238a007_1014
+  - liblapack=3.9.0=13_linux64_openblas
+  - liblapacke=3.9.0=13_linux64_openblas
+  - libllvm13=13.0.1=hf817b99_2
+  - libnetcdf=4.8.1=nompi_hb3fd0d9_101
+  - libnghttp2=1.47.0=h727a467_0
+  - libnsl=2.0.0=h7f98852_0
   - libogg=1.3.4=h7f98852_1
-  - libopenblas=0.3.10=pthreads_hb3c22a3_5
-  - libopencv=4.5.2=py39h70bf20d_1
+  - libopenblas=0.3.18=pthreads_h8fe5266_0
+  - libopencv=4.5.5=py31hdf3eee9_3
   - libopus=1.3.1=h7f98852_1
   - libpng=1.6.37=h21135ba_2
-  - libpq=13.3=hd57d9b9_0
-  - libprotobuf=3.16.0=h780b84a_0
-  - librttopo=1.1.0=h1185371_6
-  - libselinux-cos6-x86_64=2.0.94=h9d98e8f_1104
-  - libsepol-cos6-x86_64=2.0.41=h9d98e8f_1104
-  - libspatialite=5.0.1=h8694cbe_5
-  - libssh2=1.9.0=ha56f1ee_6
-  - libstdcxx-devel_linux-64=9.3.0=hb016644_19
-  - libstdcxx-ng=9.3.0=h6de172a_19
-  - libtiff=4.3.0=hf544144_1
+  - libpq=14.2=hd57d9b9_0
+  - libprotobuf=3.19.4=h780b84a_0
+  - librttopo=1.1.0=hf69c175_9
+  - libsanitizer=11.2.0=he4da1e4_14
+  - libselinux-cos6-x86_64=2.0.94=h9b0a68f_1105
+  - libsepol-cos6-x86_64=2.0.41=h9b0a68f_1105
+  - libspatialite=5.0.1=h0e567f8_14
+  - libssh2=1.10.0=ha56f1ee_2
+  - libstdcxx-devel_linux-64=11.2.0=h0952999_14
+  - libstdcxx-ng=11.2.0=he4da1e4_14
+  - libtheora=1.1.1=h7f98852_1005
+  - libtiff=4.3.0=h542a066_3
   - libuuid=2.32.1=h7f98852_1000
-  - libuv=1.41.0=h7f98852_0
+  - libuv=1.43.0=h7f98852_0
   - libvorbis=1.3.7=h9c3ff4c_0
-  - libwebp-base=1.2.0=h7f98852_2
-  - libx11-common-cos6-x86_64=1.6.4=h9d98e8f_1104
-  - libx11-cos6-x86_64=1.6.4=h9d98e8f_1104
-  - libxau-cos6-x86_64=1.0.6=h9d98e8f_1104
-  - libxcb=1.13=h7f98852_1003
-  - libxcb-cos6-x86_64=1.12=h9d98e8f_1104
-  - libxdamage-cos6-x86_64=1.1.3=h9d98e8f_1104
-  - libxext-cos6-x86_64=1.3.3=h9d98e8f_1104
-  - libxfixes-cos6-x86_64=5.0.3=h9d98e8f_1104
+  - libwebp-base=1.2.2=h7f98852_1
+  - libx11-common-cos6-x86_64=1.6.4=h9b0a68f_1105
+  - libx11-cos6-x86_64=1.6.4=h9b0a68f_1105
+  - libxau-cos6-x86_64=1.0.6=h9b0a68f_1105
+  - libxcb=1.13=h7f98852_1004
+  - libxcb-cos6-x86_64=1.12=h9b0a68f_1105
+  - libxdamage-cos6-x86_64=1.1.3=h9b0a68f_1105
+  - libxext-cos6-x86_64=1.3.3=h9b0a68f_1105
+  - libxfixes-cos6-x86_64=5.0.3=h9b0a68f_1105
   - libxkbcommon=1.0.3=he3ba5ed_0
-  - libxml2=2.9.12=h72842e0_0
-  - libxxf86vm-cos6-x86_64=1.1.3=h9d98e8f_1104
-  - libzip=1.8.0=h4de3113_0
-  - llvm-openmp=11.1.0=h4bd325d_1
-  - lz4-c=1.9.3=h9c3ff4c_0
-  - mesa-dri-drivers-cos6-x86_64=11.0.7=h9d98e8f_1104
-  - mesa-dri1-drivers-cos6-x86_64=7.11=h9d98e8f_1104
-  - mesa-libgl-cos6-x86_64=11.0.7=h9d98e8f_1104
-  - mesa-libgl-devel-cos6-x86_64=11.0.7=h9d98e8f_1104
+  - libxml2=2.9.12=h885dcf4_1
+  - libxxf86vm-cos6-x86_64=1.1.3=h9b0a68f_1105
+  - libzip=1.8.0=h4de3113_1
+  - libzlib=1.2.11=h36c2ea0_1013
+  - llvm-openmp=13.0.1=he0ac6c6_1
+  - loguru=0.5.3=py310hff52083_3
+  - lz4-c=1.9.3=h9c3ff4c_1
+  - mesa-dri-drivers-cos6-x86_64=11.0.7=h9b0a68f_1105
+  - mesa-dri1-drivers-cos6-x86_64=7.11=h9b0a68f_1105
+  - mesa-libegl-cos6-x86_64=11.0.7=h9b0a68f_1105
+  - mesa-libegl-devel-cos6-x86_64=11.0.7=h9b0a68f_1105
+  - mesa-libgl-cos6-x86_64=11.0.7=h9b0a68f_1105
+  - mesa-libgl-devel-cos6-x86_64=11.0.7=h9b0a68f_1105
   - metis=5.1.0=h58526e2_1006
-  - mpfr=4.0.2=he80fd80_1
-  - mysql-common=8.0.25=ha770c72_2
-  - mysql-libs=8.0.25=hfa10184_2
-  - ncurses=6.2=h58526e2_4
+  - mpfr=4.1.0=h9202a9a_1
+  - mysql-common=8.0.28=ha770c72_0
+  - mysql-libs=8.0.28=hfa10184_0
+  - ncurses=6.3=h9c3ff4c_0
   - nettle=3.6=he412f7d_0
-  - ninja=1.10.2=h4bd325d_0
-  - nitro=2.7.dev6=he1b5a44_3
-  - nspr=4.30=h9c3ff4c_0
-  - nss=3.67=hb5efdd6_0
-  - numpy=1.21.0=py39hdbf815f_0
-  - ocl-icd=2.3.0=h7f98852_0
-  - opencv=4.5.2=py39hf3d152e_1
+  - ninja=1.10.2=h4bd325d_1
+  - nitro=2.7.dev6=h9c3ff4c_4
+  - nspr=4.32=h9c3ff4c_1
+  - nss=3.74=hb5efdd6_0
+  - numpy=1.22.3=py310h45f3432_0
+  - ocl-icd=2.3.1=h7f98852_0
+  - openblas=0.3.18=pthreads_h4748800_0
+  - opencv=4.5.5=py31hff52083_3
   - openexr=2.5.5=hf817b99_0
   - openh264=2.1.1=h780b84a_0
   - openjpeg=2.4.0=hb52868f_1
   - openscenegraph=3.6.5=h605fd04_11
-  - openssl=1.1.1k=h7f98852_0
-  - pcl=1.11.1=h39b1736_3
+  - openssl=1.1.1l=h7f98852_0
+  - pcl=1.12.0=h0d390f6_2
   - pcre=8.45=h9c3ff4c_0
-  - pdal=2.3.0=hffa3947_3
-  - pip=21.1.3=pyhd8ed1ab_0
+  - pdal=2.3.0=h0a9dca5_24
+  - pip=22.0.4=pyhd8ed1ab_0
   - pixman=0.40.0=h36c2ea0_0
-  - pkg-config=0.29.2=h36c2ea0_1008
-  - pkgconfig=1.5.4=py39hf3d152e_0
-  - poppler=21.03.0=h93df280_0
-  - poppler-data=0.4.10=0
-  - postgresql=13.3=h2510834_0
-  - proj=8.0.1=h277dcde_0
+  - poppler=22.01.0=h1434ded_1
+  - poppler-data=0.4.11=hd8ed1ab_0
+  - postgresql=14.2=h2510834_0
+  - proj=8.2.1=h277dcde_0
   - pthread-stubs=0.4=h36c2ea0_1001
-  - py-opencv=4.5.2=py39hef51801_1
-  - python=3.9.6=h49503c6_0_cpython
-  - python_abi=3.9=2_cp39
-  - qhull=2020.2=h4bd325d_1
-  - qt=5.12.9=hda022c4_4
+  - pugixml=1.11.4=h9c3ff4c_0
+  - py-opencv=4.5.5=py31hfdc917e_3
+  - python=3.10.2=h85951f9_4_cpython
+  - python_abi=3.10=2_cp310
+  - qhull=2020.2=h4bd325d_2
+  - qt=5.12.9=ha98a1a1_5
   - readline=8.1=h46c0cb4_0
   - rhash=1.4.1=h7f98852_0
-  - setuptools=49.6.0=py39hf3d152e_3
-  - sqlite=3.36.0=h9cd32fc_0
-  - suitesparse=5.10.1=hd8046ac_0
-  - sysroot_linux-64=2.12=h77966d4_13
-  - tbb=2020.2=h4bd325d_4
-  - tbb-devel=2020.2=h4bd325d_4
-  - tiledb=2.3.1=he87e0bf_0
-  - tk=8.6.10=h21135ba_1
-  - tzcode=2021a=h7f98852_1
-  - tzdata=2021a=he74cb21_0
-  - wheel=0.36.2=pyhd3deb0d_0
+  - setuptools=60.9.3=py310hff52083_0
+  - sqlite=3.37.0=h9cd32fc_0
+  - suitesparse=5.10.1=h9e50725_1
+  - sysroot_linux-64=2.12=he073ed8_15
+  - tbb=2021.5.0=h4bd325d_0
+  - tbb-devel=2021.5.0=h4bd325d_0
+  - tiledb=2.6.4=h1e4a385_0
+  - tk=8.6.12=h27826a3_0
+  - tzcode=2021e=h7f98852_0
+  - tzdata=2021e=he74cb21_0
+  - utfcpp=3.2.1=ha770c72_0
+  - vtk=9.1.0=qt_py310h4254d84_205
+  - wheel=0.37.1=pyhd8ed1ab_0
   - x264=1!161.3030=h7f98852_1
-  - xerces-c=3.2.3=h9d8b166_2
+  - xerces-c=3.2.3=h8ce2273_4
   - xorg-fixesproto=5.0=h7f98852_1002
+  - xorg-inputproto=2.3.2=h7f98852_1002
   - xorg-kbproto=1.0.7=h7f98852_1002
   - xorg-libice=1.0.10=h7f98852_0
   - xorg-libsm=1.2.3=hd9c2040_1000
@@ -200,13 +218,15 @@ dependencies:
   - xorg-libxdmcp=1.1.3=h7f98852_0
   - xorg-libxext=1.3.4=h7f98852_1
   - xorg-libxfixes=5.0.3=h7f98852_1004
+  - xorg-libxi=1.7.10=h7f98852_0
   - xorg-libxinerama=1.1.4=h9c3ff4c_1001
   - xorg-libxrandr=1.5.2=h7f98852_1
   - xorg-libxrender=0.9.10=h7f98852_1003
+  - xorg-libxt=1.2.1=h7f98852_2
   - xorg-randrproto=1.5.0=h7f98852_1001
   - xorg-renderproto=0.11.1=h7f98852_1002
   - xorg-xextproto=7.3.0=h7f98852_1002
   - xorg-xproto=7.0.31=h7f98852_1007
   - xz=5.2.5=h516909a_1
-  - zlib=1.2.11=h516909a_1010
-  - zstd=1.5.0=ha95c52a_0
+  - zlib=1.2.11=h36c2ea0_1013
+  - zstd=1.5.2=ha95c52a_0
