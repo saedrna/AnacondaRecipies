@@ -77,7 +77,7 @@ dependencies:
   - kealib=1.4.14=h87e4c3c_3
   - kernel-headers_linux-64=2.6.32=he073ed8_15
   - keyutils=1.6.1=h166bdaf_0
-  - krb5=1.19.2=h3790be6_4
+  - krb5=1.19.3=h3790be6_0
   - lame=3.100=h7f98852_1001
   - laszip=3.4.3=h9c3ff4c_2
   - laz-perf=3.0.0=h4bd325d_0
@@ -163,6 +163,7 @@ dependencies:
   - nettle=3.6=he412f7d_0
   - ninja=1.10.2=h4bd325d_1
   - nitro=2.7.dev6=h9c3ff4c_4
+  - nlohmann_json=3.10.5=h9c3ff4c_0
   - nspr=4.32=h9c3ff4c_1
   - nss=3.74=hb5efdd6_0
   - numpy=1.22.3=py310h45f3432_0
@@ -176,7 +177,7 @@ dependencies:
   - openssl=1.1.1l=h7f98852_0
   - pcl=1.12.0=h0d390f6_2
   - pcre=8.45=h9c3ff4c_0
-  - pdal=2.3.0=h0a9dca5_24
+  - pdal=2.3.0=h23f837d_26
   - pip=22.0.4=pyhd8ed1ab_0
   - pixman=0.40.0=h36c2ea0_0
   - poppler=22.01.0=h1434ded_1
@@ -193,7 +194,7 @@ dependencies:
   - readline=8.1=h46c0cb4_0
   - rhash=1.4.1=h7f98852_0
   - setuptools=60.9.3=py310hff52083_0
-  - sqlite=3.37.0=h9cd32fc_0
+  - sqlite=3.37.1=h4ff8645_0
   - suitesparse=5.10.1=h9e50725_1
   - sysroot_linux-64=2.12=he073ed8_15
   - tbb=2021.5.0=h4bd325d_0

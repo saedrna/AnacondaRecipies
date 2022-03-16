@@ -28,6 +28,7 @@ dependencies:
   - liblapacke
   - libtiff
   - ninja
+  - nlohmann_json 
   - ocl-icd
   - opencv
   - openexr
