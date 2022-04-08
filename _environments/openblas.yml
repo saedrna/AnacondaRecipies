@@ -32,10 +32,9 @@ dependencies:
   - liblapacke
   - libtiff
   - ninja
-  # - open3d 0.12.0 ha925a31_1000
+  - occt
   - opencv
   - openexr
-  - openimageio
   - openmvg 2.0 hd6f6506_1000
   - openscenegraph
   - pcl
