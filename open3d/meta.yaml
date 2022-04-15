@@ -1,15 +1,16 @@
-{% set version = "0.12.0" %}
+{% set version = "0.15.1" %}
 
 package:
   name: open3d
   version: {{ version }}
 
 source:
-  - git_url: https://github.com/intel-isl/Open3D
-  - git_rev: v0.12.0
+  - url: https://github.com/isl-org/Open3D/releases/download/v{{ version }}/open3d-devel-windows-amd64-{{ version }}.zip
+    fn: open3d-{{ version }}.zip
+    sha256: 936f275e1c44465c4b590aae699327418c81741a41e7119b7ad5e9f5c88ef51f
 
 build:
-  number: 1001
+  number: 1000
 
 requirements:
   build:
@@ -38,28 +39,7 @@ requirements:
     - {{ cdt('libxdamage-devel') }}      # [linux]
     - {{ cdt('libxfixes') }}             # [linux]
     - {{ cdt('libxfixes-devel') }}       # [linux]
-    - {{ cdt('libxxf86vm') }}            # [linux]
-
-  host:
-    - eigen 3.3.9
-    - flann
-    - glew
-    - glfw
-    - libjpeg-turbo
-    - libpng
-    - zlib
-    - pybind11
-    - freetype
-     
-  run:
-    - eigen 3.3.9
-    - flann
-    - glew
-    - glfw
-    - libjpeg-turbo
-    - libpng
-    - zlib
-    - freetype
+    - {{ cdt('libxxf86vm') }}            # [linux]  
 
 about:
   home: http://www.open3d.org
