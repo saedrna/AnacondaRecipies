@@ -33,6 +33,7 @@ dependencies:
   - libtiff
   - ninja
   - occt
+  - open3d 0.15.1 h63175ca_1000
   - opencv
   - openexr
   - openmvg 2.0 hd6f6506_1000
