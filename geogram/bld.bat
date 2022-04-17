@@ -12,7 +12,7 @@ set UNIX_SRC_DIR=%SRC_DIR:\=/%
 
 set CL=/MP
 
-cmake -G "Visual Studio 15 2017" -A x64 ^
+cmake -G "Visual Studio 17 2022" -A x64 ^
     -DBUILD_SHARED_LIBS=ON ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
