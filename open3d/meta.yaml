@@ -5,10 +5,12 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/isl-org/Open3D/releases/download/v{{ version }}/open3d-devel-windows-amd64-{{ version }}.zip
-    fn: open3d-{{ version }}.zip
-    sha256: 936f275e1c44465c4b590aae699327418c81741a41e7119b7ad5e9f5c88ef51f
-
+  - url: https://github.com/isl-org/Open3D/releases/download/v{{ version }}/open3d-devel-windows-amd64-{{ version }}.zip # [win]
+    fn: open3d-{{ version }}.zip                                                                                         # [win]
+    sha256: 936f275e1c44465c4b590aae699327418c81741a41e7119b7ad5e9f5c88ef51f                                             # [win]
+  - url: https://github.com/isl-org/Open3D/releases/download/v0.15.1/open3d-devel-linux-x86_64-cxx11-abi-0.15.1.tar.xz   # [linux]
+    fn: open3d-{{ version }}.tar.xz                                                                                      # [linux]
+    shar256: ae361ffc41f4b5805aa3bc14a72d866d06ffa72d821e77a1d06cb45e4157e26d                                            # [linux]
 build:
   number: 1000
 
