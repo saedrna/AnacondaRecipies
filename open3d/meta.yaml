@@ -12,7 +12,7 @@ source:
     fn: open3d-{{ version }}.tar.xz                                                                                      # [linux]
     shar256: ae361ffc41f4b5805aa3bc14a72d866d06ffa72d821e77a1d06cb45e4157e26d                                            # [linux]
 build:
-  number: 1000
+  number: 1001
 
 requirements:
   build:
@@ -42,7 +42,11 @@ requirements:
     - {{ cdt('libxfixes') }}             # [linux]
     - {{ cdt('libxfixes-devel') }}       # [linux]
     - {{ cdt('libxxf86vm') }}            # [linux]  
-
+  host:
+    - libcxx                             # [linux]
+  run:
+    - libcxx                             # [linux]
+    
 about:
   home: http://www.open3d.org
   license: MIT

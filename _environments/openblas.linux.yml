@@ -1,5 +1,6 @@
 channels:
   - conda-forge
+  - saedrna
   - defaults
 
 dependencies:
@@ -15,6 +16,7 @@ dependencies:
   - eigen
   - embree3
   - entwine
+  - geogram
   - geographiclib-cpp
   - gflags
   - glew
@@ -29,7 +31,9 @@ dependencies:
   - libtiff
   - ninja
   - nlohmann_json 
+  - occt
   - ocl-icd
+  - open3d
   - opencv
   - openexr
   - openscenegraph
