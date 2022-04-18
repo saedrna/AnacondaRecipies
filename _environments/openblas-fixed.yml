@@ -40,7 +40,7 @@ dependencies:
   - freeimage=3.18.0=h6676e37_8
   - freetype=2.10.4=h546665d_1
   - freexl=1.0.6=ha8e266a_0
-  - geogram=1.7.5=ha86ab40_1001
+  - geogram=1.7.7=h613f450_1001
   - geographiclib-cpp=1.52=h2d74725_1
   - geos=3.10.2=h39d44d4_0
   - geotiff=1.7.1=h38b14a8_1
