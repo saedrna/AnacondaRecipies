@@ -16,7 +16,7 @@ dependencies:
   - eigen
   - embree3
   - entwine
-  - geogram
+  - geogram 1.7.7
   - geographiclib-cpp
   - gflags
   - glew

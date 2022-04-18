@@ -250,10 +250,10 @@ pin_run_as_build:
   zstd:
     max_pin: x.x.x
 
-libblas: 3.9 *netlib
-libcblas: 3.9 *netlib
-liblapack: 3.9 *netlib
-liblapacke: 3.9 *netlib
+libblas: 3.8 *netlib
+libcblas: 3.8 *netlib
+liblapack: 3.8 *netlib
+liblapacke: 3.8 *netlib
 python: 3.8.* *_cpython
 eigen: 3.4.0 *
 

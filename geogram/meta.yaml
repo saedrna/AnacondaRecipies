@@ -12,7 +12,7 @@ source:
   #   fn: geogram-{{ version }}.zip # [win]
   #   sha256: d69fcf92d2671e1881f2bdec3f9595ce818c554e7375c1397d699a93069e1991 # [win]
 build:
-  number: 1000
+  number: 1001
 
 requirements:
   build:
