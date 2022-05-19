@@ -9,7 +9,7 @@ source:
     fn: openmvg-{{ version }}.tar.gz
     sha256: 950da7d6fc370cc99ad29092fd3b46196f782af2f905e475a7262ceb96170618
     patches: 
-      - fixcmake.patch
+      - fix-cmake.patch
 
 build:
   number: 1001

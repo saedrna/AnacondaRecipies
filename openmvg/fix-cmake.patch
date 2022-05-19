@@ -1,0 +1,84 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 5d909ec..ede7208 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -98,11 +98,11 @@ endif()
+ # ==============================================================================
+ # Check that submodule have been initialized and updated
+ # ==============================================================================
+-if (NOT EXISTS ${PROJECT_SOURCE_DIR}/dependencies/cereal/include)
+-  message(FATAL_ERROR
+-    "\n submodule(s) are missing, please update your repository:\n"
+-    "  > git submodule update -i\n")
+-endif()
++# if (NOT EXISTS ${PROJECT_SOURCE_DIR}/dependencies/cereal/include)
++#   message(FATAL_ERROR
++#     "\n submodule(s) are missing, please update your repository:\n"
++#     "  > git submodule update -i\n")
++# endif()
+ 
+ # ==============================================================================
+ # Additional cmake find modules
+@@ -117,6 +117,14 @@ if (UNIX AND NOT OpenMVG_BUILD_COVERAGE)
+   set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+ endif ()
+ 
++if(MSVC)
++  set(
++    CMAKE_CXX_FLAGS
++    "${CMAKE_CXX_FLAGS} /bigobj /MP /wd4005 /wd4996 /wd4819 /wd4251 /wd4267 /wd4244 /wd4275 /wd4530 /wd4334 /wd4018"
++    )
++  add_definitions(-DNOMINMAX)
++endif(MSVC)
++
+ # ==============================================================================
+ # Check C++11 support
+ # ==============================================================================
+@@ -235,7 +243,9 @@ ENDMACRO(UNIT_TEST)
+ # - external by default
+ # - internal if cereal not found
+ # ==============================================================================
+-find_package(cereal QUIET CONFIG)
++# find_package(cereal QUIET CONFIG)
++find_package(cereal REQUIRED CONFIG)
++add_library(cereal ALIAS cereal::cereal)
+ if (NOT TARGET cereal)
+   add_library(cereal INTERFACE)
+   target_include_directories(cereal
+diff --git a/src/cmakeFindModules/FindClp.cmake b/src/cmakeFindModules/FindClp.cmake
+index 8a69c23..1ed9a21 100644
+--- a/src/cmakeFindModules/FindClp.cmake
++++ b/src/cmakeFindModules/FindClp.cmake
+@@ -51,7 +51,7 @@ IF(EXISTS "${CLP_DIR}" AND NOT "${CLP_DIR}" STREQUAL "")
+         SET(CLP_INCLUDE_DIR ${CLP_DIR})
+ 
+         FIND_LIBRARY(CLP_LIBRARY NAMES Clp)
+-        FIND_LIBRARY(CLPSOLVER_LIBRARY NAMES ClpSolver)
++        FIND_LIBRARY(CLPSOLVER_LIBRARY NAMES ClpSolver Clp)
+         FIND_LIBRARY(OSICLP_LIBRARY NAMES OsiClp)
+ 
+         # locate Clp libraries
+diff --git a/src/openMVG/matching/CMakeLists.txt b/src/openMVG/matching/CMakeLists.txt
+index 2e0eafd..f9b505c 100644
+--- a/src/openMVG/matching/CMakeLists.txt
++++ b/src/openMVG/matching/CMakeLists.txt
+@@ -25,6 +25,7 @@ target_compile_features(openMVG_matching INTERFACE ${CXX11_FEATURES})
+ target_include_directories(openMVG_matching
+   PUBLIC
+     $<BUILD_INTERFACE:${FLANN_INCLUDE_DIRS}>
++    $<BUILD_INTERFACE:${FLANN_INCLUDE_DIRS}>/../
+     $<INSTALL_INTERFACE:include>
+     $<INSTALL_INTERFACE:include/openMVG>
+ )
+diff --git a/src/software/SfM/CMakeLists.txt b/src/software/SfM/CMakeLists.txt
+index 6db7e83..c1848f3 100644
+--- a/src/software/SfM/CMakeLists.txt
++++ b/src/software/SfM/CMakeLists.txt
+@@ -201,6 +201,7 @@ target_link_libraries(openMVG_main_ComputeStructureFromKnownPoses
+     openMVG_features
+     openMVG_sfm
+     ${STLPLUS_LIBRARY}
++    Ceres::ceres
+ )
+ 
+ add_executable(openMVG_main_ComputeSfM_DataColor main_ComputeSfM_DataColor.cpp)

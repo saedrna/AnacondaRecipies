@@ -1,5 +1,5 @@
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 5d909ec..f98902d 100644
+index 5d909ec..72bd478 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
 @@ -98,11 +98,11 @@ endif()
@@ -19,11 +19,27 @@ index 5d909ec..f98902d 100644
  
  # ==============================================================================
  # Additional cmake find modules
-@@ -235,7 +235,8 @@ ENDMACRO(UNIT_TEST)
+@@ -112,6 +112,14 @@ set(CMAKE_MODULE_PATH
+ include(OptimizeForArchitecture)
+ OptimizeForArchitecture()
+ 
++if(MSVC)
++  set(
++    CMAKE_CXX_FLAGS
++    "${CMAKE_CXX_FLAGS} /bigobj /MP /wd4005 /wd4996 /wd4819 /wd4251 /wd4267 /wd4244 /wd4275 /wd4530 /wd4334 /wd4018"
++    )
++  add_definitions(-DNOMINMAX)
++endif(MSVC)
++
+ if (UNIX AND NOT OpenMVG_BUILD_COVERAGE)
+   set(CMAKE_C_FLAGS_RELEASE "-O3")
+   set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+@@ -235,7 +243,9 @@ ENDMACRO(UNIT_TEST)
  # - external by default
  # - internal if cereal not found
  # ==============================================================================
 -find_package(cereal QUIET CONFIG)
++# find_package(cereal QUIET CONFIG)
 +find_package(cereal REQUIRED CONFIG)
 +add_library(cereal ALIAS cereal::cereal)
  if (NOT TARGET cereal)
@@ -42,6 +58,18 @@ index 8a69c23..1ed9a21 100644
          FIND_LIBRARY(OSICLP_LIBRARY NAMES OsiClp)
  
          # locate Clp libraries
+diff --git a/src/openMVG/matching/CMakeLists.txt b/src/openMVG/matching/CMakeLists.txt
+index 2e0eafd..f9b505c 100644
+--- a/src/openMVG/matching/CMakeLists.txt
++++ b/src/openMVG/matching/CMakeLists.txt
+@@ -25,6 +25,7 @@ target_compile_features(openMVG_matching INTERFACE ${CXX11_FEATURES})
+ target_include_directories(openMVG_matching
+   PUBLIC
+     $<BUILD_INTERFACE:${FLANN_INCLUDE_DIRS}>
++    $<BUILD_INTERFACE:${FLANN_INCLUDE_DIRS}>/../
+     $<INSTALL_INTERFACE:include>
+     $<INSTALL_INTERFACE:include/openMVG>
+ )
 diff --git a/src/software/SfM/CMakeLists.txt b/src/software/SfM/CMakeLists.txt
 index 6db7e83..c1848f3 100644
 --- a/src/software/SfM/CMakeLists.txt
