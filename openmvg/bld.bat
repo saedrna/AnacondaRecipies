@@ -23,7 +23,7 @@ rmdir %SRC_DIR%\src\third_party\png /s /q
 rmdir %SRC_DIR%\src\third_party\tiff /s /q
 rmdir %SRC_DIR%\src\third_party\zlib /s /q
 
-cmake -G "Ninja" ^
+cmake -LAH -G "Visual Studio 17 2022" -A x64 ^
         -DCMAKE_BUILD_TYPE=Release ^
         -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^
         -DOpenMVG_BUILD_SHARED=ON ^
@@ -47,5 +47,7 @@ cmake -G "Ninja" ^
 if errorlevel 1 exit 1
 cmake --build . --target install --config Release
 if errorlevel 1 exit 1
+
+xcopy %LIBRARY_PREFIX%\lib\*.dll %LIBRARY_PREFIX%\bin /Y
 
 exit 0
