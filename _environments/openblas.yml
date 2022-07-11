@@ -6,6 +6,7 @@ channels:
 dependencies:
   - assimp
   - blas * openblas
+  - blas-devel
   - boost-cpp
   - capstone
   - catch2

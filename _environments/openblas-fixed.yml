@@ -5,10 +5,11 @@ channels:
 dependencies:
   - assimp=5.2.3=hc2aa0de_1
   - blas=2.17=openblas
+  - blas-devel=3.8.0=17_openblas
   - blosc=1.21.1=h74325e0_3
   - boost-cpp=1.74.0=h9f4b32c_8
   - bzip2=1.0.8=h8ffe710_4
-  - ca-certificates=2022.5.18=h5b45459_0
+  - ca-certificates=2022.5.18.1=h5b45459_0
   - cairo=1.16.0=h15b3021_1010
   - capstone=4.0.1=ha925a31_1000
   - catch2=3.0.1=h5362a0b_0
@@ -115,6 +116,7 @@ dependencies:
   - numpy=1.22.3=py310hed7ac4c_2
   - occt=7.6.1=h8294837_0
   - open3d=0.15.1=h63175ca_1000
+  - openblas=0.3.10=h4665150_0
   - opencv=4.5.5=py310h5588dad_9
   - openexr=3.1.5=hab3b255_0
   - openjpeg=2.4.0=hb211442_1
@@ -125,7 +127,7 @@ dependencies:
   - pcl=1.12.1=h8e4b9db_0
   - pcre=8.45=h0e60522_0
   - pdal=2.4.0=h8c2eea7_4
-  - pip=22.1=pyhd8ed1ab_0
+  - pip=22.0.4=pyhd8ed1ab_0
   - pixman=0.40.0=h8ffe710_0
   - poppler=22.04.0=h24fffdf_0
   - poppler-data=0.4.11=hd8ed1ab_0
@@ -138,7 +140,7 @@ dependencies:
   - qhull=2020.2=h70d2c02_2
   - qt=5.12.9=h556501e_6
   - rapidjson=1.1.0=ha925a31_1002
-  - setuptools=62.3.1=py310h5588dad_0
+  - setuptools=62.3.2=py310h5588dad_0
   - snappy=1.1.9=h82413e6_1
   - sqlite=3.38.5=h8ffe710_0
   - suitesparse=5.4.0=h5d0cbe0_1
