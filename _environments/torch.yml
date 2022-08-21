@@ -3,6 +3,9 @@ channels:
   - numba
   - conda-forge
   - torch-points3d
+  - metric-learning
+  - open3d-admin
+  - pyg
   - defaults
 
 dependencies:
@@ -20,13 +23,17 @@ dependencies:
   - llvm-tools
   - llvmlite
   - matplotlib
+  - ninja
   - numba 0.56.0 np1.11py3.8hc13618b_gf75c45a8d_0 # from numba
+  - open3d
   - pandas
   - pip
   - plyfile
   - poetry
+  - py-opencv
+  - pyg
   - python 3.8.* 
-  - pytorch 1.12.0 py3.8_cuda11.3_cudnn8.3.2_0
+  - pytorch 1.11.0
   - pytorch-lightning
   - pyyaml
   - requests
@@ -38,6 +45,7 @@ dependencies:
   - torch-points-kernels
   - torchvision
   - wandb
+  - pytorch-metric-learning
   - gcc_linux-64 9.*              # [linux]
   - gxx_linux-64 9.*              # [linux]
   - ocl-icd                       # [linux]
@@ -53,5 +61,3 @@ dependencies:
   - mesa-libgl-devel-cos6-x86_64  # [linux]
   - pip:
     - torchnet 
-    - pytorch-metric-learning 
-    - open3d 
