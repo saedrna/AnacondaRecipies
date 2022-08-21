@@ -1,28 +1,45 @@
 channels:
-  - pytorch-lts
-  - pyg
+  - pytorch
+  - numba
   - conda-forge
+  - torch-points3d
   - defaults
 
 dependencies:
   - blas-devel
-  - cudatoolkit
+  - cudatoolkit 11.3.*
   - cython
   - einops
+  - gdown
+  - h5py
+  - hydra
+  - hydra-core
   - jupyter
+  - jupyterlab
   - kornia
+  - llvm-tools
+  - llvmlite
+  - matplotlib
+  - numba 0.56.0 np1.11py3.8hc13618b_gf75c45a8d_0 # from numba
+  - pandas
   - pip
   - plyfile
-  - pyg
-  - pytorch 1.8.1 py3.8_cuda11.1_cudnn8.0.5_0
+  - poetry
+  - python 3.8.* 
+  - pytorch 1.12.0 py3.8_cuda11.3_cudnn8.3.2_0
   - pytorch-lightning
   - pyyaml
   - requests
+  - scikit-image
+  - scikit-learn
+  - scipy
   - tensorboard
   - tensorboardx
+  - torch-points-kernels
   - torchvision
-  - gcc_linux-64 10.*             # [linux]
-  - gxx_linux-64 10.*             # [linux]
+  - wandb
+  - gcc_linux-64 9.*              # [linux]
+  - gxx_linux-64 9.*              # [linux]
   - ocl-icd                       # [linux]
   - libselinux-cos6-x86_64        # [linux]
   - libx11-cos6-x86_64            # [linux]
@@ -34,3 +51,7 @@ dependencies:
   - libxxf86vm-cos6-x86_64        # [linux]
   - mesa-dri-drivers-cos6-x86_64  # [linux]
   - mesa-libgl-devel-cos6-x86_64  # [linux]
+  - pip:
+    - torchnet 
+    - pytorch-metric-learning 
+    - open3d 
