@@ -5,6 +5,7 @@ channels:
 
 dependencies:
   - assimp
+  - blas-devel
   - blas * openblas
   - boost-cpp
   - capstone
@@ -45,8 +46,8 @@ dependencies:
   - tbb
   - tbb-devel
   - xerces-c
-  - gcc_linux-64                  # [linux]
-  - gxx_linux-64                  # [linux]
+  - gcc_linux-64 9.5              # [linux]
+  - gxx_linux-64 9.5              # [linux]
   - ocl-icd                       # [linux]
   - libselinux-cos6-x86_64        # [linux]
   - libx11-cos6-x86_64            # [linux]
