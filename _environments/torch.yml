@@ -4,7 +4,6 @@ channels:
   - conda-forge
   - torch-points3d
   - metric-learning
-  - open3d-admin
   - pyg
   - defaults
 
@@ -25,7 +24,6 @@ dependencies:
   - matplotlib
   - ninja
   - numba 0.56.0 np1.11py3.8hc13618b_gf75c45a8d_0 # from numba
-  - open3d
   - pandas
   - pip
   - plyfile
@@ -61,3 +59,6 @@ dependencies:
   - mesa-libgl-devel-cos6-x86_64  # [linux]
   - pip:
     - torchnet 
+    - open3d
+    - class-resolver
+    
