@@ -1,0 +1,46 @@
+channels:
+  - pytorch
+  - numba
+  - conda-forge
+  - metric-learning
+  - defaults
+
+dependencies:
+  - blas-devel
+  - cudatoolkit 11.3.*
+  - cython
+  - einops
+  - gdown
+  - h5py
+  - hydra-core
+  - jupyter
+  - jupyterlab
+  - kornia
+  - llvm-tools
+  - llvmlite
+  - matplotlib
+  - ninja
+  - numba 0.56.0
+  - pandas
+  - pip
+  - plyfile
+  - poetry
+  - py-opencv
+  - python 3.8.* 
+  - pytorch 1.11.0
+  - pytorch-lightning
+  - pyyaml
+  - requests
+  - rich
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - tensorboard
+  - tensorboardx
+  - torchvision
+  - wandb
+  - pytorch-metric-learning
+  - pip:
+    - torchnet 
+    - open3d
+    
