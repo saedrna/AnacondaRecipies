@@ -59,4 +59,4 @@ dependencies:
   - pip:
     - torchnet 
     - open3d
-    
+    - laspy[lazrs,laszip]
