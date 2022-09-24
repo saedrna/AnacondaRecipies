@@ -31,18 +31,19 @@ dependencies:
   - python 3.8.* 
   - pytorch 1.11.0
   - pytorch-lightning
+  - pytorch-metric-learning
   - pyyaml
   - requests
   - rich
   - scikit-image
   - scikit-learn
   - scipy
+  - shapely
   - tensorboard
   - tensorboardx
   - torch-points-kernels
   - torchvision
   - wandb
-  - pytorch-metric-learning
   - gcc_linux-64 9.*              # [linux]
   - gxx_linux-64 9.*              # [linux]
   - ocl-icd                       # [linux]
@@ -59,4 +60,4 @@ dependencies:
   - pip:
     - torchnet 
     - open3d
-    - laspy[lazrs,laszip]
+    - laspy[lazrs]
