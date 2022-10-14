@@ -4,6 +4,7 @@ channels:
   - conda-forge
   - torch-points3d
   - metric-learning
+  - pyg
   - defaults
 
 dependencies:
@@ -28,6 +29,7 @@ dependencies:
   - plyfile
   - poetry
   - py-opencv
+  - pyg 2.1.0
   - python 3.8.* 
   - pytorch 1.11.0
   - pytorch-lightning
