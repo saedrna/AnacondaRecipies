@@ -12,6 +12,7 @@ dependencies:
   - cudatoolkit 11.3.*
   - cython
   - einops
+  - gdal
   - gdown
   - h5py
   - hydra
@@ -25,12 +26,14 @@ dependencies:
   - ninja
   - numba 0.56.0 np1.11py3.8hc13618b_gf75c45a8d_0 # from numba
   - pandas
+  - pdal
   - pip
   - plyfile
   - poetry
   - py-opencv
   - pyg 2.1.0
   - python 3.8.* 
+  - python-pdal 
   - pytorch 1.11.0
   - pytorch-lightning
   - pytorch-metric-learning
