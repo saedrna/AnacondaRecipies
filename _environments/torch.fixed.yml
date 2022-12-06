@@ -520,6 +520,7 @@ dependencies:
   - zlib-ng=2.0.6=h166bdaf_0
   - zstd=1.5.2=h6239696_4
   - pip:
+    - --find-links https://github.com/pytorch/TensorRT/releases/expanded_assets/v1.3.0
     - addict==2.4.0
     - configargparse==1.5.3
     - dash==2.7.0
