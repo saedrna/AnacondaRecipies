@@ -3,16 +3,16 @@ channels:
   - numba
   - conda-forge
   - metric-learning
+  - pyg
   - defaults
 
 dependencies:
   - blas-devel
-  - cudatoolkit 11.3.*
+  - cudatoolkit 11.6
   - cython
   - einops
   - gdown
   - h5py
-  - hydra-core
   - jupyter
   - jupyterlab
   - kornia
@@ -21,14 +21,20 @@ dependencies:
   - matplotlib
   - ninja
   - numba 0.56.0
+  - omegaconf
   - pandas
+  - pdal
   - pip
   - plyfile
   - poetry
   - py-opencv
+  - pyg
+  - pyinstaller
   - python 3.8.* 
-  - pytorch 1.11.0
+  - python-pdal
+  - pytorch 1.12.1
   - pytorch-lightning
+  - pytorch-metric-learning
   - pyyaml
   - requests
   - rich
@@ -38,8 +44,6 @@ dependencies:
   - tensorboard
   - tensorboardx
   - torchvision
-  - wandb
-  - pytorch-metric-learning
   - pip:
     - torchnet 
     - open3d
