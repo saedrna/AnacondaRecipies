@@ -64,4 +64,4 @@ dependencies:
   - pip:
     - open3d
     - mmsegmentation
-    - mmcv
+    - mmcv-full
