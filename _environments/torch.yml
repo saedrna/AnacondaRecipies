@@ -63,3 +63,5 @@ dependencies:
   - mesa-libgl-devel-cos6-x86_64  # [linux]
   - pip:
     - open3d
+    - mmsegmentation
+    - mmcv
