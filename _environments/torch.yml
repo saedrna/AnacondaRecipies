@@ -21,6 +21,7 @@ dependencies:
   - llvm-tools
   - llvmlite
   - matplotlib
+  - mmcv-full
   - ninja
   - numba 0.56.0 np1.11py3.8hc13618b_gf75c45a8d_0 # from numba
   - omegaconf
@@ -30,6 +31,7 @@ dependencies:
   - plyfile
   - poetry
   - py-opencv
+  - pycocotools
   - pyg 2.2.0
   - pyinstaller
   - python 3.8.* 
@@ -64,4 +66,3 @@ dependencies:
   - pip:
     - open3d
     - mmsegmentation
-    - mmcv-full
