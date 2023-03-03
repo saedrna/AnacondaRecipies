@@ -1,0 +1,67 @@
+channels:
+  - pytorch
+  - numba
+  - conda-forge
+  - nvidia
+  - pyg
+  - defaults
+
+dependencies:
+  - blas-devel
+  - cython
+  - einops
+  - gdal
+  - gdown
+  - h5py
+  - jupyter
+  - jupyterlab
+  - kornia
+  - llvm-tools
+  - llvmlite
+  - matplotlib
+  - ninja
+  - numba 0.56.0 np1.11py3.8hc13618b_gf75c45a8d_0 # from numba
+  - omegaconf
+  - pandas
+  - pdal
+  - pip
+  - plyfile
+  - poetry
+  - py-opencv
+  - pycocotools
+  - pyg 2.2.0
+  - pyinstaller
+  - python 3.8.* 
+  - python-pdal 
+  - pytorch 1.13.0 py3.8_cuda11.7_cudnn8.5.0_0
+  - pytorch-cuda=11.7
+  - pytorch-lightning
+  - pyyaml
+  - requests
+  - rich
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - shapely
+  - tensorboard
+  - tensorboardx
+  - torchvision
+  - gcc_linux-64 9.*              # [linux]
+  - gxx_linux-64 9.*              # [linux]
+  - ocl-icd                       # [linux]
+  - libselinux-cos6-x86_64        # [linux]
+  - libx11-cos6-x86_64            # [linux]
+  - libxau-cos6-x86_64            # [linux]
+  - libxcb-cos6-x86_64            # [linux]
+  - libxdamage-cos6-x86_64        # [linux]
+  - libxext-cos6-x86_64           # [linux]
+  - libxfixes-cos6-x86_64         # [linux]
+  - libxxf86vm-cos6-x86_64        # [linux]
+  - mesa-dri-drivers-cos6-x86_64  # [linux]
+  - mesa-libgl-devel-cos6-x86_64  # [linux]
+  - pip:
+    - open3d
+    - openmim
+    - mmcv-full
+    - --find-links https://download.openmmlab.com/mmcv/dist/cu117/torch1.13/index.html
+    - mmsegmentation
