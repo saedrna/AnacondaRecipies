@@ -1,0 +1,56 @@
+channels:
+  - pytorch
+  - conda-forge
+  - nvidia
+  - defaults
+
+dependencies:
+  - blas-devel
+  - cmake
+  - cssutils
+  - cython
+  - einops
+  - gdal
+  - gdown
+  - h5py
+  - jupyter
+  - jupyterlab
+  - kornia
+  - llvm-tools
+  - llvmlite
+  - matplotlib
+  - ninja
+  - omegaconf
+  - pandas
+  - pdal
+  - pip
+  - plyfile
+  - poetry
+  - py-opencv
+  - pycocotools
+  - pyinstaller
+  - python 3.8.* 
+  - python-pdal 
+  - pytorch 1.13.1 py3.8_cuda11.7_cudnn8_0
+  - pytorch-cuda=11.7
+  - pytorch-lightning
+  - pyyaml
+  - requests
+  - rich
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - shapely
+  - svgpathtools
+  - svgwrite
+  - tensorboard
+  - tensorboardx
+  - torchvision
+  - visdom
+  - pip:
+    - open3d
+    - openmim
+    - mmcv-full
+    - --find-links https://download.openmmlab.com/mmcv/dist/cu117/torch1.13/index.html
+    - mmsegmentation
+    - torch-tools
