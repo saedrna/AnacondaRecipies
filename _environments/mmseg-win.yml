@@ -27,6 +27,7 @@ dependencies:
   - plyfile
   - poetry
   - py-opencv
+  - pybind11
   - pycocotools
   - pyinstaller
   - python 3.8.* 
@@ -53,4 +54,14 @@ dependencies:
     - mmcv-full
     - --find-links https://download.openmmlab.com/mmcv/dist/cu117/torch1.13/index.html
     - mmsegmentation
+    - torch_scatter 
+    - --find-links https://data.pyg.org/whl/torch-1.13.0+cu117.html
+    - torch_sparse 
+    - --find-links https://data.pyg.org/whl/torch-1.13.0+cu117.html
+    - torch_cluster
+    - --find-links https://data.pyg.org/whl/torch-1.13.0+cu117.html
+    - torch_spline_conv 
+    - --find-links https://data.pyg.org/whl/torch-1.13.0+cu117.html
+    - torch_geometric
+    - --find-links https://data.pyg.org/whl/torch-1.13.0+cu117.html
     - torch-tools
