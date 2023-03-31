@@ -1,0 +1,45 @@
+channels:
+  - conda-forge
+  - saedrna
+  - defaults
+
+dependencies:
+  - assimp
+  - blas * openblas
+  - blas-devel
+  - boost-cpp
+  - capstone 4.0.2 h91bfe4b_1000 # saedrna repo
+  - catch2
+  - cereal
+  - ceres-solver
+  - cgal-cpp
+  - cmake
+  - eigen
+  - embree3
+  - entwine
+  - geogram 1.7.7
+  - geographiclib-cpp
+  - gflags
+  - glew
+  - glfw
+  - glm
+  - glog
+  - khronos-opencl-icd-loader 2020.03.13
+  - laszip
+  - lemon
+  - libblas
+  - libcblas
+  - libgdal
+  - liblapacke
+  - libtiff
+  - ninja
+  - occt
+  - opencv
+  - openexr
+  - openscenegraph
+  - pdal
+  - proj
+  - qt
+  - suitesparse
+  - tbb
+  - tbb-devel
