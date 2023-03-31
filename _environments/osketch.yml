@@ -5,7 +5,7 @@ channels:
 
 dependencies:
   - assimp
-  - blas * openblas
+  - blas * mkl
   - blas-devel
   - boost-cpp
   - capstone 4.0.2 h91bfe4b_1000 # saedrna repo
