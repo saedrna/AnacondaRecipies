@@ -1,4 +1,4 @@
-{% set version = "4.0.1" %}
+{% set version = "4.0.2" %}
 
 package:
   name: capstone
@@ -7,7 +7,7 @@ package:
 source:
   - url: https://github.com/aquynh/capstone/archive/{{ version }}.tar.gz
     fn: capstone-{{ version }}.tar.gz
-    sha256: 79bbea8dbe466bd7d051e037db5961fdb34f67c9fac5c3471dd105cfb1e05dc7
+    sha256: 7c81d798022f81e7507f1a60d6817f63aa76e489aa4e7055255f21a22f5e526a
 
 build:
   number: 1000

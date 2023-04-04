@@ -29,7 +29,7 @@ cmake -LAH -G "Visual Studio 17 2022" -A x64 ^
         -DOpenMVG_BUILD_SHARED=ON ^
         -DOpenMVG_BUILD_DOC=OFF ^
         -DOpenMVG_BUILD_EXAMPLES=OFF ^
-        -DOpenMVG_BUILD_SOFTWARES=ON ^
+        -DOpenMVG_BUILD_SOFTWARES=OFF ^
         -DOpenMVG_BUILD_GUI_SOFTWARES=OFF ^
         -DEIGEN_INCLUDE_DIR_HINTS=%UNIX_LIBRARY_PREFIX%/include/eigen3 ^
         -DCERES_DIR_HINTS=%UNIX_LIBRARY_PREFIX%/ceres ^

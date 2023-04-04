@@ -15,7 +15,7 @@ set UNIX_SRC_DIR=%SRC_DIR:\=/%
 
 robocopy %RECIPE_DIR%\ %SRC_DIR%\ CMakeLists.txt Config.cmake.in
 
-cmake -G "Ninja" ^
+cmake -G "Visual Studio 17 2022" -A "x64" -T "host=x64" ^
     -DBUILD_SHARED_LIBS=ON ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DCMAKE_INSTALL_PREFIX=%UNIX_LIBRARY_PREFIX% ^

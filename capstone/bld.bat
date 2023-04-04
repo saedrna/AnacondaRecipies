@@ -13,7 +13,7 @@ set UNIX_LIBRARY_LIB=%LIBRARY_LIB:\=/%
 set UNIX_SP_DIR=%SP_DIR:\=/%
 set UNIX_SRC_DIR=%SRC_DIR:\=/%
 
-cmake -G "Ninja" ^
+cmake -G "Visual Studio 17 2022" -A "x64" -T "host=x64" ^
     -DCAPSTONE_BUILD_SHARED=ON ^
     -DCAPSTONE_BUILD_STATIC=ON ^
     -DCAPSTONE_BUILD_STATIC_RUNTIME=OFF ^

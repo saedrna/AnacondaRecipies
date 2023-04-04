@@ -12,7 +12,7 @@ source:
       - fix-cmake.patch
 
 build:
-  number: 1001
+  number: 1003
 
 requirements:
   build:
@@ -43,6 +43,7 @@ requirements:
     - eigen
     - flann
     - lemon
+    - libjpeg-turbo
     - libpng
     - libtiff
     - zlib

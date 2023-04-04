@@ -8,7 +8,7 @@ c_compiler:
   # legacy compilers for things that refuse to move
   # modern compilers
   - gcc                        # [linux64]
-  - vs2019                     # [win]
+  - vs2022                     # [win]
   - clang                      # [osx]
 c_compiler_version:            # [unix]
   - 9                          # [linux64]
@@ -17,7 +17,7 @@ cxx_compiler:
   # modern compilers
   - gxx                        # [linux64]
   - clangxx                    # [osx]
-  - vs2019                     # [win]
+  - vs2022                     # [win]
 cxx_compiler_version:          # [unix]
   - 9                          # [linux64]
   - 4                          # [osx]
@@ -115,7 +115,8 @@ pin_run_as_build:
     max_pin: x
   jpeg:
     max_pin: x
-  libjpeg_turbo:
+  libjpeg-turbo:
+    min_pin: x.x
     max_pin: x
   json-c:
     max_pin: x.x
@@ -250,10 +251,10 @@ pin_run_as_build:
   zstd:
     max_pin: x.x.x
 
-libblas: 3.8 *netlib
-libcblas: 3.8 *netlib
-liblapack: 3.8 *netlib
-liblapacke: 3.8 *netlib
+libblas: 3.9.0 *netlib
+libcblas: 3.9.0 *netlib
+liblapack: 3.9.0 *netlib
+liblapacke: 3.9.0 *netlib
 python: 3.8.* *_cpython
 eigen: 3.4.0 *
 

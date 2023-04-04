@@ -71,14 +71,14 @@ index 2e0eafd..f9b505c 100644
      $<INSTALL_INTERFACE:include/openMVG>
  )
 diff --git a/src/software/SfM/CMakeLists.txt b/src/software/SfM/CMakeLists.txt
-index 6db7e83..c1848f3 100644
+index 6db7e83..821a5a5 100644
 --- a/src/software/SfM/CMakeLists.txt
 +++ b/src/software/SfM/CMakeLists.txt
-@@ -201,6 +201,7 @@ target_link_libraries(openMVG_main_ComputeStructureFromKnownPoses
-     openMVG_features
+@@ -44,6 +44,7 @@ target_link_libraries(openMVG_main_ComputeFeatures
+     openMVG_multiview
      openMVG_sfm
      ${STLPLUS_LIBRARY}
 +    Ceres::ceres
+     vlsift
  )
- 
- add_executable(openMVG_main_ComputeSfM_DataColor main_ComputeSfM_DataColor.cpp)
+ if (MSVC)
