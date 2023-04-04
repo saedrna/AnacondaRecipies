@@ -1,0 +1,39 @@
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - assimp
+  - blas * mkl
+  - blas-devel
+  - boost-cpp
+  - catch2
+  - cereal
+  - ceres-solver
+  - cgal-cpp
+  - cmake
+  - copc-lib
+  - eigen
+  - embree3
+  - geographiclib-cpp
+  - gflags
+  - glew
+  - glfw
+  - glm
+  - glog
+  - khronos-opencl-icd-loader 2020.03.13
+  - laszip
+  - libblas
+  - libcblas
+  - libgdal
+  - liblapacke
+  - ninja
+  - occt
+  - opencv
+  - pdal
+  - proj
+  - qt
+  - suitesparse
+  - tbb
+  - tbb-devel
+  - xerces-c
