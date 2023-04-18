@@ -1,7 +1,6 @@
 channels:
   - pytorch
   - nvidia
-  - pyg
   - conda-forge
   - defaults
 
@@ -26,7 +25,6 @@ dependencies:
   - poetry
   - py-opencv
   - pycocotools
-  - pyg 2.3.0
   - pyinstaller
   - python 3.8.* 
   - python-pdal 
@@ -57,3 +55,6 @@ dependencies:
   - mesa-libgl-devel-cos6-x86_64  # [linux]
   - pip:
     - open3d
+    # Install below manually
+    # - torch_geometric pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv 
+    # - --find-links https://data.pyg.org/whl/torch-2.0.0+cu118.html
