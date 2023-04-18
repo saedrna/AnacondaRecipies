@@ -1,0 +1,59 @@
+channels:
+  - pytorch
+  - nvidia
+  - pyg
+  - conda-forge
+  - defaults
+
+dependencies:
+  - blas-devel
+  - einops
+  - gdal
+  - gdown
+  - h5py
+  - jupyter
+  - jupyterlab
+  - kornia
+  - llvm-tools
+  - llvmlite
+  - matplotlib
+  - ninja
+  - omegaconf
+  - pandas
+  - pdal
+  - pip
+  - plyfile
+  - poetry
+  - py-opencv
+  - pycocotools
+  - pyg 2.3.0
+  - pyinstaller
+  - python 3.8.* 
+  - python-pdal 
+  - pytorch 2.0.0 py3.8_cuda11.8_cudnn8.7.0_0
+  - pytorch-cuda=11.8
+  - pytorch-lightning
+  - pyyaml
+  - requests
+  - rich
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - shapely
+  - tensorboard
+  - tensorboardx
+  - torchvision
+  - gcc_linux-64 9.*              # [linux]
+  - gxx_linux-64 9.*              # [linux]
+  - libselinux-cos6-x86_64        # [linux]
+  - libx11-cos6-x86_64            # [linux]
+  - libxau-cos6-x86_64            # [linux]
+  - libxcb-cos6-x86_64            # [linux]
+  - libxdamage-cos6-x86_64        # [linux]
+  - libxext-cos6-x86_64           # [linux]
+  - libxfixes-cos6-x86_64         # [linux]
+  - libxxf86vm-cos6-x86_64        # [linux]
+  - mesa-dri-drivers-cos6-x86_64  # [linux]
+  - mesa-libgl-devel-cos6-x86_64  # [linux]
+  - pip:
+    - open3d
