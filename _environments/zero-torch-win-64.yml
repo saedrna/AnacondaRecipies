@@ -1,0 +1,54 @@
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - blas-devel
+  - einops
+  - gdal
+  - gdown
+  - h5py
+  - jupyter
+  - jupyterlab
+  - kornia
+  - llvm-tools
+  - llvmlite
+  - matplotlib
+  - ninja
+  - omegaconf
+  - pandas
+  - pdal
+  - pip
+  - plyfile
+  - poetry
+  - py-opencv
+  - pyinstaller
+  - python 3.8.* 
+  - python-pdal 
+  - pytorch 2.0.0 py3.8_cuda11.8_cudnn8_0
+  - pytorch-cuda=11.8
+  - pytorch-lightning
+  - pyyaml
+  - requests
+  - rich
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - shapely
+  - tensorboard
+  - tensorboardx
+  - torchvision
+  - pip:
+    - open3d
+    - torch_geometric
+    - --find-links https://data.pyg.org/whl/torch-2.0.0+cu118.html
+    - torch_scatter
+    - --find-links https://data.pyg.org/whl/torch-2.0.0+cu118.html
+    - torch_sparse
+    - --find-links https://data.pyg.org/whl/torch-2.0.0+cu118.html
+    - torch_cluster
+    - --find-links https://data.pyg.org/whl/torch-2.0.0+cu118.html
+    - torch_spline_conv 
+    - --find-links https://data.pyg.org/whl/torch-2.0.0+cu118.html
