@@ -1,11 +1,13 @@
 channels:
   - pytorch
-  - nvidia
+  - nvidia/label/cuda-11.8.0
   - conda-forge
   - defaults
 
 dependencies:
   - blas-devel
+  - cuda
+  - cmake
   - einops
   - gdal
   - gdown
