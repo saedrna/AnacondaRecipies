@@ -1,5 +1,6 @@
 channels:
   - conda-forge
+  - saedrna
   - defaults
 
 dependencies:
@@ -15,6 +16,7 @@ dependencies:
   - copc-lib
   - eigen
   - embree3
+  - geogram
   - geographiclib-cpp
   - gflags
   - glew
@@ -36,4 +38,6 @@ dependencies:
   - suitesparse
   - tbb
   - tbb-devel
+  - untwine
   - xerces-c
+  - yaml-cpp
