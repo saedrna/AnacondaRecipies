@@ -8,6 +8,7 @@ dependencies:
   - blas * mkl
   - blas-devel
   - boost-cpp
+  - brotli
   - catch2
   - cereal
   - ceres-solver
