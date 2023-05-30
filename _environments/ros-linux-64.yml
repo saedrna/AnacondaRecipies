@@ -1,0 +1,25 @@
+channels:
+  - robostack-staging
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cgal
+  - libxcrypt                     
+  - libxcrypt1
+  - ninja
+  - ros-noetic-desktop-full
+  - gcc_linux-64 9.*              # [linux]
+  - gxx_linux-64 9.*              # [linux]
+  - ocl-icd                       # [linux]
+  - libselinux-cos6-x86_64        # [linux]
+  - libx11-cos6-x86_64            # [linux]
+  - libxau-cos6-x86_64            # [linux]
+  - libxcb-cos6-x86_64            # [linux]
+  - libxdamage-cos6-x86_64        # [linux]
+  - libxext-cos6-x86_64           # [linux]
+  - libxfixes-cos6-x86_64         # [linux]
+  - libxxf86vm-cos6-x86_64        # [linux]
+  - mesa-dri-drivers-cos6-x86_64  # [linux]
+  - mesa-libgl-devel-cos6-x86_64  # [linux]
+  - mesa-libegl-devel-cos6-x86_64 # [linux]
