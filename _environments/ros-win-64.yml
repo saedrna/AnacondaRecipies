@@ -1,0 +1,11 @@
+channels:
+  - robostack-staging
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cgal
+  - cmake
+  - ninja
+  - gdk-pixbuf 2.42.8
+  - ros-noetic-desktop-full
