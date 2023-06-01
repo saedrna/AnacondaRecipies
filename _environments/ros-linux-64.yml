@@ -8,6 +8,7 @@ dependencies:
   - libxcrypt                     
   - libxcrypt1
   - ninja
+  - ros-noetic-rviz-imu-plugin
   - ros-noetic-desktop-full
   - gcc_linux-64 9.*              # [linux]
   - gxx_linux-64 9.*              # [linux]
