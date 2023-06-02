@@ -1,0 +1,12 @@
+channels:
+  - robostack-staging
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cgal
+  - ninja
+  - ros-noetic-rviz-imu-plugin
+  - ros-noetic-desktop-full
+  - gcc_linux-aarch64 9.*         # [linux]
+  - gxx_linux-aarch64 9.*         # [linux]
